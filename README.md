@@ -7,9 +7,9 @@ This uses the Pipe and Filter architecture as usually implemented in compilers. 
 ## Credits
 Aditya Thakur\
 Amal Sayeed\
+Ohiduz Zaman\
 Priyansh Patel\
 Rachoita Das\
-Ohiduz Zaman\
 Subhramit Basu Bhowmick
 
 ## License
