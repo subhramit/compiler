@@ -5,12 +5,12 @@ This uses the Pipe and Filter architecture as usually implemented in compilers. 
 
 ![Screenshot](architecture.png)
 ## Credits
-Aditya Thakur\
-Amal Sayeed\
-Ohiduz Zaman\
-Priyansh Patel\
-Rachoita Das\
-Subhramit Basu Bhowmick
+- [Aditya Thakur](https://github.com/cry0genic)
+- [Amal Sayeed](https://github.com/amal-sayeed)
+- [Ohiduz Zaman](https://github.com/Ohiduz)
+- [Priyansh Patel](https://github.com/PriyanshPatelBits)
+- [Rachoita Das](https://github.com/Rachoita-Das)
+- [Subhramit Basu](https://github.com/subhramit)
 
 ## License
 This piece of software is licensed under an [MIT License](https://opensource.org/licenses/MIT).  For more details, refer to the LICENSE file.
