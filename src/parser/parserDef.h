@@ -1,0 +1,1 @@
+// Contains all definitions for data types such as grammar, table, parseTree etc. used in parser.c
