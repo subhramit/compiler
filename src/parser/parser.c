@@ -14,14 +14,14 @@ FirstAndFollow computeFirstAndFollowSets(grammar G) {
 
 }
 
-createParseTable(FirstAndFollow F, table T) {
+void createParseTable(FirstAndFollow F, table T) {
     /*
     This function takes as input the FIRST and FOLLOW  information in F to populate the table T appropriately.
     */
 
 }
 
-parseInputSourceCode(char* testcaseFile, table T) {
+void parseInputSourceCode(char* testcaseFile, table T) {
     /*
     This function takes as input the source code file and parses using the rules as per the predictive parse table T and returns a parse tree.
     The function gets the tokens using lexical analysis interface and establishes the syntactic structure of the input source code using rules in T.
@@ -33,7 +33,7 @@ parseInputSourceCode(char* testcaseFile, table T) {
 
 }
 
-printParseTree(parseTree PT, char* outfile) {
+void printParseTree(parseTree PT, char* outfile) {
     /*
     This function provides an interface for observing the correctness of the creation of parse tree. The function prints the parse tree in inorder in the file outfile. The output is such that each line of the file outfile must contain the information corresponding to the currently visited node of the parse tree in the following format:
 

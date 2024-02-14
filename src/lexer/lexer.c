@@ -22,7 +22,7 @@ tokenInfo getNextToken(twinBuffer B) {
 
 }
 
-removeComments(char* testcaseFile, char* cleanFile) {
+void removeComments(char* testcaseFile, char* cleanFile) {
     /*
     This function is an additional plug in to clean the source code by removal of comments.
     The function takes as input the source code and writes the clean code in the file appropriately.
