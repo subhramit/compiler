@@ -18,17 +18,18 @@ int main(int argc, char* argv[]) {
     printf("No errors 1 and 2\n");
     char buf[2048]; //buffer to temporarily hold lines
     FILE* outputfile = fopen("output.txt", "w");
+    char* commentSym;
     
     while(fgets(buf, sizeof(buf), inputfile) != NULL) {
-        char *delimiterSym = strchr(buf, '%'); //strchr finds the position of % in the line
+        char *commentSym = strchr(buf, '%'); //strchr finds the position of % in the line
 
-        if (delimiterSym != NULL && buf==delimiterSym) { //not a null pointer means % found, and buf is the beginning of the line
-            *delimiterSym = '\n'; //if the line is a comment, just insert new line
-            *(delimiterSym+1)= '\0'; //truncate the rest of the line
+        if (commentSym != NULL && buf==commentSym) { //not a null pointer means % found, and buf is the beginning of the line
+            *commentSym = '\n'; //if the line is a comment, just insert new line
+            *(commentSym+1)= '\0'; //truncate the rest of the line
             fputs(buf, outputfile); //copy the modified line
         }
-        else if (delimiterSym != NULL) { //if the comment occure in te middle of code
-            *delimiterSym = '\0'; //truncate the rest of the line
+        else if (commentSym != NULL) { //if the comment occure in te middle of code
+            *commentSym = '\0'; //truncate the rest of the line
             fputs(buf, outputfile); //copy the modified line
             fputs("\n", outputfile); //change line
         }
