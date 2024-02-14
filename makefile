@@ -1,4 +1,4 @@
-all: src/preprocessor/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
+all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	gcc src/lexer/preprocessor.c -o preprocessor.o
 	gcc src/lexer/lexer.c -c -o lexer.o
 	gcc src/parser/parser.c -c -o parser.o
