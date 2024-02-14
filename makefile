@@ -6,7 +6,7 @@
 # 2020A7PS2002P                       Rachoita Das
 # 2020B1A70611P                       Subhramit Basu Bhowmick
 
-builder = gcc #change to "clang" if you're using Clang to compile
+builder = gcc -c #change to "clang" if you're using Clang to compile
 all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	make clean
 	mkdir -p build
@@ -15,7 +15,7 @@ all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	$(builder) src/lexer/lexer.c -c -o build/lexer.o
 	$(builder) src/parser/parser.c -c -o build/parser.o
 	$(builder) driver.c -c -o build/driver.o
-	$(builder) -o compile preprocessor.o lexer.o driver.o parser.o
+	gcc preprocessor.o lexer.o driver.o parser.o -o compile
 
 	$(builder) build/*.o -o compile
 clean:
