@@ -17,5 +17,5 @@ all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 
 	$(builder) build/*.o -o compile
 clean:
-	rm -r build/*.o
+	rm -f build/*.o
 	rm -f compile
