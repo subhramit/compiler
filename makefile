@@ -8,7 +8,9 @@
 
 builder = gcc
 all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
-
+	make clean
+	mkdir -p build
+	
 	$(builder) src/lexer/preprocessor.c -o build/preprocessor.o
 	$(builder) src/lexer/lexer.c -c -o build/lexer.o
 	$(builder) src/parser/parser.c -c -o build/parser.o
