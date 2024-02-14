@@ -6,5 +6,5 @@ all: src/preprocessor/preprocessor.c src/lexer/lexer.c src/parser/parser.c
 	gcc -o compile preprocessor.o lexer.o driver.o parser.o
 
 clean:
-	rm *.o
-	rm compile
+	rm -f *.o
+	rm -f compile
