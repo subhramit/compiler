@@ -23,7 +23,8 @@ tokenInfo getNextToken(twinBuffer B) {
 }
 
 removeComments(char* testcaseFile, char* cleanFile) {
-    /* This function is an additional plug in to clean the source code by removal of comments.
+    /*
+    This function is an additional plug in to clean the source code by removal of comments.
     The function takes as input the source code and writes the clean code in the file appropriately.
     [Note: This function is invoked only once through your driver file to showcase the comment removal for evaluation purpose.
     However, your lexer does not really pick inputs from comment removed file.
