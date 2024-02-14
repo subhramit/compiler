@@ -1,8 +1,8 @@
 # A toy compiler
 Compiler design and implementation project for a toy language (with specifications provided) for the course CS F363 (Compiler Construction), Spring '24, BITS Pilani.
 ## To run the compiler
-1. Run ````make driver```` to prepare the executable
-2. Run ````./driver <Input File>````
+1. Run ````make```` to prepare the executable
+2. Run ````./compile <Input File>````
 
 ## Architecture
 This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
