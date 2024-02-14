@@ -16,16 +16,27 @@ int main(int argc, char* argv[]) {
     }
 
     printf("No errors 1 and 2\n");
-    char buf[1024]; //buffer to temporarily hold lines
+    char buf[2048]; //buffer to temporarily hold lines
     FILE* outputfile = fopen("output.txt", "w");
     
     while(fgets(buf, sizeof(buf), inputfile) != NULL) {
         char *delimiterSym = strchr(buf, '%'); //strchr finds the position of % in the line
-        if (delimiterSym != NULL) { //not a null pointer means % found
-            *delimiterSym = '\0'; //since '%' found, truncate line by replacing it with \0, which denotes end of string
+
+        if (delimiterSym != NULL && buf==delimiterSym) { //not a null pointer means % found, and buf is the beginning of the line
+            *delimiterSym = '\n'; //if the line is a comment, just insert new line
+            *(delimiterSym+1)= '\0'; //truncate the rest of the line
+            fputs(buf, outputfile); //copy the modified line
         }
-        fputs(buf, outputfile); //copy the modified line to the destination file
+        else if (delimiterSym != NULL) { //if the comment occure in te middle of code
+            *delimiterSym = '\0'; //truncate the rest of the line
+            fputs(buf, outputfile); //copy the modified line
+            fputs("\n", outputfile); //change line
+        }
+        else {
+            fputs(buf, outputfile); //simply copy the modified line to the destination file
+        }
     }
+
     fclose(inputfile);
     fclose(outputfile);
     
