@@ -6,7 +6,7 @@
 # 2020A7PS2002P                       Rachoita Das
 # 2020B1A70611P                       Subhramit Basu Bhowmick
 
-builder = gcc
+builder = gcc #change to "clang" if you're using Clang to compile
 all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	make clean
 	mkdir -p build
