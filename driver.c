@@ -68,6 +68,7 @@ int main(int argc, char* argv[]) {
                     break;
             
             default: printf("Please enter a correct option!\n");
+                     return 0;
         }
     }
 
