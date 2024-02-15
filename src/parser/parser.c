@@ -13,6 +13,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include "../lexer/lexer.h"
+#include "parser.h"
+#include "parserDef.h"
 
 FirstAndFollow computeFirstAndFollowSets(grammar G) {
     /*
