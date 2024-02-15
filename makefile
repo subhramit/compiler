@@ -12,9 +12,9 @@ all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	mkdir -p build
 	
 	$(var) src/lexer/preprocessor.c -o build/preprocessor.o
-	$(var) src/lexer/lexer.c -c -o build/lexer.o
-	$(var) src/parser/parser.c -c -o build/parser.o
-	$(var) driver.c -c -o build/driver.o
+	$(var) src/lexer/lexer.c -o build/lexer.o
+	$(var) src/parser/parser.c -o build/parser.o
+	$(var) driver.c -o build/driver.o
 
 	gcc build/*.o -o compile
 clean:
