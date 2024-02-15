@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "lexer.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "parserdef.h": "c"
     }
 }
