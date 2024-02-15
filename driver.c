@@ -27,11 +27,13 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    int choice;
-    printf("Welcome to our compiler! Select your option:\n 0: To exit\n 1: To remove comments and print on console\n 2: To print token list on console\n 3: To parse and print the parse tree\n 4: To print total time taken on console\n");
-    scanf("%d", &choice);
+    int choice = -1;
 
     while(choice) {
+
+        printf("Welcome to our compiler! Select your option:\n 0: To exit\n 1: To remove comments and print on console\n 2: To print token list on console\n 3: To parse and print the parse tree\n 4: To print total time taken on console\n");
+        scanf("%d", &choice);
+
         switch(choice) {
 
             case 0: printf("Thank you!\n");
@@ -40,16 +42,13 @@ int main(int argc, char* argv[]) {
 
             case 1: removeComments(argv[1], "cleanedfile.txt");
                     printCleanFile("cleanedFile.txt");
-                    choice=0;
                     break;
 
             case 2: //printTokens(argv[1]);
-                    choice=0;
                     break;
 
             case 3: //parseInputSourceCode(char* testcaseFile, table T);
                     //printParseTree(parseTree PT, char* outfile);
-                    choice=0;
                     break;
             
             case 4: clock_t start_time, end_time;
@@ -66,7 +65,6 @@ int main(int argc, char* argv[]) {
                     // Print both total_CPU_time and total_CPU_time_in_seconds
                     printf("Total CPU time (in clock cycles): %lf\n",total_CPU_time);
                     printf("Total CPU time (in seconds): %lf\n",total_CPU_time_in_seconds);
-                    choice=0;
                     break;
             
             default: printf("Please enter a correct option!\n");
