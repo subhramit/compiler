@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lexer.h"
-//#include "lexerDef.h"
+#include "lexerDef.h"
 
 //FILE* getStream(FILE* fp) {
     /*
