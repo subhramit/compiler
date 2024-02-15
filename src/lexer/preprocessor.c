@@ -37,6 +37,7 @@ int main(int argc, char* argv[]) {
             *commentSym = '\n'; //change line
             *(commentSym+1)= '\0'; //truncate the rest of the line
         }
+
         fputs(buf, outputfile); //copy the modified line
     }
 
