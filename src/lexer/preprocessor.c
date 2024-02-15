@@ -30,22 +30,14 @@ int main(int argc, char* argv[]) {
     FILE* outputfile = fopen("output.txt", "w");
     char* commentSym;
     
-    while(fgets(buf, sizeof(buf), inputfile) != NULL) {
-        char *commentSym = strchr(buf, '%'); //strchr finds the position of % in the line
+    while(fgets(buf, sizeof(buf), inputfile) != NULL) { //loop through each line
+        commentSym = strchr(buf, '%'); //strchr finds the position of % in the line
 
-        if (commentSym != NULL && buf==commentSym) { //not a null pointer means % found, and buf is the beginning of the line
-            *commentSym = '\n'; //if the line is a comment, just insert new line
+        if (commentSym != NULL) { //not a null pointer means % found
+            *commentSym = '\n'; //change line
             *(commentSym+1)= '\0'; //truncate the rest of the line
-            fputs(buf, outputfile); //copy the modified line
         }
-        else if (commentSym != NULL) { //if the comment occure in te middle of code
-            *commentSym = '\0'; //truncate the rest of the line
-            fputs(buf, outputfile); //copy the modified line
-            fputs("\n", outputfile); //change line
-        }
-        else {
-            fputs(buf, outputfile); //simply copy the modified line to the destination file
-        }
+        fputs(buf, outputfile); //copy the modified line
     }
 
     fclose(inputfile);
