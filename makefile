@@ -17,6 +17,7 @@ all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	$(var) driver.c -o build/driver.o
 
 	gcc build/*.o -o compile
+	
 clean:
 	rm -f build/*.o
 	rm -f compile
