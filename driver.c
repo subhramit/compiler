@@ -13,7 +13,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "src/preprocessor/preprocessor.h"
 #include "src/parser/parserDef.h"
 #include "src/lexer/lexer.h"
 #include "src/parser/parserDef.h"
@@ -39,14 +38,18 @@ int main(int argc, char* argv[]) {
                     return 0;
                     break;
 
-            case 1: //removeComments(argv[1]);
+            case 1: removeComments(argv[1], "cleanedfile.txt");
+                    printCleanFile("cleanedFile.txt");
+                    choice=0;
                     break;
 
             case 2: //printTokens(argv[1]);
+                    choice=0;
                     break;
 
             case 3: //parseInputSourceCode(char* testcaseFile, table T);
                     //printParseTree(parseTree PT, char* outfile);
+                    choice=0;
                     break;
             
             case 4: clock_t start_time, end_time;
@@ -63,6 +66,7 @@ int main(int argc, char* argv[]) {
                     // Print both total_CPU_time and total_CPU_time_in_seconds
                     printf("Total CPU time (in clock cycles): %lf\n",total_CPU_time);
                     printf("Total CPU time (in seconds): %lf\n",total_CPU_time_in_seconds);
+                    choice=0;
                     break;
             
             default: printf("Please enter a correct option!\n");

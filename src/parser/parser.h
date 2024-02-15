@@ -16,9 +16,9 @@
 #include "../lexer/lexer.h"
 #include "parserDef.h"
 
-FirstAndFollow computeFirstAndFollowSets(grammar G);
-void createParseTable(FirstAndFollow F, table T);
-void parseInputSourceCode(char* testcaseFile, table T);
-void printParseTree(parseTree PT, char* outfile);
+//FirstAndFollow computeFirstAndFollowSets(grammar G);
+//void createParseTable(FirstAndFollow F, table T);
+//void parseInputSourceCode(char* testcaseFile, table T);
+//void printParseTree(parseTree PT, char* outfile);
 
 #endif

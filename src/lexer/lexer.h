@@ -17,8 +17,9 @@
 #include <stdlib.h>
 #include "lexerDef.h"
 
-FILE* getStream(FILE* fp);
-tokenInfo getNextToken(twinBuffer B);
+//FILE* getStream(FILE* fp);
+//tokenInfo getNextToken(twinBuffer B);
 void removeComments(char* testcaseFile, char* cleanFile);
+void printCleanFile(char* cleanFile);
 
 #endif

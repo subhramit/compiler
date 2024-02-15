@@ -12,9 +12,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lexer.h"
-#include "lexerDef.h"
+//#include "lexerDef.h"
 
-FILE* getStream(FILE* fp) {
+//FILE* getStream(FILE* fp) {
     /*
     This function takes the input from the file pointed to by 'fp'.
     This file is the source code written in the given language.
@@ -23,16 +23,16 @@ FILE* getStream(FILE* fp) {
     The implementation can also be combined with getNextToken() implementation as per the convenience of the team.
     */
    
-}
+//}
 
-tokenInfo getNextToken(twinBuffer B) {
+//tokenInfo getNextToken(twinBuffer B) {
     /*
     This function reads the input character stream and uses efficient mechanism to recognize lexemes.
     The function tokenizes the lexeme appropriately and returns all relevant information it collects in this phase (lexical analysis phase) encapsulated as tokenInfo. 
     The function also displays lexical errors appropriately.
     */
 
-}
+//}
 
 void removeComments(char* testcaseFile, char* cleanFile) {
     /*
@@ -43,5 +43,51 @@ void removeComments(char* testcaseFile, char* cleanFile) {
     Rather, it keeps ignoring the comments and keep collecting token Info to pass to the parser.
     For showcasing your lexers ability, directly take input from user source code]
     */
+
+    FILE* inputfile = fopen(testcaseFile, "r"); //should be changed to "rb" if our language has a different file extension
+
+    if(inputfile == NULL) {
+        printf("Error opening the specified file!\n");
+        return;
+    }
+
+    printf("No errors 1 and 2\n");
+    char buf[2048]; //buffer to temporarily hold lines
+    FILE* outputfile = fopen(cleanFile, "w");
+    char* commentSym;
+    
+    while(fgets(buf, sizeof(buf), inputfile) != NULL) { //loop through each line
+
+        commentSym = strchr(buf, '%'); //strchr finds the position of % in the line
+        if (commentSym != NULL) { //not a null pointer means % found
+            *commentSym = '\n'; //change line
+            *(commentSym+1) = '\0'; //truncate the rest of the line
+        }
+
+        fputs(buf, outputfile); //copy the modified line
+    }
+
+    fclose(inputfile);
+    fclose(outputfile);
+
+}
+
+void printCleanFile(char* cleanFile) {
+
+    FILE* printable = fopen(cleanFile, "r");
+
+    if(printable == NULL) {
+        printf("Error opening cleaned file!\n");
+        exit(-1);
+    }
+
+    char ch;
+    ch = fgetc(printable);
+    while (ch != EOF) {
+        printf ("%c", ch); 
+        ch = fgetc(printable); 
+    }
+
+    fclose(printable);
 
 }
