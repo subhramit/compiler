@@ -3,5 +3,6 @@ In this line, all following this is to be removed %to not be printed
 This line is to be kept.
 In this line, all following this is to be removed %to not be printed
 % This line too is to be removed.
+This line is to be kept.
 In this line, all following this is to be removed %to not be printed
 %
