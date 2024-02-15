@@ -16,7 +16,7 @@ all: src/lexer/preprocessor.c src/lexer/lexer.c src/parser/parser.c driver.c
 	$(var) src/parser/parser.c -o build/parser.o
 	$(var) driver.c -o build/driver.o
 
-	gcc build/*.o -o compile
+	gcc build/*.o -o stage1exe
 	
 clean:
 	rm -f build/*.o

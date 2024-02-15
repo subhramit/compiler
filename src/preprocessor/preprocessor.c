@@ -10,15 +10,12 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "preprocessor.h"
 
-int main(int argc, char* argv[]) {
+void removeComments(char* input) {
 
-    if(argc!=2) {
-        printf("Wrong input format. Please specify the name of the correct file.\n");
-        return 1;
-    }
 
-    FILE* inputfile = fopen(argv[1], "r"); //should be changed to "rb" if our language has a different file extension
+    FILE* inputfile = fopen(input, "r"); //should be changed to "rb" if our language has a different file extension
 
     if(inputfile == NULL) {
         printf("Error opening the specified file!\n");
