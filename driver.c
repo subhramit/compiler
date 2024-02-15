@@ -47,8 +47,8 @@ int main(int argc, char* argv[]) {
             case 2: //printTokens(argv[1]);
                     break;
 
-            case 3: //parseInputSourceCode(char* testcaseFile, table T);
-                    //printParseTree(parseTree PT, char* outfile);
+            case 3: //parseInputSourceCode(argv[1], table T);
+                    //printParseTree(parseTree PT, argv[2]);
                     break;
             
             case 4: clock_t start_time, end_time;
