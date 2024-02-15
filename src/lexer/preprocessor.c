@@ -31,11 +31,11 @@ int main(int argc, char* argv[]) {
     char* commentSym;
     
     while(fgets(buf, sizeof(buf), inputfile) != NULL) { //loop through each line
-        commentSym = strchr(buf, '%'); //strchr finds the position of % in the line
 
+        commentSym = strchr(buf, '%'); //strchr finds the position of % in the line
         if (commentSym != NULL) { //not a null pointer means % found
             *commentSym = '\n'; //change line
-            *(commentSym+1)= '\0'; //truncate the rest of the line
+            *(commentSym+1) = '\0'; //truncate the rest of the line
         }
 
         fputs(buf, outputfile); //copy the modified line
