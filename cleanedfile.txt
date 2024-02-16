@@ -1,8 +1,0 @@
-
-In thisa line, all following this is to be removed 
-This line is to be kept.
-In this line, all following this is to be removed 
-
-This line is to be kept.
-In this line, all following this is to be removed 
-
