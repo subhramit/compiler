@@ -17,8 +17,9 @@
 #include <stdlib.h>
 
 #define ALPHABET_SIZE 26
+#define INITIAL_SYMBOL_TABLE_CAPACITY 10
 
-enum Token {
+typedef enum Token {
     ASSIGNOP,
     COMMENT,
     FIELDID,
@@ -76,13 +77,13 @@ enum Token {
     GT,
     GE,
     NE
-};
+} Token;
 
 // Trie Node
 typedef struct TrieNode {
     struct TrieNode* children[ALPHABET_SIZE];
     int isEndOfWord; // Flag to indicate end of word
-    enum Token tokenType;
+    Token tokenType;
 } TrieNode;
 
 // Function to create a new Trie node
@@ -95,17 +96,34 @@ TrieNode* createTrieNode() {
         }
     }
     else{
-        printf("Could not allocate memory for creating node\n");
+        printf("Could not allocate memory for creating trie node\n");
     }
     return newNode;
 }
 
-// Function to insert a word into the Trie
-void insertKeyword(TrieNode* root, const char* word, enum Token tkType) {
-    TrieNode* currentNode = root;
+//Trie
+typedef struct Trie{
+    struct TrieNode* root;
+} Trie;
+
+// Function to create a new Trie
+Trie* createTrie(){
+    Trie* newTrie = (Trie*) malloc(sizeof(Trie));
+    if(newTrie){
+        newTrie->root = createTrieNode();
+    }
+    else{
+        printf("Could not allocate memory for creating trie\n");
+    }
+    return newTrie;
+}
+
+// Function to insert a keyword into the Trie
+void insertKeyword(Trie* myTrie, const char* word, Token tkType) {
+    TrieNode* currentNode = myTrie->root;
     for (int i = 0; word[i] != '\0'; i++) {
         int index = word[i] - 'a';
-        if (!currentNode->children[index]) {
+        if (!(currentNode->children[index])) {
             currentNode->children[index] = createTrieNode();
         }
         currentNode = currentNode->children[index];
@@ -114,12 +132,12 @@ void insertKeyword(TrieNode* root, const char* word, enum Token tkType) {
     currentNode->tokenType = tkType;
 }
 
-// Function to search for a word in the Trie
-int searchKeyword(TrieNode* root, const char* word) {
-    TrieNode* currentNode = root;
+// Function to search for a keyword in the Trie and return the corresponding token
+int searchKeyword(Trie* myTrie, const char* word) {
+    TrieNode* currentNode = myTrie->root;
     for (int i = 0; word[i] != '\0'; i++) {
         int index = word[i] - 'a';
-        if (!currentNode->children[index]) {
+        if (!(currentNode->children[index])) {
             return -1; // Word not found
         }
         currentNode = currentNode->children[index];
@@ -128,5 +146,65 @@ int searchKeyword(TrieNode* root, const char* word) {
         return currentNode->tokenType;
     return -1;
 }
+
+
+
+// Each entry in the symbol table
+typedef struct SymbolTableEntry{
+    char* lexeme;
+    Token tokenType;
+} SymbolTableEntry;
+
+// The Symbol Table 
+typedef struct SymbolTable{
+    int capacity, size;
+    SymbolTableEntry** table;
+} SymbolTable;
+
+
+// Create a new Symbol Table
+SymbolTable* createSymbolTable(){
+    SymbolTable* newSymbolTable = (SymbolTable*) malloc(sizeof(SymbolTable));
+    if(!(newSymbolTable)){
+        printf("Could not allocate memory for Symbol Table struct\n"); return NULL;
+    }
+    newSymbolTable->table = (SymbolTableEntry**) malloc(INITIAL_SYMBOL_TABLE_CAPACITY*sizeof(SymbolTableEntry*));
+    if(!(newSymbolTable->table)){
+        printf("Could not allocate memory for creating Symbol Table\n"); 
+    }
+    newSymbolTable->capacity = INITIAL_SYMBOL_TABLE_CAPACITY;
+    newSymbolTable->size=0;
+    return newSymbolTable;
+}
+
+
+// Insert a token and other details as an entry into the Symbol Table
+void insertToken(SymbolTable* ST, SymbolTableEntry* stEntry){
+    if(ST->size == ST->capacity){
+        ST->capacity *= 2;
+        ST->table = (SymbolTableEntry**) realloc(ST->table , ST->capacity*sizeof(SymbolTableEntry*));
+        if(!(ST->table)){
+            printf("Could not allocate memory for resizing Symbol Table\n");
+            return;
+        }
+    }
+    ST->table[(ST->size)++] = stEntry;
+}
+
+
+// Create a token / an entry in the Symbol Table
+SymbolTableEntry* createToken(char* lxm, Token tkType){
+    SymbolTableEntry* newTok = (SymbolTableEntry*) malloc(sizeof(SymbolTableEntry));
+    if(!(newTok)){
+        printf("Could not allocate memory for creating a new token\n");
+        return NULL;
+    }
+    newTok->lexeme = lxm;
+    newTok->tokenType = tkType;
+    return newTok;
+}
+
+// Search for a lexeme in the Symbol Table
+
 
 #endif
