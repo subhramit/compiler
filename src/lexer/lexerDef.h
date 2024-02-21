@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define ALPHABET_SIZE 26
 #define INITIAL_SYMBOL_TABLE_CAPACITY 10
@@ -78,6 +79,11 @@ typedef enum Token {
     GE,
     NE
 } Token;
+
+
+
+
+
 
 // Trie Node
 typedef struct TrieNode {
@@ -149,6 +155,9 @@ int searchKeyword(Trie* myTrie, const char* word) {
 
 
 
+
+
+
 // Each entry in the symbol table
 typedef struct SymbolTableEntry{
     char* lexeme;
@@ -205,6 +214,67 @@ SymbolTableEntry* createToken(char* lxm, Token tkType){
 }
 
 // Search for a lexeme in the Symbol Table
+SymbolTableEntry* searchToken(SymbolTable* ST, char* lxm){
+    for(int i=0; i<ST->size; ++i)
+        if(!strcmp(lxm, ST->table[i]->lexeme)) 
+            return ST->table[i];
+    return NULL;
+}
+
+
+
+
+
+typedef struct llnode{
+    SymbolTableEntry* STE;
+    int lineNumber;
+    struct llnode* next;
+} LLNODE;
+
+
+typedef struct linkedList{
+    int count;
+    LLNODE *head, *tail;
+} LIST;
+
+
+LIST* createNewList(){
+    LIST* myList = (LIST*) malloc(sizeof(LIST));
+    if(!(myList)){
+        printf("Could not allocate memory for creation of linked list\n");
+        return NULL;
+    }
+    myList->count=0;
+    myList->head=NULL;
+    myList->tail=NULL;
+    return myList;
+}
+
+
+LLNODE* createNewNode(SymbolTableEntry* ste, int lineNo){
+    LLNODE* myNode = (LLNODE*) malloc(sizeof(LLNODE));
+    if(!(myNode)){
+        printf("Could not allocate memory for linked list node\n");
+        return NULL;
+    }
+    myNode->STE = ste;
+    myNode->lineNumber = lineNo;
+    myNode->next = NULL;
+    return myNode;
+}
+
+
+void insertLLNode(LIST* myList, LLNODE* myNode){
+    if(!(myList->count)){
+        myList->head = myNode;
+        myList->tail = myNode;
+    }
+    else{
+        myList->tail->next = myNode;
+        myList->tail = myNode;
+    }
+    ++(myList->count);
+}
 
 
 #endif
