@@ -80,7 +80,8 @@ typedef enum Token {
     GE,
     NE,
     DOLLAR, // End of File marker
-    LEXICAL_ERROR
+    LEXICAL_ERROR,
+    NOT_FOUND
 } Token;
 
 
@@ -142,18 +143,18 @@ void insertKeyword(Trie* myTrie, const char* word, Token tkType) {
 }
 
 // Function to search for a keyword in the Trie and return the corresponding token
-int searchKeyword(Trie* myTrie, const char* word) {
+Token searchKeyword(Trie* myTrie, const char* word) {
     TrieNode* currentNode = myTrie->root;
     for (int i = 0; word[i] != '\0'; i++) {
         int index = word[i] - 'a';
         if (!(currentNode->children[index])) {
-            return -1; // Word not found
+            return NOT_FOUND; // Word not found
         }
         currentNode = currentNode->children[index];
     }
     if(currentNode && currentNode->isEndOfWord)
         return currentNode->tokenType;
-    return -1;
+    return NOT_FOUND;
 }
 
 
@@ -163,7 +164,7 @@ int searchKeyword(Trie* myTrie, const char* word) {
 
 // Each entry in the symbol table
 typedef struct SymbolTableEntry{
-    char* lexeme;
+    char lexeme[BUFFER_SIZE];
     Token tokenType;
     double valueIfNumber;
 } SymbolTableEntry;
@@ -212,7 +213,7 @@ SymbolTableEntry* createToken(char* lxm, Token tkType, double valNum){
         printf("Could not allocate memory for creating a new token\n");
         return NULL;
     }
-    newTok->lexeme = lxm;
+    strcpy(newTok->lexeme, lxm); 
     newTok->tokenType = tkType;
     newTok->valueIfNumber = valNum;
     return newTok;
