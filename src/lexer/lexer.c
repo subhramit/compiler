@@ -93,6 +93,12 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber){
                 else if(ch=='a' || (ch>'d' && ch<='z')) state=3;
                 else if(ch>='b' && ch<='d') state=79;
                 else if(ch=='.') state=59;
+                else if(ch=='\0'){
+                    char lx[1] = {ch};
+                    SymbolTableEntry* endSte = createToken(lx, DOLLAR, 0);
+                    tokenInfo* endTok = createNewNode(endSte, *lineNumber);
+                    return endTok;
+                }
                 else{
                     char lx[1] = {ch};
                     SymbolTableEntry* errSte = createToken(lx, LEXICAL_ERROR, 0);
