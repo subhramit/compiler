@@ -71,7 +71,7 @@ void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff){
     }
 }
 
-tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, Trie* keywordsLookup){
+tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, Trie* keywordsLookup, SymbolTable* symbolTable){
     tokenInfo* tokenNode;
     int beginPtr = (*fwdPtr + 1) % (2*BUFFER_SIZE);
     int state=0;
@@ -117,7 +117,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 }
                 else{
                     lexeme[0] = ch; lexeme[1] = '\0';
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -126,7 +130,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 1: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* asgnSte = createToken(lexeme, ASSIGNOP, 0);
+                SymbolTableEntry* asgnSte = searchToken(symbolTable, lexeme);
+                if(!asgnSte){
+                    asgnSte = createToken(lexeme, ASSIGNOP, 0);
+                    insertToken(symbolTable, asgnSte);
+                }
                 tokenInfo* asgnTok = createNewNode(asgnSte, *lineNumber);
                 return asgnTok;
                 break;
@@ -143,16 +151,25 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
 
-                    Token tki = searchKeyword(keywordsLookup, lexeme);
-                    if(tki==NOT_FOUND){
-                        SymbolTableEntry* fidSte = createToken(lexeme, FIELDID, 0);
-                        tokenInfo* fidTok = createNewNode(fidSte, *lineNumber);
-                        return  fidTok;
+                    SymbolTableEntry* ste = searchToken(symbolTable, lexeme);
+                    if(!ste){
+                        Token tki = searchKeyword(keywordsLookup, lexeme);
+                        if(tki==NOT_FOUND){
+                            SymbolTableEntry* fidSte = createToken(lexeme, FIELDID, 0);
+                            insertToken(symbolTable, fidSte);
+                            tokenInfo* fidTok = createNewNode(fidSte, *lineNumber);
+                            return  fidTok;
+                        }
+                        else{
+                            SymbolTableEntry* kwSte = createToken(lexeme, tki, 0);
+                            insertToken(symbolTable, kwSte);
+                            tokenInfo* kwTok = createNewNode(kwSte, *lineNumber);
+                            return kwTok;
+                        }
                     }
                     else{
-                        SymbolTableEntry* kwSte = createToken(lexeme, tki, 0);
-                        tokenInfo* kwTok = createNewNode(kwSte, *lineNumber);
-                        return kwTok;
+                        tokenInfo* Tok = createNewNode(ste, *lineNumber);
+                        return Tok;
                     }
                     
                 }
@@ -168,11 +185,19 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     int l = strlen(lexeme);
                     if(l>20){
-                        SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                        if(!errSte){
+                            errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                            insertToken(symbolTable, errSte);
+                        }
                         tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                         return errTok;
                     }
-                    SymbolTableEntry* idSte = createToken(lexeme, ID, 0);
+                    SymbolTableEntry* idSte = searchToken(symbolTable, lexeme);
+                    if(!idSte){
+                        idSte = createToken(lexeme, ID, 0);
+                        insertToken(symbolTable, idSte);
+                    }
                     tokenInfo* idTok = createNewNode(idSte, *lineNumber);
                     return idTok;
                 }
@@ -189,12 +214,18 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* numSte = searchToken(symbolTable, lexeme);
+                    if(numSte){
+                        tokenInfo* numTok = createNewNode(numSte, *lineNumber);
+                        return numTok;
+                    }
                     double val=0;
                     for(int i=0; lexeme[i]; i++){
                         val *= 10;
                         val += lexeme[i]-'0';
                     }
-                    SymbolTableEntry* numSte = createToken(lexeme, NUM, val);
+                    numSte = createToken(lexeme, NUM, val);
+                    insertToken(symbolTable, numSte);
                     tokenInfo* numTok = createNewNode(numSte, *lineNumber);
                     return numTok;
                 }
@@ -209,13 +240,19 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* rnumSte = searchToken(symbolTable, lexeme);
+                    if(rnumSte){
+                        tokenInfo* rnumTok = createNewNode(rnumSte, *lineNumber);
+                        return rnumTok;
+                    }
                     double val=0; int i;
                     for(i=0; lexeme[i]!='.'; i++){
                         val *= 10;
                         val += lexeme[i] - '0';
                     }
                     val += (lexeme[i+1]-'0')/10.0 + (lexeme[i+2]-'0')/100.0;
-                    SymbolTableEntry* rnumSte = createToken(lexeme, RNUM, val);
+                    rnumSte = createToken(lexeme, RNUM, val);
+                    insertToken(symbolTable, rnumSte);
                     tokenInfo* rnumTok = createNewNode(rnumSte, *lineNumber);
                     return rnumTok;
                 }   
@@ -225,6 +262,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 7: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                SymbolTableEntry* rnumSte = searchToken(symbolTable, lexeme);
+                if(rnumSte){
+                    tokenInfo* rnumTok = createNewNode(rnumSte, *lineNumber);
+                    return rnumTok;
+                }
                 double val=0; int i;
                 for(i=0; lexeme[i]!='.'; i++){
                     val *= 10;
@@ -241,7 +283,8 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(lexeme[i]=='-') exp = -exp;
                 val *= pow(10, exp);
 
-                SymbolTableEntry* rnumSte = createToken(lexeme, RNUM, val);
+                rnumSte = createToken(lexeme, RNUM, val);
+                insertToken(symbolTable, rnumSte);
                 tokenInfo* rnumTok = createNewNode(rnumSte, *lineNumber);
                 return rnumTok;
 
@@ -255,7 +298,20 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
+                    if(cmnSte){
+                        tokenInfo* cmnTok = createNewNode(cmnSte, *lineNumber);
+                        return cmnTok;
+                    }
+                    int l = strlen(lexeme);
+                    if(l>30){
+                        SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                        tokenInfo* errTok = createNewNode(errSte, *lineNumber);
+                        return errTok;
+                    }
                     SymbolTableEntry* fnidSte = createToken(lexeme, FUNID, 0);
+                    insertToken(symbolTable, fnidSte);
                     tokenInfo* fnidTok = createNewNode(fnidSte, *lineNumber);
                     return fnidTok;
                 }
@@ -269,7 +325,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* ridSte = createToken(lexeme, RUID, 0);
+                    SymbolTableEntry* ridSte = searchToken(symbolTable, lexeme);
+                    if(!ridSte){
+                        ridSte = createToken(lexeme, RUID, 0);
+                        insertToken(symbolTable, ridSte);
+                    }
                     tokenInfo* ridTok = createNewNode(ridSte, *lineNumber);
                     return ridTok;
                 }
@@ -285,7 +345,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* mSte = createToken(lexeme, MAIN, 0);
+                    SymbolTableEntry* mSte = searchToken(symbolTable, lexeme);
+                    if(!mSte){
+                        mSte = createToken(lexeme, MAIN, 0);
+                        insertToken(symbolTable, mSte);
+                    }
                     tokenInfo* mTok = createNewNode(mSte, *lineNumber);
                     return mTok;
                 }
@@ -295,7 +359,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 23: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* sqlSte = createToken(lexeme, SQL, 0);
+                SymbolTableEntry* sqlSte = searchToken(symbolTable, lexeme);
+                if(!sqlSte){
+                    sqlSte = createToken(lexeme, SQL, 0);
+                    insertToken(symbolTable, sqlSte);
+                }
                 tokenInfo* sqlTok = createNewNode(sqlSte, *lineNumber);
                 return sqlTok;
 
@@ -304,7 +372,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 24: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* sqrSte = createToken(lexeme, SQR, 0);
+                SymbolTableEntry* sqrSte = searchToken(symbolTable, lexeme);
+                if(!sqrSte){
+                    sqrSte = createToken(lexeme, SQR, 0);
+                    insertToken(symbolTable, sqrSte);
+                }
                 tokenInfo* sqrTok = createNewNode(sqrSte, *lineNumber);
                 return sqrTok;
 
@@ -313,7 +385,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 29: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* cmSte = createToken(lexeme, COMMA, 0);
+                SymbolTableEntry* cmSte = searchToken(symbolTable, lexeme);
+                if(!cmSte){
+                    cmSte = createToken(lexeme, COMMA, 0);
+                    insertToken(symbolTable, cmSte);
+                }
                 tokenInfo* cmTok = createNewNode(cmSte, *lineNumber);
                 return cmTok;
 
@@ -322,7 +398,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 30: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* smcSte = createToken(lexeme, SEM, 0);
+                SymbolTableEntry* smcSte = searchToken(symbolTable, lexeme);
+                if(!smcSte){
+                    smcSte = createToken(lexeme, SEM, 0);
+                    insertToken(symbolTable, smcSte);
+                }
                 tokenInfo* smcTok = createNewNode(smcSte, *lineNumber);
                 return smcTok;
 
@@ -331,7 +411,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 31: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* clnSte = createToken(lexeme, COLON, 0);
+                SymbolTableEntry* clnSte = searchToken(symbolTable, lexeme);
+                if(!clnSte){
+                    clnSte = createToken(lexeme, COLON, 0);
+                    insertToken(symbolTable, clnSte);
+                }
                 tokenInfo* clnTok = createNewNode(clnSte, *lineNumber);
                 return clnTok;
 
@@ -340,7 +424,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 34: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* opSte = createToken(lexeme, OP, 0);
+                SymbolTableEntry* opSte = searchToken(symbolTable, lexeme);
+                if(!opSte){
+                    opSte = createToken(lexeme, OP, 0);
+                    insertToken(symbolTable, opSte);
+                }
                 tokenInfo* opTok = createNewNode(opSte, *lineNumber);
                 return opTok;
 
@@ -349,7 +437,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 35: 
                 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* clSte = createToken(lexeme, CL, 0);
+                SymbolTableEntry* clSte = searchToken(symbolTable, lexeme);
+                if(!clSte){
+                    clSte = createToken(lexeme, CL, 0);
+                    insertToken(symbolTable, clSte);
+                }
                 tokenInfo* clTok = createNewNode(clSte, *lineNumber);
                 return clTok;
 
@@ -358,7 +450,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 42: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* plSte = createToken(lexeme, PLUS, 0);
+                SymbolTableEntry* plSte = searchToken(symbolTable, lexeme);
+                if(!plSte){
+                    plSte = createToken(lexeme, PLUS, 0);
+                    insertToken(symbolTable, plSte);
+                }
                 tokenInfo* plTok = createNewNode(plSte, *lineNumber);
                 return plTok;
 
@@ -367,7 +463,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 43: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* mnsSte = createToken(lexeme, MINUS, 0);
+                SymbolTableEntry* mnsSte = searchToken(symbolTable, lexeme);
+                if(!mnsSte){
+                    mnsSte = createToken(lexeme, MINUS, 0);
+                    insertToken(symbolTable, mnsSte);
+                }
                 tokenInfo* mnsTok = createNewNode(mnsSte, *lineNumber);
                 return mnsTok;
 
@@ -376,7 +476,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 44: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* mlSte = createToken(lexeme, MUL, 0);
+                SymbolTableEntry* mlSte = searchToken(symbolTable, lexeme);
+                if(!mlSte){
+                    mlSte = createToken(lexeme, MUL, 0);
+                    insertToken(symbolTable, mlSte);
+                }
                 tokenInfo* mlTok = createNewNode(mlSte, *lineNumber);
                 return mlTok;
 
@@ -385,7 +489,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 45: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* dvSte = createToken(lexeme, DIV, 0);
+                SymbolTableEntry* dvSte = searchToken(symbolTable, lexeme);
+                if(!dvSte){
+                    dvSte = createToken(lexeme, DIV, 0);
+                    insertToken(symbolTable, dvSte);
+                }
                 tokenInfo* dvTok = createNewNode(dvSte, *lineNumber);
                 return dvTok;
 
@@ -394,7 +502,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 50: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* andSte = createToken(lexeme, AND, 0);
+                SymbolTableEntry* andSte = searchToken(symbolTable, lexeme);
+                if(!andSte){
+                    andSte = createToken(lexeme, AND, 0);
+                    insertToken(symbolTable, andSte);
+                }
                 tokenInfo* andTok = createNewNode(andSte, *lineNumber);
                 return andTok;
 
@@ -403,7 +515,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 51: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* orSte = createToken(lexeme, OR, 0);
+                SymbolTableEntry* orSte = searchToken(symbolTable, lexeme);
+                if(!orSte){
+                    orSte = createToken(lexeme, OR, 0);
+                    insertToken(symbolTable, orSte);
+                }
                 tokenInfo* orTok = createNewNode(orSte, *lineNumber);
                 return orTok;
 
@@ -412,7 +528,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 52: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* notSte = createToken(lexeme, NOT, 0);
+                SymbolTableEntry* notSte = searchToken(symbolTable, lexeme);
+                if(!notSte){
+                    notSte = createToken(lexeme, NOT, 0);
+                    insertToken(symbolTable, notSte);
+                }
                 tokenInfo* notTok = createNewNode(notSte, *lineNumber);
                 return notTok;
 
@@ -427,7 +547,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* ltSte = createToken(lexeme, LT, 0);
+                    SymbolTableEntry* ltSte = searchToken(symbolTable, lexeme);
+                    if(!ltSte){
+                        ltSte = createToken(lexeme, LT, 0);
+                        insertToken(symbolTable, ltSte);
+                    }
                     tokenInfo* ltTok = createNewNode(ltSte, *lineNumber);
                     return ltTok;
                 }
@@ -437,7 +561,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 54: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* leSte = createToken(lexeme, LE, 0);
+                SymbolTableEntry* leSte = searchToken(symbolTable, lexeme);
+                if(!leSte){
+                    leSte = createToken(lexeme, LE, 0);
+                    insertToken(symbolTable, leSte);
+                }
                 tokenInfo* leTok = createNewNode(leSte, *lineNumber);
                 return leTok;
 
@@ -446,7 +574,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 55: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* eqSte = createToken(lexeme, EQ, 0);
+                SymbolTableEntry* eqSte = searchToken(symbolTable, lexeme);
+                if(!eqSte){
+                    eqSte = createToken(lexeme, EQ, 0);
+                    insertToken(symbolTable, eqSte);
+                }
                 tokenInfo* eqTok = createNewNode(eqSte, *lineNumber);
                 return eqTok;
 
@@ -460,7 +592,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* gtSte = createToken(lexeme, GT, 0);
+                    SymbolTableEntry* gtSte = searchToken(symbolTable, lexeme);
+                    if(!gtSte){
+                        gtSte = createToken(lexeme, GT, 0);
+                        insertToken(symbolTable, gtSte);
+                    }
                     tokenInfo* gtTok = createNewNode(gtSte, *lineNumber);
                     return gtTok;
                 }
@@ -470,7 +606,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 57: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* geSte = createToken(lexeme, GE, 0);
+                SymbolTableEntry* geSte = searchToken(symbolTable, lexeme);
+                if(!geSte){
+                    geSte = createToken(lexeme, GE, 0);
+                    insertToken(symbolTable, geSte);
+                }
                 tokenInfo* geTok = createNewNode(geSte, *lineNumber);
                 return geTok;
 
@@ -479,7 +619,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 58: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* neSte = createToken(lexeme, NE, 0);
+                SymbolTableEntry* neSte = searchToken(symbolTable, lexeme);
+                if(!neSte){
+                    neSte = createToken(lexeme, NE, 0);
+                    insertToken(symbolTable, neSte);
+                }
                 tokenInfo* neTok = createNewNode(neSte, *lineNumber);
                 return neTok;
 
@@ -488,7 +632,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 59: 
 
                 tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                SymbolTableEntry* dotSte = createToken(lexeme, DOT, 0);
+                SymbolTableEntry* dotSte = searchToken(symbolTable, lexeme);
+                if(!dotSte){
+                    dotSte = createToken(lexeme, DOT, 0);
+                    insertToken(symbolTable, dotSte);
+                }
                 tokenInfo* dotTok = createNewNode(dotSte, *lineNumber);
                 return dotTok;
 
@@ -503,12 +651,18 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     *fwdPtr -=2;    // Double retract 
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* numSte = searchToken(symbolTable, lexeme);
+                    if(numSte){
+                        tokenInfo* numTok = createNewNode(numSte, *lineNumber);
+                        return numTok;
+                    }
                     double val=0;
                     for(int i=0; lexeme[i]; i++){
                         val *= 10;
                         val += lexeme[i]-'0';
                     }
-                    SymbolTableEntry* numSte = createToken(lexeme, NUM, val);
+                    numSte = createToken(lexeme, NUM, val);
+                    insertToken(symbolTable, numSte);
                     tokenInfo* numTok = createNewNode(numSte, *lineNumber);
                     return numTok;
                 }
@@ -523,7 +677,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -539,7 +697,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -554,7 +716,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -569,7 +735,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -594,7 +764,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     *fwdPtr -=2;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* ltSte = createToken(lexeme, LT, 0);
+                    SymbolTableEntry* ltSte = searchToken(symbolTable, lexeme);
+                    if(!ltSte){
+                        ltSte = createToken(lexeme, LT, 0);
+                        insertToken(symbolTable, ltSte);
+                    }
                     tokenInfo* ltTok = createNewNode(ltSte, *lineNumber);
                     return ltTok;
                 }
@@ -609,7 +783,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -624,7 +802,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -640,7 +822,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -657,13 +843,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    int l = strlen(lexeme);
-                    if(l>30){
-                        SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
-                        tokenInfo* errTok = createNewNode(errSte, *lineNumber);
-                        return errTok;
+                    SymbolTableEntry* fnidSte = searchToken(symbolTable, lexeme);
+                    if(!fnidSte){
+                        fnidSte = createToken(lexeme, FUNID, 0);
+                        insertToken(symbolTable, fnidSte);
                     }
-                    SymbolTableEntry* fnidSte = createToken(lexeme, FUNID, 0);
                     tokenInfo* fnidTok = createNewNode(fnidSte, *lineNumber);
                     return fnidTok;
                 }
@@ -680,13 +864,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    int l = strlen(lexeme);
-                    if(l>30){
-                        SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
-                        tokenInfo* errTok = createNewNode(errSte, *lineNumber);
-                        return errTok;
+                    SymbolTableEntry* fnidSte = searchToken(symbolTable, lexeme);
+                    if(!fnidSte){
+                        fnidSte = createToken(lexeme, FUNID, 0);
+                        insertToken(symbolTable, fnidSte);
                     }
-                    SymbolTableEntry* fnidSte = createToken(lexeme, FUNID, 0);
                     tokenInfo* fnidTok = createNewNode(fnidSte, *lineNumber);
                     return fnidTok;
                 }
@@ -703,13 +885,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    int l = strlen(lexeme);
-                    if(l>30){
-                        SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
-                        tokenInfo* errTok = createNewNode(errSte, *lineNumber);
-                        return errTok;
+                    SymbolTableEntry* fnidSte = searchToken(symbolTable, lexeme);
+                    if(!fnidSte){
+                        fnidSte = createToken(lexeme, FUNID, 0);
+                        insertToken(symbolTable, fnidSte);
                     }
-                    SymbolTableEntry* fnidSte = createToken(lexeme, FUNID, 0);
                     tokenInfo* fnidTok = createNewNode(fnidSte, *lineNumber);
                     return fnidTok;
                 }
@@ -724,7 +904,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -739,7 +923,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -754,7 +942,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -769,7 +961,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -784,7 +980,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -799,7 +999,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                    SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                    SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
+                    if(!errSte){
+                        errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                    }
                     tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                     return errTok;
                 }
@@ -815,15 +1019,22 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr); 
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
+                    if(cmnSte){
+                        tokenInfo* cmnTok = createNewNode(cmnSte, *lineNumber);
+                        return  cmnTok;
+                    }
 
                     Token tki = searchKeyword(keywordsLookup, lexeme);
                     if(tki==NOT_FOUND){
                         SymbolTableEntry* fidSte = createToken(lexeme, FIELDID, 0);
+                        insertToken(symbolTable, fidSte);
                         tokenInfo* fidTok = createNewNode(fidSte, *lineNumber);
                         return  fidTok;
                     }
                     else{
                         SymbolTableEntry* kwSte = createToken(lexeme, tki, 0);
+                        insertToken(symbolTable, kwSte);
                         tokenInfo* kwTok = createNewNode(kwSte, *lineNumber);
                         return kwTok;
                     }
@@ -839,13 +1050,20 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
+                    if(cmnSte){
+                        tokenInfo* cmnTok = createNewNode(cmnSte, *lineNumber);
+                        return cmnTok;
+                    }
                     int l = strlen(lexeme);
                     if(l>20){
                         SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
                         tokenInfo* errTok = createNewNode(errSte, *lineNumber);
                         return errTok;
                     }
                     SymbolTableEntry* idSte = createToken(lexeme, ID, 0);
+                    insertToken(symbolTable, idSte);
                     tokenInfo* idTok = createNewNode(idSte, *lineNumber);
                     return idTok;
                 }
@@ -859,7 +1077,20 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     --(*fwdPtr);
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                    SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
+                    if(cmnSte){
+                        tokenInfo* cmnTok = createNewNode(cmnSte, *lineNumber);
+                        return cmnTok;
+                    }
+                    int l = strlen(lexeme);
+                    if(l>30){
+                        SymbolTableEntry* errSte = createToken(lexeme, LEXICAL_ERROR, 0);
+                        insertToken(symbolTable, errSte);
+                        tokenInfo* errTok = createNewNode(errSte, *lineNumber);
+                        return errTok;
+                    }
                     SymbolTableEntry* fnidSte = createToken(lexeme, FUNID, 0);
+                    insertToken(symbolTable, fnidSte);
                     tokenInfo* fnidTok = createNewNode(fnidSte, *lineNumber);
                     return fnidTok;
                 }
@@ -918,7 +1149,7 @@ linkedList* getAllTokens(FILE* fp){
 
 
     for(; true; ){
-        tokenInfo* tkInfo = getNextToken(fp, twinBuffer, &fwdPtr, &lineNumber, keywordsLookup);
+        tokenInfo* tkInfo = getNextToken(fp, twinBuffer, &fwdPtr, &lineNumber, keywordsLookup, symbolTable);
         if(!tkInfo){
             printf("No token retrieved\n");
             break;
