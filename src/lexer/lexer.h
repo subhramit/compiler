@@ -21,9 +21,25 @@
 #include <math.h>
 #include "lexerDef.h"
 
-//FILE* getStream(FILE* fp);
+TrieNode* createTrieNode();
+Trie* createTrie();
+void insertKeyword(Trie* myTrie, const char* word, Token tkType);
+Token searchKeyword(Trie* myTrie, const char* word);
+SymbolTable* createSymbolTable();
+void insertToken(SymbolTable* ST, SymbolTableEntry* stEntry);
+SymbolTableEntry* createToken(char* lxm, Token tkType, double valNum);
+SymbolTableEntry* searchToken(SymbolTable* ST, char* lxm);
+linkedList* createNewList();
+tokenInfo* createNewNode(SymbolTableEntry* ste, int lineNo);
+void insertLLNode(linkedList* myList, tokenInfo* myNode);
+FILE* getStream(FILE* fp);
 //tokenInfo getNextToken(twinBuffer B);
 void removeComments(char* testcaseFile, char* cleanFile);
 void printCleanFile(char* cleanFile);
+linkedList* getAllTokens(FILE* fp);
+void initializeKeywordsLookup(Trie* keywordsLookup);
+tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, Trie* keywordsLookup, SymbolTable* symbolTable);
+void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff);
+char nextChar(FILE* fp, char *twinBuff, int *fwdPtr);
 
 #endif

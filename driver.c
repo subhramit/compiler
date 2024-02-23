@@ -45,6 +45,10 @@ int main(int argc, char* argv[]) {
                     break;
 
             case 2: //printTokens(argv[1]);
+                    FILE* fp = fopen(argv[1], "r");
+                    FILE* lexOut = getStream(fp);
+                    fclose(fp);
+                    fclose(lexOut);
                     break;
 
             case 3: //parseInputSourceCode(argv[1], table T);
