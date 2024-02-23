@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "lexer.h"
 #include "lexerDef.h"
 
@@ -48,7 +49,7 @@ char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
             twinBuff[0] = '\0';
         else{
             int bytesRead = fread(twinBuff, sizeof(char), BUFFER_SIZE, fp);
-            if(bytesRead<BUFFER_SIZE*sizeof(char)) twinBuff[bytesRead]='\0';  //Assuming that newline character will always be present at end
+            if(bytesRead<BUFFER_SIZE*sizeof(char)) twinBuff[bytesRead]='\0';  
         }
     }
     
@@ -57,6 +58,7 @@ char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
 }
 
 void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff){
+    // printf("beg: %d, fwd: %d\n", beginPtr, *fwdPtr);
     if(*fwdPtr >= beginPtr){
         int i;
         for(i=0; i<=(*fwdPtr-beginPtr); i++) 
@@ -83,7 +85,8 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 0: 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
-                if(ch=='\n') ++(*lineNumber);
+                if(ch=='\n') {++(*lineNumber); beginPtr++;}
+                else if(ch==' ' || ch=='\t') {beginPtr++;}
                 else if(isdigit(ch)) state=5;
                 else if(ch=='%') state=65;
                 else if(ch=='>') state=56;
@@ -140,14 +143,23 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 break;
 
             case 2: 
-                state=0;
+                tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                lexeme[1]='\0';
+                SymbolTableEntry* cmntSte = searchToken(symbolTable, lexeme);
+                if(!cmntSte){
+                    cmntSte = createToken(lexeme, COMMENT, 0);
+                    insertToken(symbolTable, cmntSte);
+                }
+                tokenInfo* cmntTok = createNewNode(cmntSte, *lineNumber);
+                ++(*lineNumber);
+                return cmntTok;
                 break;
 
             case 3: 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
                 if(!islower(ch)){    // Retract once and tokenize
-                    --(*fwdPtr); 
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
 
@@ -180,7 +192,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
                 if(ch<'2' || ch>'7'){   // Retract once and tokenize
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     int l = strlen(lexeme);
@@ -211,7 +223,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     state=60;
                 }
                 else if(!isdigit(ch)){
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* numSte = searchToken(symbolTable, lexeme);
@@ -237,7 +249,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='E') state=62;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* rnumSte = searchToken(symbolTable, lexeme);
@@ -295,7 +307,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(isdigit(ch)) state=81;
                 else if(!isalpha(ch)){
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
@@ -322,7 +334,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
                 if(!islower(ch)){
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* ridSte = searchToken(symbolTable, lexeme);
@@ -342,7 +354,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(isalpha(ch)) state=8;
                 else if(isdigit(ch)) state=81;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* mSte = searchToken(symbolTable, lexeme);
@@ -544,7 +556,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(ch=='-') state=66;
                 else if(ch=='=') state=54;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* ltSte = searchToken(symbolTable, lexeme);
@@ -589,7 +601,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='=') state=57;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* gtSte = searchToken(symbolTable, lexeme);
@@ -648,7 +660,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(isdigit(ch)) state=61;
 
                 else{   
-                    *fwdPtr -=2;    // Double retract 
+                    *fwdPtr -=2; if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;  // Double retract 
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* numSte = searchToken(symbolTable, lexeme);
@@ -674,7 +686,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(isdigit(ch)) state=6;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -694,7 +706,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(isdigit(ch)) state=64;
                 else if(ch=='+' || ch=='-') state=63;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -713,7 +725,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(isdigit(ch)) state=64;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -732,7 +744,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(isdigit(ch)) state=7;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -748,10 +760,8 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
             case 65: 
                 ch = nextChar(fp, twinBuff, fwdPtr);
-
                 if(ch=='\n'){
                     state=2;
-                    ++(*lineNumber);
                 }
 
                 break;
@@ -761,7 +771,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='-') state=67;
                 else{
-                    *fwdPtr -=2;
+                    *fwdPtr -=2; if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* ltSte = searchToken(symbolTable, lexeme);
@@ -780,7 +790,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='-') state=1;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -799,7 +809,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='=') state=55;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -819,7 +829,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(ch=='m') state=70;
                 else if(isalpha(ch)) state=8;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -840,7 +850,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 else if(ch=='a') state=71;
                 else if(isalpha(ch)) state=8;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* fnidSte = searchToken(symbolTable, lexeme);
@@ -861,7 +871,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 else if(ch=='i') state=72;
                 else if(isalpha(ch)) state=8;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* fnidSte = searchToken(symbolTable, lexeme);
@@ -882,7 +892,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 else if(ch=='n') state=19;
                 else if(isalpha(ch)) state=8;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* fnidSte = searchToken(symbolTable, lexeme);
@@ -901,7 +911,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='@') state=74;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -920,7 +930,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='@') state=51;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -939,7 +949,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(islower(ch)) state=9;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -958,7 +968,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='&') state=77;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -975,9 +985,9 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
             case 77: 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
-                if(ch=='&') state=78;
+                if(ch=='&') state=50;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -996,7 +1006,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch=='=') state=58;
                 else{
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* errSte = searchToken(symbolTable, lexeme);
@@ -1016,7 +1026,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 if(islower(ch)) state=3;
                 else if(ch>='2' && ch<='7') state=80;
                 else{
-                    --(*fwdPtr); 
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
@@ -1047,7 +1057,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 
                 if(ch>='2' && ch<='7') state=4;
                 else if(ch<'b' || ch>'d'){
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
@@ -1074,7 +1084,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
                 if(!isdigit(ch)){
-                    --(*fwdPtr);
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
 
                     tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
                     SymbolTableEntry* cmnSte = searchToken(symbolTable, lexeme);
@@ -1147,14 +1157,15 @@ linkedList* getAllTokens(FILE* fp){
 
     linkedList* tokensList = createNewList();
 
-
-    for(; true; ){
+    for(int i=1; true ; i++){
         tokenInfo* tkInfo = getNextToken(fp, twinBuffer, &fwdPtr, &lineNumber, keywordsLookup, symbolTable);
         if(!tkInfo){
             printf("No token retrieved\n");
             break;
         }
-        insertLLNode(tokensList, tkInfo);
+        // if(tkInfo->STE->tokenType!=COMMENT)
+            insertLLNode(tokensList, tkInfo);
+        // printf("itr %d\n", i);
 
         if(tkInfo->STE->tokenType==DOLLAR) break;
     }
@@ -1224,5 +1235,28 @@ void printCleanFile(char* cleanFile) {
 
 
 int main(){
-    printf("hello");
+    
+    FILE* fp = fopen("./TestCases/t2.txt", "r");
+
+    if(!fp){
+        printf("Error opening file\n");
+        exit(-1);
+    }
+    FILE* fout = fopen("./TestCases/lx2.txt", "w");
+
+    linkedList* theList = getAllTokens(fp);
+    if(!theList){
+        printf("Could not retrieve list of tokens\n");
+        exit(-1);
+    }
+
+    tokenInfo* tmp = theList->head;
+    // if(!tmp || !(theList->count)){
+    //     printf("No head\n");
+    // }
+    for(int i=0; i<theList->count && tmp; i++){
+        fprintf(fout, "Line: %d; lexeme: \"%s\", %d, %lf\n", tmp->lineNumber, tmp->STE->lexeme, tmp->STE->tokenType, tmp->STE->valueIfNumber);
+        tmp = tmp->next;
+    }
+
 }

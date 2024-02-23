@@ -19,7 +19,7 @@
 
 #define ALPHABET_SIZE 26
 #define INITIAL_SYMBOL_TABLE_CAPACITY 10
-#define BUFFER_SIZE 40
+#define BUFFER_SIZE 256
 
 typedef enum Token {
     ASSIGNOP,
