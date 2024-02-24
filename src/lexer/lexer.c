@@ -220,7 +220,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 ch = nextChar(fp, twinBuff, fwdPtr);
 
                 if(ch=='\n') {++(*lineNumber); beginPtr++;}
-                else if(ch==' ' || ch=='\t') {beginPtr++;}
+                else if(ch==' ' || ch=='\t' || ch=='\r') {beginPtr++;}
                 else if(isdigit(ch)) state=5;
                 else if(ch=='%') state=65;
                 else if(ch=='>') state=56;
@@ -1404,5 +1404,7 @@ FILE* getStream(FILE* fp){
         fprintf(fout, "Line: %d; lexeme: \"%s\", %d, %lf\n", tmp->lineNumber, tmp->STE->lexeme, tmp->STE->tokenType, tmp->STE->valueIfNumber);
         tmp = tmp->next;
     }
+    fclose(fout);
+    fout = fopen("lexerOutput.txt", "r");
     return fout;
 }

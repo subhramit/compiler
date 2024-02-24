@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
                     return 0;
                     break;
 
-            case 1: removeComments(argv[1], "cleanedfile.txt");
+            case 1: removeComments(argv[1], "cleanedFile.txt");
                     printCleanFile("cleanedFile.txt");
                     break;
 
