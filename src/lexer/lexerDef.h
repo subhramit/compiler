@@ -20,6 +20,7 @@
 #define ALPHABET_SIZE 26
 #define INITIAL_SYMBOL_TABLE_CAPACITY 10
 #define BUFFER_SIZE 256
+#define TOKEN_NAME_LENGTH 30
 
 typedef enum Token {
     ASSIGNOP,
@@ -83,6 +84,8 @@ typedef enum Token {
     LEXICAL_ERROR,
     NOT_FOUND
 } Token;
+
+char* tokenToString[NOT_FOUND];
 
 // Trie Node
 typedef struct TrieNode {

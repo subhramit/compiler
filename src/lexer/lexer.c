@@ -1279,6 +1279,14 @@ void initializeKeywordsLookup(Trie* keywordsLookup){
     insertKeyword(keywordsLookup, "else", ELSE);
 }
 
+void initializeTokenToString(){
+    char asgn[TOKEN_NAME_LENGTH] = "TK_ASSIGNOP"; tokenToString[ASSIGNOP] = asgn;
+    char cmnt[TOKEN_NAME_LENGTH] = "TK_COMMENT"; tokenToString[COMMENT] = cmnt;
+    //
+    //
+    char lxer[TOKEN_NAME_LENGTH] = "LEXICAL ERROR"; tokenToString[LEXICAL_ERROR] = lxer;
+}
+
 linkedList* getAllTokens(FILE* fp){
     char twinBuffer[BUFFER_SIZE*2];
     int fwdPtr = 2*BUFFER_SIZE-1;
@@ -1286,6 +1294,7 @@ linkedList* getAllTokens(FILE* fp){
 
     Trie* keywordsLookup=createTrie();
     initializeKeywordsLookup(keywordsLookup);
+    initializeTokenToString();
     
     SymbolTable* symbolTable = createSymbolTable();
 

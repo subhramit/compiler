@@ -5,8 +5,9 @@
 <function> FUNID <input_par> <output_par> SEM <stmts> END
 <input_par> INPUT PARAMETER LIST SQL <parameter_list> SQR
 <output_par> OUTPUT PARAMETER LIST SQL <parameter_list> SQR
+<output_par> eps
 <parameter_list> <dataType> ID <remaining_list>
-<dataType> <primitiveDatatype> <constructedDatatype>
+<dataType> <primitiveDatatype>
 <dataType> <constructedDatatype>
 <primitiveDatatype> INT
 <primitiveDatatype> REAL
@@ -47,7 +48,7 @@
 <oneExpansion> DOT FIELDID
 <moreExpansions> <oneExpansion> <moreExpansions>
 <moreExpansions> eps
-<funCallStmt> <outputParameters> TL_CALL FUNID WITH PARAMETERS <inputParameters> SEM
+<funCallStmt> <outputParameters> CALL FUNID WITH PARAMETERS <inputParameters> SEM
 <outputParameters> SQL <idList> SQR ASSIGNOP
 <outputParameters> eps
 <inputParameters> SQL <idList> SQR
@@ -65,8 +66,8 @@
 <termPrime> eps
 <factor> OP <arithmeticExpression> CL
 <factor> <var>
-<highPrecedenceOperator> MUL
-<highPrecedenceOperator> DIV
+<highPrecedenceOperators> MUL
+<highPrecedenceOperators> DIV
 <lowPrecedenceOperators> PLUS
 <lowPrecedenceOperators> MINUS
 <booleanExpression> OP <booleanExpression> CL <logicalOp> OP <booleanExpression> CL
