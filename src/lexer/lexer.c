@@ -1282,8 +1282,62 @@ void initializeKeywordsLookup(Trie* keywordsLookup){
 void initializeTokenToString(){
     char asgn[TOKEN_NAME_LENGTH] = "TK_ASSIGNOP"; tokenToString[ASSIGNOP] = asgn;
     char cmnt[TOKEN_NAME_LENGTH] = "TK_COMMENT"; tokenToString[COMMENT] = cmnt;
-    //
-    //
+    char fdid[TOKEN_NAME_LENGTH] = "TK_FIELDID"; tokenToString[FIELDID] = fdid;
+    char id[TOKEN_NAME_LENGTH] = "TK_ID"; tokenToString[ID] = id;
+    char num[TOKEN_NAME_LENGTH] = "TK_NUM"; tokenToString[NUM] = num;
+    char rnum[TOKEN_NAME_LENGTH] = "TK_RNUM"; tokenToString[RNUM] = rnum;
+    char fnid[TOKEN_NAME_LENGTH] = "TK_FUNID"; tokenToString[FUNID] = fnid;
+    char ruid[TOKEN_NAME_LENGTH] = "TK_RUID"; tokenToString[RUID] = ruid;
+    char with[TOKEN_NAME_LENGTH] = "TK_WITH"; tokenToString[WITH] = with;
+    char pmtrs[TOKEN_NAME_LENGTH] = "TK_PARAMETERS"; tokenToString[PARAMETERS] = pmtrs;
+    char end[TOKEN_NAME_LENGTH] = "TK_END"; tokenToString[END] = end;
+    char whle[TOKEN_NAME_LENGTH] = "TK_WHILE"; tokenToString[WHILE] = whle;
+    char unon[TOKEN_NAME_LENGTH] = "TK_UNION"; tokenToString[UNION] = unon;
+    char eunon[TOKEN_NAME_LENGTH] = "TK_ENDUNION"; tokenToString[ENDUNION] = eunon;
+    char dftp[TOKEN_NAME_LENGTH] = "TK_DEFINETYPE"; tokenToString[DEFINETYPE] = dftp;
+    char as[TOKEN_NAME_LENGTH] = "TK_AS"; tokenToString[AS] = as;
+    char type[TOKEN_NAME_LENGTH] = "TK_TYPE"; tokenToString[TYPE] = type;
+    char mainf[TOKEN_NAME_LENGTH] = "TK_MAIN"; tokenToString[MAIN] = mainf;
+    char glbl[TOKEN_NAME_LENGTH] = "TK_GLOBAL"; tokenToString[GLOBAL] = glbl;
+    char pmtr[TOKEN_NAME_LENGTH] = "TK_PARAMETER"; tokenToString[PARAMETER] = pmtr;
+    char list[TOKEN_NAME_LENGTH] = "TK_LIST"; tokenToString[LIST] = list;
+    char sql[TOKEN_NAME_LENGTH] = "TK_SQL"; tokenToString[SQL] = sql;
+    char sqr[TOKEN_NAME_LENGTH] = "TK_SQR"; tokenToString[SQR] = sqr;
+    char inpt[TOKEN_NAME_LENGTH] = "TK_INPUT"; tokenToString[INPUT] = inpt;
+    char otpt[TOKEN_NAME_LENGTH] = "TK_OUTPUT"; tokenToString[OUTPUT] = otpt;
+    char dint[TOKEN_NAME_LENGTH] = "TK_INT"; tokenToString[INT] = dint;
+    char dreal[TOKEN_NAME_LENGTH] = "TK_REAL"; tokenToString[REAL] = dreal;
+    char cmma[TOKEN_NAME_LENGTH] = "TK_COMMA"; tokenToString[COMMA] = cmma;
+    char semc[TOKEN_NAME_LENGTH] = "TK_SEM"; tokenToString[SEM] = semc;
+    char clon[TOKEN_NAME_LENGTH] = "TK_COLON"; tokenToString[COLON] = clon;
+    char dot[TOKEN_NAME_LENGTH] = "TK_DOT"; tokenToString[DOT] = dot;
+    char ewhle[TOKEN_NAME_LENGTH] = "TK_ENDWHILE"; tokenToString[ENDWHILE] = ewhle;
+    char opp[TOKEN_NAME_LENGTH] = "TK_OP"; tokenToString[OP] = opp;
+    char clp[TOKEN_NAME_LENGTH] = "TK_CL"; tokenToString[CL] = clp;
+    char ifcl[TOKEN_NAME_LENGTH] = "TK_IF"; tokenToString[IF] = ifcl;
+    char then[TOKEN_NAME_LENGTH] = "TK_THEN"; tokenToString[THEN] = then;
+    char eif[TOKEN_NAME_LENGTH] = "TK_ENDIF"; tokenToString[ENDIF] = eif;
+    char read[TOKEN_NAME_LENGTH] = "TK_READ"; tokenToString[READ] = read;
+    char wrte[TOKEN_NAME_LENGTH] = "TK_WRITE"; tokenToString[WRITE] = wrte;
+    char rtrn[TOKEN_NAME_LENGTH] = "TK_RETURN"; tokenToString[RETURN] = rtrn;
+    char plus[TOKEN_NAME_LENGTH] = "TK_PLUS"; tokenToString[PLUS] = plus;
+    char minus[TOKEN_NAME_LENGTH] = "TK_MINUS"; tokenToString[MINUS] = minus;
+    char mul[TOKEN_NAME_LENGTH] = "TK_MUL"; tokenToString[MUL] = mul;
+    char div[TOKEN_NAME_LENGTH] = "TK_DIV"; tokenToString[DIV] = div;
+    char call[TOKEN_NAME_LENGTH] = "TK_CALL"; tokenToString[CALL] = call;
+    char rcrd[TOKEN_NAME_LENGTH] = "TK_RECORD"; tokenToString[RECORD] = rcrd;
+    char erec[TOKEN_NAME_LENGTH] = "TK_ENDRECORD"; tokenToString[ENDRECORD] = erec;
+    char elsecl[TOKEN_NAME_LENGTH] = "TK_ELSE"; tokenToString[ELSE] = elsecl;
+    char and[TOKEN_NAME_LENGTH] = "TK_AND"; tokenToString[AND] = and;
+    char or[TOKEN_NAME_LENGTH] = "TK_OR"; tokenToString[OR] = or;
+    char not[TOKEN_NAME_LENGTH] = "TK_NOT"; tokenToString[NOT] = not;
+    char lthan[TOKEN_NAME_LENGTH] = "TK_LT"; tokenToString[LT] = lthan;
+    char leq[TOKEN_NAME_LENGTH] = "TK_LE"; tokenToString[LE] = leq;
+    char eql[TOKEN_NAME_LENGTH] = "TK_EQ"; tokenToString[EQ] = eql;
+    char gthan[TOKEN_NAME_LENGTH] = "TK_GT"; tokenToString[GT] = gthan;
+    char geq[TOKEN_NAME_LENGTH] = "TK_GE"; tokenToString[GE] = geq;
+    char neq[TOKEN_NAME_LENGTH] = "TK_NE"; tokenToString[NE] = neq;
+    char dlr[TOKEN_NAME_LENGTH] = "TK_DOLLAR"; tokenToString[DOLLAR] = dlr;
     char lxer[TOKEN_NAME_LENGTH] = "LEXICAL ERROR"; tokenToString[LEXICAL_ERROR] = lxer;
 }
 
