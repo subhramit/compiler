@@ -21,6 +21,7 @@
 #include <math.h>
 #include "lexerDef.h"
 
+
 TrieNode* createTrieNode();
 Trie* createTrie();
 void insertKeyword(Trie* myTrie, const char* word, Token tkType);
@@ -41,5 +42,6 @@ void initializeKeywordsLookup(Trie* keywordsLookup);
 tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, Trie* keywordsLookup, SymbolTable* symbolTable);
 void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff);
 char nextChar(FILE* fp, char *twinBuff, int *fwdPtr);
+void initializeTokenToString();
 
 #endif

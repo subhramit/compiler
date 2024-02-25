@@ -1,11 +1,11 @@
 <program> <otherFunctions> <mainFunction>
 <mainFunction> MAIN <stmts> END
 <otherFunctions> <function> <otherFunctions>
-<otherFunctions> eps
+<otherFunctions> EPS
 <function> FUNID <input_par> <output_par> SEM <stmts> END
 <input_par> INPUT PARAMETER LIST SQL <parameter_list> SQR
 <output_par> OUTPUT PARAMETER LIST SQL <parameter_list> SQR
-<output_par> eps
+<output_par> EPS
 <parameter_list> <dataType> ID <remaining_list>
 <dataType> <primitiveDatatype>
 <dataType> <constructedDatatype>
@@ -15,10 +15,10 @@
 <constructedDatatype> UNION RUID
 <constructedDatatype> RUID
 <remaining_list> COMMA <parameter_list>
-<remaining_list> eps
+<remaining_list> EPS
 <stmts> <typeDefinitions> <declarations> <otherStmts> <returnStmt>
 <typeDefinitions> <actualOrRedefined> <typeDefinitions>
-<typeDefinitions> eps
+<typeDefinitions> EPS
 <actualOrRedefined> <typeDefinition>
 <actualOrRedefined> <definetypestmt>
 <typeDefinition> RECORD RUID <fieldDefinitions> ENDRECORD
@@ -28,14 +28,14 @@
 <fieldType> <primitiveDatatype>
 <fieldType> <constructedDatatype>
 <moreFields> <fieldDefinition> <moreFields>
-<moreFields> eps
+<moreFields> EPS
 <declarations> <declaration> <declarations>
-<declarations> eps
+<declarations> EPS
 <declaration> TYPE <dataType> COLON ID <global_or_not> SEM
 <global_or_not> COLON GLOBAL
-<global_or_not> eps
+<global_or_not> EPS
 <otherStmts> <stmt> <otherStmts>
-<otherStmts> eps
+<otherStmts> EPS
 <stmt> <assignmentStmt>
 <stmt> <iterativeStmt>
 <stmt> <conditionalStmt>
@@ -43,14 +43,14 @@
 <stmt> <funCallStmt>
 <assignmentStmt> <singleOrRecId> ASSIGNOP <arithmeticExpression> SEM
 <singleOrRecId> ID <option_single_constructed>
-<option_single_constructed> eps
+<option_single_constructed> EPS
 <option_single_constructed> <oneExpansion> <moreExpansions>
 <oneExpansion> DOT FIELDID
 <moreExpansions> <oneExpansion> <moreExpansions>
-<moreExpansions> eps
+<moreExpansions> EPS
 <funCallStmt> <outputParameters> CALL FUNID WITH PARAMETERS <inputParameters> SEM
 <outputParameters> SQL <idList> SQR ASSIGNOP
-<outputParameters> eps
+<outputParameters> EPS
 <inputParameters> SQL <idList> SQR
 <iterativeStmt> WHILE OP <booleanExpression> CL <stmt> <otherStmts> ENDWHILE
 <conditionalStmt> IF OP <booleanExpression> CL THEN <stmt> <otherStmts> <elsePart>
@@ -60,10 +60,10 @@
 <ioStmt> WRITE OP <var> CL SEM
 <arithmeticExpression> <term> <expPrime>
 <expPrime> <lowPrecedenceOperators> <term> <expPrime>
-<expPrime> eps
+<expPrime> EPS
 <term> <factor> <termPrime>
-<termPrime> <highPrecedenceOperators><factor> <termPrime>
-<termPrime> eps
+<termPrime> <highPrecedenceOperators> <factor> <termPrime>
+<termPrime> EPS
 <factor> OP <arithmeticExpression> CL
 <factor> <var>
 <highPrecedenceOperators> MUL
@@ -86,10 +86,10 @@
 <relationalOp> NE
 <returnStmt> RETURN <optionalReturn> SEM
 <optionalReturn> SQL <idList> SQR
-<optionalReturn> eps
+<optionalReturn> EPS
 <idList> ID <more_ids>
 <more_ids> COMMA <idList>
-<more_ids> eps
+<more_ids> EPS
 <definetypestmt> DEFINETYPE <A> RUID AS RUID
 <A> RECORD
 <A> UNION
