@@ -1,12 +1,6 @@
 #ifndef STACK_H
 #define STACK_H
 
-typedef struct {
-    // Define your grammarSymbol fields here
-    // For example:
-    int value;
-} grammarSymbol;
-
 typedef struct node {
     grammarSymbol* data;
     struct node* next;
