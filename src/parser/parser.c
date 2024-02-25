@@ -15,6 +15,57 @@
 #include "../lexer/lexer.h"
 #include "parser.h"
 #include "parserDef.h"
+#include "stack.h"
+
+
+//Stack ADT
+Stack* createNewStack() {
+
+    Stack* newStack = (Stack*)malloc(sizeof(Stack));
+
+    if (newStack == NULL) {
+        pritf("Memory allocation failure for new stack\n");
+        exit(-1);
+    }
+
+    newStack->top = NULL;
+    return newStack;
+}
+
+void push(Stack* stack, grammarSymbol* gs) {
+
+    NODE newNode = (NODE)malloc(sizeof(Node));
+    
+    if (newNode == NULL) {
+        printf("Memory allocation failure while creating new node for pushing\n");
+        exit(-1);
+    }
+
+    newNode->data = gs;
+    newNode->next = stack->top;
+    stack->top = newNode;
+}
+
+void pop(Stack* stack) {
+
+    if (!isEmpty(stack)) {
+        NODE temp = stack->top;
+        stack->top = stack->top->next;
+        free(temp);
+    }
+}
+
+grammarSymbol* top(Stack* stack) {
+
+    if(!isEmpty(stack)) 
+        return stack->top->data;
+    else 
+        return NULL;
+}
+
+int isEmpty(Stack* stack) {
+    return (stack->top == NULL);
+}
 
 //FirstAndFollow computeFirstAndFollowSets(grammar G) {
     /*
