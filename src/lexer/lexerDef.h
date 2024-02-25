@@ -16,11 +16,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define ALPHABET_SIZE 26
 #define INITIAL_SYMBOL_TABLE_CAPACITY 10
 #define BUFFER_SIZE 256
-#define TOKEN_NAME_LENGTH 30
+#define TOKEN_NAME_LENGTH 50
 
 typedef enum Token {
     ASSIGNOP,
@@ -80,12 +81,14 @@ typedef enum Token {
     GT,
     GE,
     NE,
+    EPS,
     DOLLAR, // End of File marker
     LEXICAL_ERROR,
-    NOT_FOUND
+    TK_NOT_FOUND
 } Token;
 
-char* tokenToString[NOT_FOUND];
+
+char* tokenToString[TK_NOT_FOUND];
 
 // Trie Node
 typedef struct TrieNode {

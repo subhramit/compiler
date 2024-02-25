@@ -71,13 +71,13 @@ Token searchKeyword(Trie* myTrie, const char* word) {
     for (int i = 0; word[i] != '\0'; i++) {
         int index = word[i] - 'a';
         if (!(currentNode->children[index])) {
-            return NOT_FOUND; // Word not found
+            return TK_NOT_FOUND; // Word not found
         }
         currentNode = currentNode->children[index];
     }
     if(currentNode && currentNode->isEndOfWord)
         return currentNode->tokenType;
-    return NOT_FOUND;
+    return TK_NOT_FOUND;
 }
 
 // Create a new Symbol Table
@@ -300,7 +300,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     SymbolTableEntry* ste = searchToken(symbolTable, lexeme);
                     if(!ste){
                         Token tki = searchKeyword(keywordsLookup, lexeme);
-                        if(tki==NOT_FOUND){
+                        if(tki==TK_NOT_FOUND){
                             SymbolTableEntry* fidSte = createToken(lexeme, FIELDID, 0);
                             insertToken(symbolTable, fidSte);
                             tokenInfo* fidTok = createNewNode(fidSte, *lineNumber);
@@ -1170,7 +1170,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     }
 
                     Token tki = searchKeyword(keywordsLookup, lexeme);
-                    if(tki==NOT_FOUND){
+                    if(tki==TK_NOT_FOUND){
                         SymbolTableEntry* fidSte = createToken(lexeme, FIELDID, 0);
                         insertToken(symbolTable, fidSte);
                         tokenInfo* fidTok = createNewNode(fidSte, *lineNumber);
@@ -1337,8 +1337,9 @@ void initializeTokenToString(){
     char gthan[TOKEN_NAME_LENGTH] = "TK_GT"; tokenToString[GT] = gthan;
     char geq[TOKEN_NAME_LENGTH] = "TK_GE"; tokenToString[GE] = geq;
     char neq[TOKEN_NAME_LENGTH] = "TK_NE"; tokenToString[NE] = neq;
+    char eps[TOKEN_NAME_LENGTH] = "TK_EPS"; tokenToString[EPS] = eps;
     char dlr[TOKEN_NAME_LENGTH] = "TK_DOLLAR"; tokenToString[DOLLAR] = dlr;
-    char lxer[TOKEN_NAME_LENGTH] = "LEXICAL ERROR"; tokenToString[LEXICAL_ERROR] = lxer;
+    char lxer[TOKEN_NAME_LENGTH] = "LEXICAL_ERROR"; tokenToString[LEXICAL_ERROR] = lxer;
 }
 
 linkedList* getAllTokens(FILE* fp){
