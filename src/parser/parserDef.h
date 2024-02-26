@@ -106,4 +106,20 @@ typedef struct grammarRule{
 grammarRule* Grammar[MAX_GRAMMAR_RULES];
 int  numOfRules = 0;
 
+typedef struct ffRhsNode{
+    Token tk;
+    struct ffRhsNode* next;
+} ffRhsNode;
+
+typedef struct ffRhs{
+    ffRhsNode* head;
+    ffRhsNode* tail;
+} ffRhs;
+
+
+ffRhs** First;
+ffRhs** Follow;
+
+grammarRule*** parseTable;
+
 #endif

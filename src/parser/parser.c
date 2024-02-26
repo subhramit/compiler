@@ -24,7 +24,7 @@ Stack* createNewStack() {
     Stack* newStack = (Stack*)malloc(sizeof(Stack));
 
     if (newStack == NULL) {
-        pritf("Memory allocation failure for new stack\n");
+        printf("Memory allocation failure for new stack\n");
         exit(-1);
     }
 
@@ -34,7 +34,7 @@ Stack* createNewStack() {
 
 void push(Stack* stack, grammarSymbol* gs) {
 
-    NODE newNode = (NODE)malloc(sizeof(Node));
+    stackNODE newNode = (stackNODE)malloc(sizeof(stackNode));
     
     if (newNode == NULL) {
         printf("Memory allocation failure while creating new node for pushing\n");
@@ -49,7 +49,7 @@ void push(Stack* stack, grammarSymbol* gs) {
 void pop(Stack* stack) {
 
     if (!isEmpty(stack)) {
-        NODE temp = stack->top;
+        stackNODE temp = stack->top;
         stack->top = stack->top->next;
         free(temp);
     }
@@ -63,7 +63,7 @@ grammarSymbol* top(Stack* stack) {
         return NULL;
 }
 
-int isEmpty(Stack* stack) {
+bool isEmpty(Stack* stack) {
     return (stack->top == NULL);
 }
 
@@ -280,8 +280,7 @@ void readGrammar(){
         printf("Could not open grammar file\n"); return;
     }
     char* oneTok;
-    for(int i=0; fgets(buff, MAX_RULE_LENGTH, fp); i++){
-        // printf("itr %d\t", i);
+    for(; fgets(buff, MAX_RULE_LENGTH, fp); ){
         oneTok = strtok(buff, " \t\n\r");
 
         grammarRule* gRule = (grammarRule*) malloc(sizeof(grammarRule));
@@ -293,15 +292,12 @@ void readGrammar(){
             printf("Could not allocate memory for grammar symbol\n"); return;
         }
         gRule->lhs->isNonTerminal = true;
-        // printf("%s\t", oneTok);
         gRule->lhs->tOrNt.nt = getNonTerminalFromString(oneTok);
-        // printf("%s\t", nonTerminalToString[gRule->lhs->tOrNt.nt]);
         gRule->rhs = createSymbolList();
 
         oneTok = strtok(NULL, " \t\n\r");
 
         for(; oneTok; ){
-            // printf("%s\t", oneTok);
             grammarSymbol* gsym = (grammarSymbol*) malloc(sizeof(grammarSymbol));
             if(!gsym){
                 printf("Could not allocate memory for rhs grammar symbol\n"); break;
@@ -321,7 +317,6 @@ void readGrammar(){
 
             oneTok = strtok(NULL, " \t\n\r");
         }
-        // printf("\n");
         Grammar[numOfRules++] = gRule;
     }
 }
@@ -470,13 +465,132 @@ void initializeTokenToStringFP(){
     tokenToString[LEXICAL_ERROR] = "LEXICAL_ERROR";
 }
 
+void insertFfRhsNode(ffRhs* lst, ffRhsNode* nd){
+    if(!(lst->tail)){
+        lst->head = nd;
+        lst->tail = nd;
+    }
+    else{
+        lst->tail->next = nd;
+        lst->tail = nd;
+    }
+}
+
+void readFirst(){
+    FILE* fp = fopen("./src/parser/FIRST.txt", "r");
+    if(!fp){
+        printf("Could not open First set file\n");
+        return;
+    }
+    char buff[MAX_RULE_LENGTH];
+    char* oneTok;
+
+    for(int i=0; fgets(buff, MAX_RULE_LENGTH, fp); i++){  
+        oneTok = strtok(buff, " \t\n\r");
+        NonTerminal nt = getNonTerminalFromString(oneTok);
+        // printf("%dhh %d\n", i, nt); fflush(stdout);
+
+        for(; oneTok=strtok(NULL, " \t\n\r"); ){
+            ffRhsNode* newNode = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+            if(!newNode){
+                printf("Could not allocate memory for First set item\n");
+                return;
+            }
+            newNode->next = NULL;
+            newNode->tk = getTokenFromString(oneTok);
+            insertFfRhsNode(First[nt], newNode);
+        }
+    }
+}
+
+void readFollow(){
+    FILE* fp = fopen("./src/parser/FOLLOW.txt", "r");
+    if(!fp){
+        printf("Could not open Follow set file\n");
+        return;
+    }
+    char buff[MAX_RULE_LENGTH];
+    char* oneTok;
+
+    for(; fgets(buff, MAX_RULE_LENGTH, fp); ){
+        oneTok = strtok(buff, " \t\n\r");
+        NonTerminal nt = getNonTerminalFromString(oneTok);
+
+        for(; oneTok=strtok(NULL, " \t\n\r"); ){
+            ffRhsNode* newNode = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+            if(!newNode){
+                printf("Could not allocate memory for Follow set item\n");
+                return;
+            }
+            newNode->next = NULL;
+            newNode->tk = getTokenFromString(oneTok);
+            insertFfRhsNode(Follow[nt], newNode);
+        }
+    }
+}
+
+void initializeAndReadFirstAndFollow(){
+    First = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
+    Follow = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
+    if(!First || !Follow){
+        printf("Could not allocate memory for first and follow arrays\n");
+        return;
+    }
+
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        First[i] = (ffRhs*) malloc(sizeof(ffRhs));
+        if(!(First[i])){
+            printf("Could not allocate memory for first sets initialization\n");
+            return;
+        }
+        First[i]->head = NULL; First[i]->tail = NULL;
+
+        Follow[i] = (ffRhs*) malloc(sizeof(ffRhs));
+        if(!(Follow[i])){
+            printf("Could not allocate memory for follow sets initialization\n");
+            return;
+        }
+        Follow[i]->head = NULL; Follow[i]->tail = NULL;
+    }
+    readFirst();
+    readFollow();
+
+}
+
+void printFirstAndFollow(){
+    FILE* foutFirst = fopen("readfrst.txt", "w");
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        fprintf(foutFirst, "%s:\t", nonTerminalToString[i]);
+        ffRhsNode* tmp = First[i]->head;
+        for(; tmp; tmp=tmp->next){
+            fprintf(foutFirst, "%s\t", tokenToString[tmp->tk]);
+        }
+        fprintf(foutFirst, "\n");
+    }
+    fclose(foutFirst);
+
+    FILE* foutFollow = fopen("readfllw.txt", "w");
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        fprintf(foutFollow, "%s:\t", nonTerminalToString[i]);
+        ffRhsNode* tmp = Follow[i]->head;
+        for(; tmp; tmp=tmp->next){
+            fprintf(foutFollow, "%s\t", tokenToString[tmp->tk]);
+        }
+        fprintf(foutFollow, "\n");
+    }
+    fclose(foutFollow);
+    
+}
+
 int main(){
     
     initializeTokenToStringFP();
     initializeNonTerminalToString();
-    // for(int i=0; i<TK_NOT_FOUND; i++) printf("%s\n", tokenToString[i]);
-    // printf("---------------------------\n");
-    // for(int i=0; i<NT_NOT_FOUND; i++) printf("%s\n", nonTerminalToString[i]);
     readGrammar();
-    printGrammar();
+    // printGrammar();
+
+    initializeAndReadFirstAndFollow();
+    // printFirstAndFollow();
+
+    
 }

@@ -1,21 +1,21 @@
 #ifndef STACK_H
 #define STACK_H
 
-typedef struct node {
+typedef struct stackNode {
     grammarSymbol* data;
-    struct node* next;
-} Node;
+    struct stackNode* next;
+} stackNode;
 
-typedef Node* NODE;
+typedef stackNode* stackNODE;
 
 typedef struct stack {
-    NODE top;
+    stackNODE top;
 } Stack;
 
 Stack* createNewStack();
 void push(Stack* stack, grammarSymbol* gs);
 void pop(Stack* stack);
 grammarSymbol* top(Stack* stack);
-int isEmpty(Stack* stack);
+bool isEmpty(Stack* stack);
 
 #endif
