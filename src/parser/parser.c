@@ -582,6 +582,33 @@ void printFirstAndFollow(){
     
 }
 
+void addRulesToParseTable(){
+    for(int gri=0; gri<numOfRules; ++gri){
+        grammarRule* tmpRule = Grammar[gri];
+        
+    }
+}
+
+void initializeParseTable(){
+    parseTable = (grammarRule***) malloc(NT_NOT_FOUND*sizeof(grammarRule**));
+    if(!parseTable){
+        printf("Couldn't allocate memory for parseTable rows\n");
+        return;
+    }
+    for(int nti=0; nti<NT_NOT_FOUND; nti++){
+        parseTable[nti] = (grammarRule**) malloc(TK_NOT_FOUND*sizeof(grammarRule*));
+        if(!parseTable[nti]){
+            printf("Couldn't allocate memory for parseTable columns\n");
+            return;
+        }
+        for(int tki=0; tki<TK_NOT_FOUND; tki++){
+            parseTable[nti][tki] = NULL;
+        }
+    }
+
+    addRulesToParseTable();
+}
+
 int main(){
     
     initializeTokenToStringFP();
@@ -592,5 +619,5 @@ int main(){
     initializeAndReadFirstAndFollow();
     // printFirstAndFollow();
 
-    
+    initializeParseTable();
 }

@@ -1,6 +1,6 @@
-<program>:	<program>	
+<program>:	TK_DOLLAR	
 <otherFunctions>:	TK_MAIN	
-<mainFunction>:	<program>	
+<mainFunction>:	TK_DOLLAR	
 <stmts>:	TK_END	
 <stmt>:	TK_WHILE	TK_IF	TK_READ	TK_WRITE	TK_CALL	TK_ID	TK_SQL	TK_RETURN	TK_ENDWHILE	TK_ELSE	TK_ENDIF	
 <function>:	TK_FUNID	TK_MAIN	

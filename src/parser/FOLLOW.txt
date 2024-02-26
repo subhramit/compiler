@@ -1,5 +1,5 @@
-<program> TK_EOF
-<mainFunction> TK_EOF
+<program> TK_DOLLAR
+<mainFunction> TK_DOLLAR
 <otherFunctions> TK_MAIN
 <function> TK_FUNID TK_MAIN
 <input_par> TK_OUTPUT TK_SEM
