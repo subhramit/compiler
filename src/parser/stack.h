@@ -2,7 +2,7 @@
 #define STACK_H
 
 typedef struct stackNode {
-    grammarSymbol* data;
+    pTreeNode* data;
     struct stackNode* next;
 } stackNode;
 
@@ -13,9 +13,9 @@ typedef struct stack {
 } Stack;
 
 Stack* createNewStack();
-void push(Stack* stack, grammarSymbol* gs);
+void push(Stack* stack, pTreeNode* ptn);
 void pop(Stack* stack);
-grammarSymbol* top(Stack* stack);
+pTreeNode* top(Stack* stack);
 bool isEmpty(Stack* stack);
 
 #endif

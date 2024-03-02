@@ -32,7 +32,7 @@ Stack* createNewStack() {
     return newStack;
 }
 
-void push(Stack* stack, grammarSymbol* gs) {
+void push(Stack* stack, pTreeNode* ptn) {
 
     stackNODE newNode = (stackNODE)malloc(sizeof(stackNode));
     
@@ -41,7 +41,7 @@ void push(Stack* stack, grammarSymbol* gs) {
         exit(-1);
     }
 
-    newNode->data = gs;
+    newNode->data = ptn;
     newNode->next = stack->top;
     stack->top = newNode;
 }
@@ -55,7 +55,7 @@ void pop(Stack* stack) {
     }
 }
 
-grammarSymbol* top(Stack* stack) {
+pTreeNode* top(Stack* stack) {
 
     if(!isEmpty(stack)) 
         return stack->top->data;
@@ -136,7 +136,7 @@ void insertNodeAsChild(pTreeNode* par, pTreeNode* child){
         par->capacity *= 2;
         par->children = (pTreeNode**) realloc(par->children, par->capacity*sizeof(pTreeNode*)); 
         if(!(par->children)){
-            printf("Could not allocate memory for resizing node's children size\n"); return;
+            printf("Could not allocate memory for resizing node's children capacity\n"); return;
         }
     }
     par->children[(par->size)++] = child;
@@ -758,6 +758,10 @@ void printParseTable(){
     fclose(fParseOut);
 }
 
+pTreeNode* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
+
+}
+
 int main(){
     
     initializeTokenToStringFP();
@@ -771,5 +775,19 @@ int main(){
     initializeParseTable();
     // printParseTable();
 
+    FILE* fp = fopen("./TestCases/t2.txt", "r");
+    if(!fp){
+        printf("Could not open file input file for parsing\n");
+        return;
+    }
+    linkedList* tokensFromLexer = getAllTokens(fp);
+
+    FILE* fpout = fopen("ParserOutput.txt", "w");
+    if(!fpout){
+        printf("Could not open file for parser output\n");
+        return;
+    }
+    
+    // pTreeNode* parseTree = parseTokens(tokensFromLexer, fpout);
     
 }
