@@ -14,6 +14,7 @@
 #include "lexer.h"
 #include "lexerDef.h"
 
+char* tokenToString[TK_NOT_FOUND];
 
 //tokenInfo getNextToken(twinBuffer B) {
     /*
@@ -1280,7 +1281,7 @@ void initializeKeywordsLookup(Trie* keywordsLookup){
 }
 
 void initializeTokenToString(){
-    char* tokenToString[TK_NOT_FOUND];
+    
     for(int i=0; i<TK_NOT_FOUND; i++){
         tokenToString[i] = malloc(TOKEN_NAME_LENGTH);
     }
