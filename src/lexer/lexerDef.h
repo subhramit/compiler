@@ -88,7 +88,7 @@ typedef enum Token {
 } Token;
 
 
-char* tokenToString[TK_NOT_FOUND];
+extern char* tokenToString[TK_NOT_FOUND];
 
 // Trie Node
 typedef struct TrieNode {

@@ -13,6 +13,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include "../lexer/lexer.h"
+#include "../lexer/lexerDef.h"
 #include "parser.h"
 #include "parserDef.h"
 #include "stack.h"
@@ -772,7 +773,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
 }
 
 int main(){
-    
+
     FILE* fp = fopen("./TestCases/t2.txt", "r");
     if(!fp){
         printf("Could not open file input file for parsing\n");
