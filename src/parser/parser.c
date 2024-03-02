@@ -382,131 +382,131 @@ void printGrammar(){
     }
 }
 
-void initializeTokenToStringFP(){
-    for(int i=0; i<TK_NOT_FOUND; i++){
-        tokenToString[i] = malloc(TOKEN_NAME_LENGTH);
-    }
-    // char asgn[TOKEN_NAME_LENGTH] = "TK_ASSIGNOP"; 
-    tokenToString[ASSIGNOP] = "TK_ASSIGNOP";
-    // char cmnt[TOKEN_NAME_LENGTH] = "TK_COMMENT"; 
-    tokenToString[COMMENT] = "TK_COMMENT"; 
-    // char fdid[TOKEN_NAME_LENGTH] = "TK_FIELDID"; 
-    tokenToString[FIELDID] = "TK_FIELDID"; 
-    // char id[TOKEN_NAME_LENGTH] = "TK_ID"; 
-    tokenToString[ID] = "TK_ID"; 
-    // char num[TOKEN_NAME_LENGTH] = "TK_NUM"; 
-    tokenToString[NUM] = "TK_NUM"; 
-    // char rnum[TOKEN_NAME_LENGTH] = "TK_RNUM"; 
-    tokenToString[RNUM] = "TK_RNUM"; 
-    // char fnid[TOKEN_NAME_LENGTH] = "TK_FUNID"; 
-    tokenToString[FUNID] = "TK_FUNID"; 
-    // char ruid[TOKEN_NAME_LENGTH] = "TK_RUID"; 
-    tokenToString[RUID] = "TK_RUID"; 
-    // char with[TOKEN_NAME_LENGTH] = "TK_WITH"; 
-    tokenToString[WITH] = "TK_WITH"; 
-    // char pmtrs[TOKEN_NAME_LENGTH] = "TK_PARAMETERS"; 
-    tokenToString[PARAMETERS] = "TK_PARAMETERS";
-    // char end[TOKEN_NAME_LENGTH] = "TK_END"; 
-    tokenToString[END] = "TK_END"; 
-    // char whle[TOKEN_NAME_LENGTH] = "TK_WHILE"; 
-    tokenToString[WHILE] = "TK_WHILE";
-    // char unon[TOKEN_NAME_LENGTH] = "TK_UNION"; 
-    tokenToString[UNION] = "TK_UNION";
-    // char eunon[TOKEN_NAME_LENGTH] = "TK_ENDUNION"; 
-    tokenToString[ENDUNION] = "TK_ENDUNION";
-    // char dftp[TOKEN_NAME_LENGTH] = "TK_DEFINETYPE"; 
-    tokenToString[DEFINETYPE] = "TK_DEFINETYPE";
-    // char as[TOKEN_NAME_LENGTH] = "TK_AS"; 
-    tokenToString[AS] = "TK_AS";
-    // char type[TOKEN_NAME_LENGTH] = "TK_TYPE"; 
-    tokenToString[TYPE] = "TK_TYPE";
-    // char mainf[TOKEN_NAME_LENGTH] = "TK_MAIN"; 
-    tokenToString[MAIN] = "TK_MAIN";
-    // char glbl[TOKEN_NAME_LENGTH] = "TK_GLOBAL"; 
-    tokenToString[GLOBAL] = "TK_GLOBAL";
-    // char pmtr[TOKEN_NAME_LENGTH] = "TK_PARAMETER"; 
-    tokenToString[PARAMETER] = "TK_PARAMETER";
-    // char list[TOKEN_NAME_LENGTH] = "TK_LIST"; 
-    tokenToString[LIST] = "TK_LIST"; 
-    // char sql[TOKEN_NAME_LENGTH] = "TK_SQL"; 
-    tokenToString[SQL] = "TK_SQL";
-    // char sqr[TOKEN_NAME_LENGTH] = "TK_SQR"; 
-    tokenToString[SQR] = "TK_SQR";
-    // char inpt[TOKEN_NAME_LENGTH] = "TK_INPUT"; 
-    tokenToString[INPUT] = "TK_INPUT";
-    // char otpt[TOKEN_NAME_LENGTH] = "TK_OUTPUT"; 
-    tokenToString[OUTPUT] = "TK_OUTPUT";
-    // char dint[TOKEN_NAME_LENGTH] = "TK_INT"; 
-    tokenToString[INT] = "TK_INT";
-    // char dreal[TOKEN_NAME_LENGTH] = "TK_REAL"; 
-    tokenToString[REAL] = "TK_REAL";
-    // char cmma[TOKEN_NAME_LENGTH] = "TK_COMMA"; 
-    tokenToString[COMMA] = "TK_COMMA";
-    // char semc[TOKEN_NAME_LENGTH] = "TK_SEM"; 
-    tokenToString[SEM] = "TK_SEM";
-    // char ifcl[TOKEN_NAME_LENGTH] = "TK_IF"; 
-    tokenToString[IF] = "TK_IF";
-    // char clon[TOKEN_NAME_LENGTH] = "TK_COLON"; 
-    tokenToString[COLON] = "TK_COLON";
-    // char dot[TOKEN_NAME_LENGTH] = "TK_DOT"; 
-    tokenToString[DOT] = "TK_DOT";
-    // char ewhle[TOKEN_NAME_LENGTH] = "TK_ENDWHILE"; 
-    tokenToString[ENDWHILE] = "TK_ENDWHILE";
-    // char opp[TOKEN_NAME_LENGTH] = "TK_OP"; 
-    tokenToString[OP] = "TK_OP";
-    // char clp[TOKEN_NAME_LENGTH] = "TK_CL"; 
-    tokenToString[CL] = "TK_CL";
-    // char then[TOKEN_NAME_LENGTH] = "TK_THEN"; 
-    tokenToString[THEN] = "TK_THEN";
-    // char eif[TOKEN_NAME_LENGTH] = "TK_ENDIF"; 
-    tokenToString[ENDIF] = "TK_ENDIF";
-    // char read[TOKEN_NAME_LENGTH] = "TK_READ"; 
-    tokenToString[READ] = "TK_READ";
-    // char wrte[TOKEN_NAME_LENGTH] = "TK_WRITE"; 
-    tokenToString[WRITE] = "TK_WRITE";
-    // char rtrn[TOKEN_NAME_LENGTH] = "TK_RETURN"; 
-    tokenToString[RETURN] = "TK_RETURN";
-    // char plus[TOKEN_NAME_LENGTH] = "TK_PLUS"; 
-    tokenToString[PLUS] = "TK_PLUS";
-    // char minus[TOKEN_NAME_LENGTH] = "TK_MINUS"; 
-    tokenToString[MINUS] = "TK_MINUS";
-    // char mul[TOKEN_NAME_LENGTH] = "TK_MUL"; 
-    tokenToString[MUL] = "TK_MUL";
-    // char div[TOKEN_NAME_LENGTH] = "TK_DIV"; 
-    tokenToString[DIV] = "TK_DIV";
-    // char call[TOKEN_NAME_LENGTH] = "TK_CALL"; 
-    tokenToString[CALL] = "TK_CALL";
-    // char rcrd[TOKEN_NAME_LENGTH] = "TK_RECORD"; 
-    tokenToString[RECORD] = "TK_RECORD";
-    // char erec[TOKEN_NAME_LENGTH] = "TK_ENDRECORD"; 
-    tokenToString[ENDRECORD] = "TK_ENDRECORD";
-    // char elsecl[TOKEN_NAME_LENGTH] = "TK_ELSE"; 
-    tokenToString[ELSE] = "TK_ELSE";
-    // char and[TOKEN_NAME_LENGTH] = "TK_AND"; 
-    tokenToString[AND] = "TK_AND";
-    // char or[TOKEN_NAME_LENGTH] = "TK_OR"; 
-    tokenToString[OR] = "TK_OR";
-    // char not[TOKEN_NAME_LENGTH] = "TK_NOT"; 
-    tokenToString[NOT] = "TK_NOT";
-    // char lthan[TOKEN_NAME_LENGTH] = "TK_LT"; 
-    tokenToString[LT] = "TK_LT";
-    // char leq[TOKEN_NAME_LENGTH] = "TK_LE"; 
-    tokenToString[LE] = "TK_LE";
-    // char eql[TOKEN_NAME_LENGTH] = "TK_EQ"; 
-    tokenToString[EQ] = "TK_EQ";
-    // char gthan[TOKEN_NAME_LENGTH] = "TK_GT"; 
-    tokenToString[GT] = "TK_GT";
-    // char geq[TOKEN_NAME_LENGTH] = "TK_GE"; 
-    tokenToString[GE] = "TK_GE";
-    // char neq[TOKEN_NAME_LENGTH] = "TK_NE"; 
-    tokenToString[NE] = "TK_NE";
-    // char eps[TOKEN_NAME_LENGTH] = "TK_EPS"; 
-    tokenToString[EPS] = "TK_EPS";
-    // char dlr[TOKEN_NAME_LENGTH] = "TK_DOLLAR"; 
-    tokenToString[DOLLAR] = "TK_DOLLAR";
-    // char lxer[TOKEN_NAME_LENGTH] = "LEXICAL_ERROR"; 
-    tokenToString[LEXICAL_ERROR] = "LEXICAL_ERROR";
-}
+// void initializeTokenToStringFP(){
+//     for(int i=0; i<TK_NOT_FOUND; i++){
+//         tokenToString[i] = malloc(TOKEN_NAME_LENGTH);
+//     }
+//     // char asgn[TOKEN_NAME_LENGTH] = "TK_ASSIGNOP"; 
+//     tokenToString[ASSIGNOP] = "TK_ASSIGNOP";
+//     // char cmnt[TOKEN_NAME_LENGTH] = "TK_COMMENT"; 
+//     tokenToString[COMMENT] = "TK_COMMENT"; 
+//     // char fdid[TOKEN_NAME_LENGTH] = "TK_FIELDID"; 
+//     tokenToString[FIELDID] = "TK_FIELDID"; 
+//     // char id[TOKEN_NAME_LENGTH] = "TK_ID"; 
+//     tokenToString[ID] = "TK_ID"; 
+//     // char num[TOKEN_NAME_LENGTH] = "TK_NUM"; 
+//     tokenToString[NUM] = "TK_NUM"; 
+//     // char rnum[TOKEN_NAME_LENGTH] = "TK_RNUM"; 
+//     tokenToString[RNUM] = "TK_RNUM"; 
+//     // char fnid[TOKEN_NAME_LENGTH] = "TK_FUNID"; 
+//     tokenToString[FUNID] = "TK_FUNID"; 
+//     // char ruid[TOKEN_NAME_LENGTH] = "TK_RUID"; 
+//     tokenToString[RUID] = "TK_RUID"; 
+//     // char with[TOKEN_NAME_LENGTH] = "TK_WITH"; 
+//     tokenToString[WITH] = "TK_WITH"; 
+//     // char pmtrs[TOKEN_NAME_LENGTH] = "TK_PARAMETERS"; 
+//     tokenToString[PARAMETERS] = "TK_PARAMETERS";
+//     // char end[TOKEN_NAME_LENGTH] = "TK_END"; 
+//     tokenToString[END] = "TK_END"; 
+//     // char whle[TOKEN_NAME_LENGTH] = "TK_WHILE"; 
+//     tokenToString[WHILE] = "TK_WHILE";
+//     // char unon[TOKEN_NAME_LENGTH] = "TK_UNION"; 
+//     tokenToString[UNION] = "TK_UNION";
+//     // char eunon[TOKEN_NAME_LENGTH] = "TK_ENDUNION"; 
+//     tokenToString[ENDUNION] = "TK_ENDUNION";
+//     // char dftp[TOKEN_NAME_LENGTH] = "TK_DEFINETYPE"; 
+//     tokenToString[DEFINETYPE] = "TK_DEFINETYPE";
+//     // char as[TOKEN_NAME_LENGTH] = "TK_AS"; 
+//     tokenToString[AS] = "TK_AS";
+//     // char type[TOKEN_NAME_LENGTH] = "TK_TYPE"; 
+//     tokenToString[TYPE] = "TK_TYPE";
+//     // char mainf[TOKEN_NAME_LENGTH] = "TK_MAIN"; 
+//     tokenToString[MAIN] = "TK_MAIN";
+//     // char glbl[TOKEN_NAME_LENGTH] = "TK_GLOBAL"; 
+//     tokenToString[GLOBAL] = "TK_GLOBAL";
+//     // char pmtr[TOKEN_NAME_LENGTH] = "TK_PARAMETER"; 
+//     tokenToString[PARAMETER] = "TK_PARAMETER";
+//     // char list[TOKEN_NAME_LENGTH] = "TK_LIST"; 
+//     tokenToString[LIST] = "TK_LIST"; 
+//     // char sql[TOKEN_NAME_LENGTH] = "TK_SQL"; 
+//     tokenToString[SQL] = "TK_SQL";
+//     // char sqr[TOKEN_NAME_LENGTH] = "TK_SQR"; 
+//     tokenToString[SQR] = "TK_SQR";
+//     // char inpt[TOKEN_NAME_LENGTH] = "TK_INPUT"; 
+//     tokenToString[INPUT] = "TK_INPUT";
+//     // char otpt[TOKEN_NAME_LENGTH] = "TK_OUTPUT"; 
+//     tokenToString[OUTPUT] = "TK_OUTPUT";
+//     // char dint[TOKEN_NAME_LENGTH] = "TK_INT"; 
+//     tokenToString[INT] = "TK_INT";
+//     // char dreal[TOKEN_NAME_LENGTH] = "TK_REAL"; 
+//     tokenToString[REAL] = "TK_REAL";
+//     // char cmma[TOKEN_NAME_LENGTH] = "TK_COMMA"; 
+//     tokenToString[COMMA] = "TK_COMMA";
+//     // char semc[TOKEN_NAME_LENGTH] = "TK_SEM"; 
+//     tokenToString[SEM] = "TK_SEM";
+//     // char ifcl[TOKEN_NAME_LENGTH] = "TK_IF"; 
+//     tokenToString[IF] = "TK_IF";
+//     // char clon[TOKEN_NAME_LENGTH] = "TK_COLON"; 
+//     tokenToString[COLON] = "TK_COLON";
+//     // char dot[TOKEN_NAME_LENGTH] = "TK_DOT"; 
+//     tokenToString[DOT] = "TK_DOT";
+//     // char ewhle[TOKEN_NAME_LENGTH] = "TK_ENDWHILE"; 
+//     tokenToString[ENDWHILE] = "TK_ENDWHILE";
+//     // char opp[TOKEN_NAME_LENGTH] = "TK_OP"; 
+//     tokenToString[OP] = "TK_OP";
+//     // char clp[TOKEN_NAME_LENGTH] = "TK_CL"; 
+//     tokenToString[CL] = "TK_CL";
+//     // char then[TOKEN_NAME_LENGTH] = "TK_THEN"; 
+//     tokenToString[THEN] = "TK_THEN";
+//     // char eif[TOKEN_NAME_LENGTH] = "TK_ENDIF"; 
+//     tokenToString[ENDIF] = "TK_ENDIF";
+//     // char read[TOKEN_NAME_LENGTH] = "TK_READ"; 
+//     tokenToString[READ] = "TK_READ";
+//     // char wrte[TOKEN_NAME_LENGTH] = "TK_WRITE"; 
+//     tokenToString[WRITE] = "TK_WRITE";
+//     // char rtrn[TOKEN_NAME_LENGTH] = "TK_RETURN"; 
+//     tokenToString[RETURN] = "TK_RETURN";
+//     // char plus[TOKEN_NAME_LENGTH] = "TK_PLUS"; 
+//     tokenToString[PLUS] = "TK_PLUS";
+//     // char minus[TOKEN_NAME_LENGTH] = "TK_MINUS"; 
+//     tokenToString[MINUS] = "TK_MINUS";
+//     // char mul[TOKEN_NAME_LENGTH] = "TK_MUL"; 
+//     tokenToString[MUL] = "TK_MUL";
+//     // char div[TOKEN_NAME_LENGTH] = "TK_DIV"; 
+//     tokenToString[DIV] = "TK_DIV";
+//     // char call[TOKEN_NAME_LENGTH] = "TK_CALL"; 
+//     tokenToString[CALL] = "TK_CALL";
+//     // char rcrd[TOKEN_NAME_LENGTH] = "TK_RECORD"; 
+//     tokenToString[RECORD] = "TK_RECORD";
+//     // char erec[TOKEN_NAME_LENGTH] = "TK_ENDRECORD"; 
+//     tokenToString[ENDRECORD] = "TK_ENDRECORD";
+//     // char elsecl[TOKEN_NAME_LENGTH] = "TK_ELSE"; 
+//     tokenToString[ELSE] = "TK_ELSE";
+//     // char and[TOKEN_NAME_LENGTH] = "TK_AND"; 
+//     tokenToString[AND] = "TK_AND";
+//     // char or[TOKEN_NAME_LENGTH] = "TK_OR"; 
+//     tokenToString[OR] = "TK_OR";
+//     // char not[TOKEN_NAME_LENGTH] = "TK_NOT"; 
+//     tokenToString[NOT] = "TK_NOT";
+//     // char lthan[TOKEN_NAME_LENGTH] = "TK_LT"; 
+//     tokenToString[LT] = "TK_LT";
+//     // char leq[TOKEN_NAME_LENGTH] = "TK_LE"; 
+//     tokenToString[LE] = "TK_LE";
+//     // char eql[TOKEN_NAME_LENGTH] = "TK_EQ"; 
+//     tokenToString[EQ] = "TK_EQ";
+//     // char gthan[TOKEN_NAME_LENGTH] = "TK_GT"; 
+//     tokenToString[GT] = "TK_GT";
+//     // char geq[TOKEN_NAME_LENGTH] = "TK_GE"; 
+//     tokenToString[GE] = "TK_GE";
+//     // char neq[TOKEN_NAME_LENGTH] = "TK_NE"; 
+//     tokenToString[NE] = "TK_NE";
+//     // char eps[TOKEN_NAME_LENGTH] = "TK_EPS"; 
+//     tokenToString[EPS] = "TK_EPS";
+//     // char dlr[TOKEN_NAME_LENGTH] = "TK_DOLLAR"; 
+//     tokenToString[DOLLAR] = "TK_DOLLAR";
+//     // char lxer[TOKEN_NAME_LENGTH] = "LEXICAL_ERROR"; 
+//     tokenToString[LEXICAL_ERROR] = "LEXICAL_ERROR";
+// }
 
 void insertFfRhsNode(ffRhs* lst, ffRhsNode* nd){
     if(!(lst->tail)){
@@ -764,7 +764,14 @@ pTreeNode* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
 
 int main(){
     
-    initializeTokenToStringFP();
+    FILE* fp = fopen("./TestCases/t2.txt", "r");
+    if(!fp){
+        printf("Could not open file input file for parsing\n");
+        return 0;
+    }
+    linkedList* tokensFromLexer = getAllTokens(fp);
+
+    // initializeTokenToStringFP();
     initializeNonTerminalToString();
     readGrammar();
     // printGrammar();
@@ -775,17 +782,10 @@ int main(){
     initializeParseTable();
     // printParseTable();
 
-    FILE* fp = fopen("./TestCases/t2.txt", "r");
-    if(!fp){
-        printf("Could not open file input file for parsing\n");
-        return;
-    }
-    linkedList* tokensFromLexer = getAllTokens(fp);
-
     FILE* fpout = fopen("ParserOutput.txt", "w");
     if(!fpout){
         printf("Could not open file for parser output\n");
-        return;
+        return 0;
     }
     
     // pTreeNode* parseTree = parseTokens(tokensFromLexer, fpout);
