@@ -758,7 +758,16 @@ void printParseTable(){
     fclose(fParseOut);
 }
 
-pTreeNode* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
+pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
+    if(!tokensFromLexer){
+        printf("Tokens list from lexer is null\n"); return NULL;
+    }
+
+    tokenInfo* inputPtr = tokensFromLexer->head;
+    pTree* theParseTree = createPTree();
+    pTreeNode* currentNode = theParseTree->root;
+    grammarSymbol* gs = (grammarSymbol*) malloc(sizeof(grammarSymbol));
+    gs->isNonTerminal = true; gs->tOrNt.nt = program;
 
 }
 
@@ -788,6 +797,6 @@ int main(){
         return 0;
     }
     
-    // pTreeNode* parseTree = parseTokens(tokensFromLexer, fpout);
+    // pTree* parseTree = parseTokens(tokensFromLexer, fpout);
     
 }
