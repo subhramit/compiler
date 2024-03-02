@@ -99,6 +99,49 @@ void insertSymbolListNode(symbolList* symList, symbolListNode* symListNode){
     ++(symList->count);
 }
 
+pTreeNode* createPTreeNode(){
+    pTreeNode* newTreeNode = (pTreeNode*) malloc(sizeof(pTreeNode));
+    if(!newTreeNode){
+        printf("Couldnt allocate memory for creating parse tree node\n"); return NULL;
+    }
+    newTreeNode->children = (pTreeNode**) malloc(INITIAL_CHILDREN_CAPACITY*sizeof(pTreeNode*));
+    if(!(newTreeNode->children)){
+        printf("Couldnt allocate memory for parse tree node's children\n"); return newTreeNode;
+    }
+    newTreeNode->capacity = INITIAL_CHILDREN_CAPACITY;
+    newTreeNode->size = 0;
+    newTreeNode->symbol = NULL;
+    for(int i=0; i<INITIAL_CHILDREN_CAPACITY; i++) newTreeNode->children[i] = NULL;
+    
+    return newTreeNode;
+}
+
+pTree* createPTree(){
+    pTree* newTree = (pTree*) malloc(sizeof(pTree));
+    if(!newTree){
+        printf("Could not allocate memory for creating parse tree\n"); return NULL;
+    }
+    newTree->root = createPTreeNode();
+    return newTree;
+}
+
+void insertNodeAsChild(pTreeNode* par, pTreeNode* child){
+    if(!par){
+        printf("Parent node is null. Couldnt add child\n"); return;
+    }
+    if(!child){
+        printf("Child node is null. Couldnt add child\n"); return;
+    }
+    if(par->size == par->capacity){
+        par->capacity *= 2;
+        par->children = (pTreeNode**) realloc(par->children, par->capacity*sizeof(pTreeNode*)); 
+        if(!(par->children)){
+            printf("Could not allocate memory for resizing node's children size\n"); return;
+        }
+    }
+    par->children[(par->size)++] = child;
+}
+
 //FirstAndFollow computeFirstAndFollowSets(grammar G) {
     /*
     This function takes as input the grammar G, computes FIRST and FOLLOW information and populates appropriate data structure FirstAndFollow.
@@ -726,7 +769,7 @@ int main(){
     // printFirstAndFollow();
 
     initializeParseTable();
-    printParseTable();
+    // printParseTable();
 
     
 }

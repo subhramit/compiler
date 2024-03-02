@@ -18,6 +18,7 @@
 #define NON_TERM_LENGTH 30
 #define MAX_GRAMMAR_RULES 100
 #define MAX_RULE_LENGTH 512
+#define INITIAL_CHILDREN_CAPACITY 10
 
 typedef enum NonTerminal{
     program,
@@ -121,5 +122,15 @@ ffRhs** First;
 ffRhs** Follow;
 
 grammarRule*** parseTable;
+
+typedef struct pTreeNode{
+    grammarSymbol* symbol;
+    struct pTreeNode** children;
+    int capacity, size;
+} pTreeNode;
+
+typedef struct pTree{
+    pTreeNode* root;
+} pTree;
 
 #endif
