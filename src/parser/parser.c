@@ -582,10 +582,87 @@ void printFirstAndFollow(){
     
 }
 
+bool existsInRhs(ffRhs* lst, Token tmpkey){
+    if(!lst) return false;
+    ffRhsNode* current = lst->head;
+    for(; current; current=current->next){
+        if(current->tk==tmpkey) return true;
+    }
+    return false;
+}
+
+ffRhs* getFirstOfRhs(symbolList* grhs){
+    ffRhs* res = (ffRhs*) malloc(sizeof(ffRhs));
+    res->head = NULL;
+    res->tail = NULL;
+
+    symbolListNode* ritr = grhs->head;
+    bool hasEps=true;
+    for(; ritr && hasEps; ritr=ritr->next){
+        ffRhsNode* tmp;  
+        hasEps=false;  
+        if(!(ritr->symb->isNonTerminal)){
+            if(!existsInRhs(res, ritr->symb->tOrNt.t)){
+                ffRhsNode* vtmp = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+                vtmp->next=NULL; vtmp->tk = ritr->symb->tOrNt.t;
+                insertFfRhsNode(res, vtmp);
+            }
+            break;
+        }
+        for(tmp=First[ritr->symb->tOrNt.nt]->head; tmp; tmp=tmp->next){
+            if(tmp->tk==EPS){
+                hasEps=true; continue;
+            }
+            if(!existsInRhs(res, tmp->tk)){
+                ffRhsNode* cpytmp = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+                cpytmp->next=NULL;
+                cpytmp->tk = tmp->tk;
+                insertFfRhsNode(res, cpytmp);
+            }
+        }
+
+    }
+    if(ritr==NULL && hasEps){
+        ffRhsNode* vvtmp = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+        vvtmp->next=NULL; vvtmp->tk = EPS;
+        if(!existsInRhs(res, EPS)) 
+            insertFfRhsNode(res, vvtmp);
+    }
+    return res;
+}
+
+void freeUpFfRhs(ffRhs* rl){
+    if(!rl) return;
+    ffRhsNode *tmp, *tn;
+    tmp = rl->head;
+    for(; tmp; ){
+        tn = tmp;
+        tmp=tmp->next;
+        free(tn);
+    }
+}
+
 void addRulesToParseTable(){
     for(int gri=0; gri<numOfRules; ++gri){
         grammarRule* tmpRule = Grammar[gri];
-        
+        ffRhs* fOfRhs = getFirstOfRhs(tmpRule->rhs);
+        ffRhsNode* tItr;
+        for(tItr = fOfRhs->head; tItr; tItr=tItr->next){
+            if(parseTable[tmpRule->lhs->tOrNt.nt][tItr->tk]!=NULL)
+                printf("\nMultiple defined entries in parse table detected! (Overwriting the rule!)\n");
+            parseTable[tmpRule->lhs->tOrNt.nt][tItr->tk]=tmpRule;
+        }
+
+        if(existsInRhs(fOfRhs, EPS)){
+            ffRhsNode* antItr;
+            for(antItr=Follow[tmpRule->lhs->tOrNt.nt]->head; antItr; antItr=antItr->next){
+                if(parseTable[tmpRule->lhs->tOrNt.nt][antItr->tk]!=NULL)
+                    printf("\nMultiple defined entries in parse table detected! (Overwriting the rule!)\n");
+                parseTable[tmpRule->lhs->tOrNt.nt][antItr->tk]=tmpRule;
+            }
+        }
+
+        freeUpFfRhs(fOfRhs);
     }
 }
 
@@ -609,6 +686,35 @@ void initializeParseTable(){
     addRulesToParseTable();
 }
 
+void printRule(grammarRule* rule, FILE* fp){
+    fprintf(fp, "Lhs: %s\n", nonTerminalToString[rule->lhs->tOrNt.nt]);
+    fprintf(fp, "Rhs: ");
+    symbolListNode* tmp;
+    for(tmp = rule->rhs->head; tmp; tmp=tmp->next){
+        fprintf(fp, "%s\t", tmp->symb->isNonTerminal ? nonTerminalToString[tmp->symb->tOrNt.nt] : tokenToString[tmp->symb->tOrNt.t]);
+    }
+    fprintf(fp, "\n");
+}
+
+void printParseTable(){
+    FILE* fParseOut = fopen("parseTable.txt", "w");
+    if(!fParseOut){
+        printf("Could not open file for printing parse table\n"); return;
+    }
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        fprintf(fParseOut, "------------------------------Non Term %d -----------------------------\n", i);
+        for(int j=0; j<TK_NOT_FOUND; j++){
+            fprintf(fParseOut, "******Term %d ******\n", j);
+            grammarRule* tmpRule = parseTable[i][j];
+            if(tmpRule)
+                printRule(tmpRule, fParseOut);
+            else
+                fprintf(fParseOut, "Error Entry\n");
+        }
+    }
+    fclose(fParseOut);
+}
+
 int main(){
     
     initializeTokenToStringFP();
@@ -620,4 +726,7 @@ int main(){
     // printFirstAndFollow();
 
     initializeParseTable();
+    printParseTable();
+
+    
 }

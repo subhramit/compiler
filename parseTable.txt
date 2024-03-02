@@ -1,0 +1,6618 @@
+------------------------------Non Term 0 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Lhs: <program>
+Rhs: <otherFunctions>	<mainFunction>	
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Lhs: <program>
+Rhs: <otherFunctions>	<mainFunction>	
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 1 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Lhs: <otherFunctions>
+Rhs: <function>	<otherFunctions>	
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Lhs: <otherFunctions>
+Rhs: TK_EPS	
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <otherFunctions>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 2 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Lhs: <mainFunction>
+Rhs: TK_MAIN	<stmts>	TK_END	
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 3 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 12 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 38 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 39 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 45 ******
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 4 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Lhs: <stmt>
+Rhs: <iterativeStmt>	
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <stmt>
+Rhs: <funCallStmt>	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Lhs: <stmt>
+Rhs: <conditionalStmt>	
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Lhs: <stmt>
+Rhs: <ioStmt>	
+******Term 38 ******
+Lhs: <stmt>
+Rhs: <ioStmt>	
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <stmt>
+Rhs: <funCallStmt>	
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 5 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Lhs: <function>
+Rhs: TK_FUNID	<input_par>	<output_par>	TK_SEM	<stmts>	TK_END	
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 6 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Lhs: <input_par>
+Rhs: TK_INPUT	TK_PARAMETER	TK_LIST	TK_SQL	<parameter_list>	TK_SQR	
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 7 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Lhs: <output_par>
+Rhs: TK_OUTPUT	TK_PARAMETER	TK_LIST	TK_SQL	<parameter_list>	TK_SQR	
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <output_par>
+Rhs: TK_EPS	
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <output_par>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 8 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Lhs: <parameter_list>
+Rhs: <dataType>	TK_ID	<remaining_list>	
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <parameter_list>
+Rhs: <dataType>	TK_ID	<remaining_list>	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Lhs: <parameter_list>
+Rhs: <dataType>	TK_ID	<remaining_list>	
+******Term 26 ******
+Lhs: <parameter_list>
+Rhs: <dataType>	TK_ID	<remaining_list>	
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <parameter_list>
+Rhs: <dataType>	TK_ID	<remaining_list>	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 9 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Lhs: <dataType>
+Rhs: <constructedDatatype>	
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <dataType>
+Rhs: <constructedDatatype>	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Lhs: <dataType>
+Rhs: <primitiveDatatype>	
+******Term 26 ******
+Lhs: <dataType>
+Rhs: <primitiveDatatype>	
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <dataType>
+Rhs: <constructedDatatype>	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 10 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Lhs: <remaining_list>
+Rhs: TK_EPS	
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Lhs: <remaining_list>
+Rhs: TK_COMMA	<parameter_list>	
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <remaining_list>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 11 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Lhs: <primitiveDatatype>
+Rhs: TK_INT	
+******Term 26 ******
+Lhs: <primitiveDatatype>
+Rhs: TK_REAL	
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 12 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Lhs: <constructedDatatype>
+Rhs: TK_RUID	
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <constructedDatatype>
+Rhs: TK_UNION	TK_RUID	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <constructedDatatype>
+Rhs: TK_RECORD	TK_RUID	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 13 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 12 ******
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 38 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 39 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 45 ******
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 14 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Lhs: <actualOrRedefined>
+Rhs: <definetypestmt>	
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 15 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <typeDefinition>
+Rhs: TK_UNION	TK_RUID	<fieldDefinitions>	TK_ENDUNION	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <typeDefinition>
+Rhs: TK_RECORD	TK_RUID	<fieldDefinitions>	TK_ENDRECORD	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 16 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <declarations>
+Rhs: <declaration>	<declarations>	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 38 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 39 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <declarations>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 17 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <declaration>
+Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 18 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Lhs: <otherStmts>
+Rhs: TK_EPS	
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Lhs: <otherStmts>
+Rhs: TK_EPS	
+******Term 37 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 38 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 39 ******
+Lhs: <otherStmts>
+Rhs: TK_EPS	
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Lhs: <otherStmts>
+Rhs: TK_EPS	
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <otherStmts>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 19 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Lhs: <returnStmt>
+Rhs: TK_RETURN	<optionalReturn>	TK_SEM	
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 20 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Lhs: <definetypestmt>
+Rhs: TK_DEFINETYPE	<A>	TK_RUID	TK_AS	TK_RUID	
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 21 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 22 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Lhs: <fieldType>
+Rhs: <constructedDatatype>	
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <fieldType>
+Rhs: <constructedDatatype>	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Lhs: <fieldType>
+Rhs: <primitiveDatatype>	
+******Term 26 ******
+Lhs: <fieldType>
+Rhs: <primitiveDatatype>	
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <fieldType>
+Rhs: <constructedDatatype>	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 23 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <fieldDefinitions>
+Rhs: <fieldDefinition>	<fieldDefinition>	<moreFields>	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 24 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Lhs: <moreFields>
+Rhs: TK_EPS	
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Lhs: <moreFields>
+Rhs: <fieldDefinition>	<moreFields>	
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Lhs: <moreFields>
+Rhs: TK_EPS	
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <moreFields>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 25 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+******Term 29 ******
+Lhs: <global_or_not>
+Rhs: TK_COLON	TK_GLOBAL	
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 26 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 27 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Lhs: <iterativeStmt>
+Rhs: TK_WHILE	TK_OP	<booleanExpression>	TK_CL	<stmt>	<otherStmts>	TK_ENDWHILE	
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 28 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Lhs: <conditionalStmt>
+Rhs: TK_IF	TK_OP	<booleanExpression>	TK_CL	TK_THEN	<stmt>	<otherStmts>	<elsePart>	
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 29 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Lhs: <elsePart>
+Rhs: TK_ENDIF	
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Lhs: <elsePart>
+Rhs: TK_ELSE	<stmt>	<otherStmts>	TK_ENDIF	
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 30 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Lhs: <ioStmt>
+Rhs: TK_READ	TK_OP	<var>	TK_CL	TK_SEM	
+******Term 38 ******
+Lhs: <ioStmt>
+Rhs: TK_WRITE	TK_OP	<var>	TK_CL	TK_SEM	
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 31 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <funCallStmt>
+Rhs: <outputParameters>	TK_CALL	TK_FUNID	TK_WITH	TK_PARAMETERS	<inputParameters>	TK_SEM	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <funCallStmt>
+Rhs: <outputParameters>	TK_CALL	TK_FUNID	TK_WITH	TK_PARAMETERS	<inputParameters>	TK_SEM	
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 32 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 33 -----------------------------
+******Term 0 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Lhs: <option_single_constructed>
+Rhs: <oneExpansion>	<moreExpansions>	
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 41 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 42 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 43 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 52 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 53 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 54 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 55 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 56 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 57 ******
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 34 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 35 -----------------------------
+******Term 0 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 41 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 42 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 43 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 52 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 53 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 54 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 55 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 56 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 57 ******
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 36 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+******Term 4 ******
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+******Term 5 ******
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 37 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <expPrime>
+Rhs: TK_EPS	
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Lhs: <expPrime>
+Rhs: TK_EPS	
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+******Term 41 ******
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <expPrime>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 38 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+******Term 4 ******
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+******Term 5 ******
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 39 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <termPrime>
+Rhs: TK_EPS	
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Lhs: <termPrime>
+Rhs: TK_EPS	
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Lhs: <termPrime>
+Rhs: TK_EPS	
+******Term 41 ******
+Lhs: <termPrime>
+Rhs: TK_EPS	
+******Term 42 ******
+Lhs: <termPrime>
+Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
+******Term 43 ******
+Lhs: <termPrime>
+Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <termPrime>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 40 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <factor>
+Rhs: <var>	
+******Term 4 ******
+Lhs: <factor>
+Rhs: <var>	
+******Term 5 ******
+Lhs: <factor>
+Rhs: <var>	
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Lhs: <factor>
+Rhs: TK_OP	<arithmeticExpression>	TK_CL	
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 41 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Lhs: <highPrecedenceOperators>
+Rhs: TK_MUL	
+******Term 43 ******
+Lhs: <highPrecedenceOperators>
+Rhs: TK_DIV	
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 42 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_PLUS	
+******Term 41 ******
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_MINUS	
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 43 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <outputParameters>
+Rhs: TK_SQL	<idList>	TK_SQR	TK_ASSIGNOP	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Lhs: <outputParameters>
+Rhs: TK_EPS	
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <outputParameters>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 44 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <inputParameters>
+Rhs: TK_SQL	<idList>	TK_SQR	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 45 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <idList>
+Rhs: TK_ID	<more_ids>	
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 46 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <booleanExpression>
+Rhs: <var>	<relationalOp>	<var>	
+******Term 4 ******
+Lhs: <booleanExpression>
+Rhs: <var>	<relationalOp>	<var>	
+******Term 5 ******
+Lhs: <booleanExpression>
+Rhs: <var>	<relationalOp>	<var>	
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Lhs: <booleanExpression>
+Rhs: TK_OP	<booleanExpression>	TK_CL	<logicalOp>	TK_OP	<booleanExpression>	TK_CL	
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Lhs: <booleanExpression>
+Rhs: TK_NOT	TK_OP	<booleanExpression>	TK_CL	
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 47 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Lhs: <var>
+Rhs: <singleOrRecId>	
+******Term 4 ******
+Lhs: <var>
+Rhs: TK_NUM	
+******Term 5 ******
+Lhs: <var>
+Rhs: TK_RNUM	
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 48 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Lhs: <logicalOp>
+Rhs: TK_AND	
+******Term 49 ******
+Lhs: <logicalOp>
+Rhs: TK_OR	
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 49 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Lhs: <relationalOp>
+Rhs: TK_LT	
+******Term 52 ******
+Lhs: <relationalOp>
+Rhs: TK_LE	
+******Term 53 ******
+Lhs: <relationalOp>
+Rhs: TK_EQ	
+******Term 54 ******
+Lhs: <relationalOp>
+Rhs: TK_GT	
+******Term 55 ******
+Lhs: <relationalOp>
+Rhs: TK_GE	
+******Term 56 ******
+Lhs: <relationalOp>
+Rhs: TK_NE	
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 50 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Lhs: <optionalReturn>
+Rhs: TK_SQL	<idList>	TK_SQR	
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Lhs: <optionalReturn>
+Rhs: TK_EPS	
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <optionalReturn>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 51 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Error Entry
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Lhs: <more_ids>
+Rhs: TK_EPS	
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Lhs: <more_ids>
+Rhs: TK_COMMA	<idList>	
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Error Entry
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Lhs: <more_ids>
+Rhs: TK_EPS	
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
+------------------------------Non Term 52 -----------------------------
+******Term 0 ******
+Error Entry
+******Term 1 ******
+Error Entry
+******Term 2 ******
+Error Entry
+******Term 3 ******
+Error Entry
+******Term 4 ******
+Error Entry
+******Term 5 ******
+Error Entry
+******Term 6 ******
+Error Entry
+******Term 7 ******
+Error Entry
+******Term 8 ******
+Error Entry
+******Term 9 ******
+Error Entry
+******Term 10 ******
+Error Entry
+******Term 11 ******
+Error Entry
+******Term 12 ******
+Lhs: <A>
+Rhs: TK_UNION	
+******Term 13 ******
+Error Entry
+******Term 14 ******
+Error Entry
+******Term 15 ******
+Error Entry
+******Term 16 ******
+Error Entry
+******Term 17 ******
+Error Entry
+******Term 18 ******
+Error Entry
+******Term 19 ******
+Error Entry
+******Term 20 ******
+Error Entry
+******Term 21 ******
+Error Entry
+******Term 22 ******
+Error Entry
+******Term 23 ******
+Error Entry
+******Term 24 ******
+Error Entry
+******Term 25 ******
+Error Entry
+******Term 26 ******
+Error Entry
+******Term 27 ******
+Error Entry
+******Term 28 ******
+Error Entry
+******Term 29 ******
+Error Entry
+******Term 30 ******
+Error Entry
+******Term 31 ******
+Error Entry
+******Term 32 ******
+Error Entry
+******Term 33 ******
+Error Entry
+******Term 34 ******
+Error Entry
+******Term 35 ******
+Error Entry
+******Term 36 ******
+Error Entry
+******Term 37 ******
+Error Entry
+******Term 38 ******
+Error Entry
+******Term 39 ******
+Error Entry
+******Term 40 ******
+Error Entry
+******Term 41 ******
+Error Entry
+******Term 42 ******
+Error Entry
+******Term 43 ******
+Error Entry
+******Term 44 ******
+Error Entry
+******Term 45 ******
+Lhs: <A>
+Rhs: TK_RECORD	
+******Term 46 ******
+Error Entry
+******Term 47 ******
+Error Entry
+******Term 48 ******
+Error Entry
+******Term 49 ******
+Error Entry
+******Term 50 ******
+Error Entry
+******Term 51 ******
+Error Entry
+******Term 52 ******
+Error Entry
+******Term 53 ******
+Error Entry
+******Term 54 ******
+Error Entry
+******Term 55 ******
+Error Entry
+******Term 56 ******
+Error Entry
+******Term 57 ******
+Error Entry
+******Term 58 ******
+Error Entry
+******Term 59 ******
+Error Entry
