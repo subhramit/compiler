@@ -561,6 +561,7 @@ void freeUpFfRhs(ffRhs* rl){
 }
 
 void addRulesToParseTable(){
+    // printf("\nAdding rules to parse table\n");
     for(int gri=0; gri<numOfRules; ++gri){
         grammarRule* tmpRule = Grammar[gri];
         ffRhs* fOfRhs = getFirstOfRhs(tmpRule->rhs);
@@ -633,11 +634,11 @@ void printParseTable(){
     fclose(fParseOut);
 }
 
-pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
+pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxError){
     if(!tokensFromLexer){
-        printf("Tokens list from lexer is null\n"); return NULL;
+        printf("Tokens list from lexer is null. Parsing failed\n"); return NULL;
     }
-
+    printf("Parsing...\n"); fflush(stdout);
     tokenInfo* inputPtr = tokensFromLexer->head;
     pTree* theParseTree = createPTree();
     pTreeNode* currentNode = theParseTree->root;
@@ -647,40 +648,74 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP){
     Stack* theStack = createNewStack();
     push(theStack, currentNode);
 
-    for( ;!isEmpty(theStack) && inputPtr && inputPtr->STE->tokenType!=DOLLAR; currentNode=top(theStack)){
+    printf("Parsing starting...\n"); fflush(stdout);
+    for(int pritr=0 ;!isEmpty(theStack) && inputPtr; currentNode=top(theStack), pritr++){
+        printf("Parse iter %d...\n", pritr); fflush(stdout);
+        if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType==LEXICAL_ERROR){
+            inputPtr = inputPtr->next;
+            continue;
+        }
+        if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==EPS){
+            pop(theStack); 
+            continue;
+        }
         if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==inputPtr->STE->tokenType){
+            printf("cs 1...\n"); fflush(stdout);
             pop(theStack); inputPtr = inputPtr->next;
         }
         else if(!(currentNode->symbol->isNonTerminal)){
+            printf("cs 2...\n"); fflush(stdout);
             // Error; handle mismatch
+            *hasSyntaxError = true;
+            fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
+            fprintf(foutP, "stack top: %s, input ptr: %s\n", tokenToString[currentNode->symbol->tOrNt.t], tokenToString[inputPtr->STE->tokenType]);
+            inputPtr = inputPtr->next;
         }
         else if(parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType]==NULL){
-            // Error; handle blank entry
+            printf("cs 3...\n"); fflush(stdout);
+            // Error; handle blank/error entry of parse table
+            *hasSyntaxError = true;
+            fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
+            fprintf(foutP, "stack top: %s, input ptr: %s\n", nonTerminalToString[currentNode->symbol->tOrNt.nt], tokenToString[inputPtr->STE->tokenType]);
+
+            if(existsInRhs(Follow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType))
+                pop(theStack);
+            else 
+                inputPtr=inputPtr->next;
         }
         else{
+            printf("cs 4...\n"); fflush(stdout);
             grammarRule* tmpRule = parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType];
-            fprintf(foutP, "Reducing using the rule: \n");
+            fprintf(foutP, "Reducing using the rule: \n"); 
             printRule(tmpRule, foutP);
             pop(theStack);
             symbolListNode* trhItr = tmpRule->rhs->head;
             pTreeNode* pn;
             for(; trhItr; trhItr=trhItr->next){
                 pn = createPTreeNode();
+                pn->symbol = (grammarSymbol*) malloc(sizeof(grammarSymbol));
                 pn->symbol->isNonTerminal = trhItr->symb->isNonTerminal;
                 if(pn->symbol->isNonTerminal) pn->symbol->tOrNt.nt = trhItr->symb->tOrNt.nt;
                 else pn->symbol->tOrNt.t = trhItr->symb->tOrNt.t;
                 insertNodeAsChild(currentNode, pn);
             }
-            for(int i=currentNode->size-1; i>=0; i--){
-                push(theStack, currentNode->children[i]);
+            for(int chi=currentNode->size-1; chi>=0; chi--){
+                push(theStack, currentNode->children[chi]);
             }
         }
     }
+    if(!(*hasSyntaxError)){
+        printf("\nNo syntax errors. Parsing successful!\n");
+    }
+    else{
+        printf("\nehh\n");
+    }
+    return theParseTree;
 }
 
 int main(){
 
-    FILE* fp = fopen("./TestCases/t2.txt", "r");
+    FILE* fp = fopen("./TestCases/t4.txt", "r");
     if(!fp){
         printf("Could not open file input file for parsing\n");
         return 0;
@@ -695,7 +730,7 @@ int main(){
     // printFirstAndFollow();
 
     initializeParseTable();
-    // printParseTable();
+    printParseTable();
 
     FILE* fpout = fopen("ParserOutput.txt", "w");
     if(!fpout){
@@ -703,6 +738,7 @@ int main(){
         return 0;
     }
 
-    // pTree* parseTree = parseTokens(tokensFromLexer, fpout);
+    bool hasSyntaxError = false;
+    pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
     
 }
