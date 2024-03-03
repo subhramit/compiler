@@ -49,633 +49,462 @@ Rhs: TK_EPS
 Reducing using the rule: 
 Lhs: <output_par>
 Rhs: TK_OUTPUT	TK_PARAMETER	TK_LIST	TK_SQL	<parameter_list>	TK_SQR	
-Reducing using the rule: 
-Lhs: <parameter_list>
-Rhs: <dataType>	TK_ID	<remaining_list>	
-Reducing using the rule: 
-Lhs: <dataType>
-Rhs: <primitiveDatatype>	
-Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_REAL	
-Reducing using the rule: 
-Lhs: <remaining_list>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <stmts>
-Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
-Reducing using the rule: 
-Lhs: <typeDefinitions>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <declarations>
-Rhs: <declaration>	<declarations>	
-Reducing using the rule: 
-Lhs: <declaration>
-Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
-Reducing using the rule: 
-Lhs: <dataType>
-Rhs: <primitiveDatatype>	
-Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_REAL	
-Reducing using the rule: 
-Lhs: <global_or_not>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <declarations>
-Rhs: <declaration>	<declarations>	
-Reducing using the rule: 
-Lhs: <declaration>
-Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
-Reducing using the rule: 
-Lhs: <dataType>
-Rhs: <primitiveDatatype>	
-Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_REAL	
-Reducing using the rule: 
-Lhs: <global_or_not>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <declarations>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_RNUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_PLUS	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_DIV	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_RNUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_PLUS	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <conditionalStmt>	
-Reducing using the rule: 
-Lhs: <conditionalStmt>
-Rhs: TK_IF	TK_OP	<booleanExpression>	TK_CL	TK_THEN	<stmt>	<otherStmts>	<elsePart>	
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: TK_OP	<booleanExpression>	TK_CL	<logicalOp>	TK_OP	<booleanExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: TK_NOT	TK_OP	<booleanExpression>	TK_CL	
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: <var>	<relationalOp>	<var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <relationalOp>
-Rhs: TK_EQ	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-Reducing using the rule: 
-Lhs: <logicalOp>
-Rhs: TK_AND	
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: <var>	<relationalOp>	<var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <relationalOp>
-Rhs: TK_GT	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_RNUM	
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_DIV	
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <elsePart>
-Rhs: TK_ELSE	<stmt>	<otherStmts>	TK_ENDIF	
+
+Syntax error in line 7
+stack top: TK_LIST, input ptr: TK_SQL
+
+Syntax error in line 7
+stack top: TK_LIST, input ptr: TK_REAL
+
+Syntax error in line 7
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 7
+stack top: TK_LIST, input ptr: TK_SQR
+
+Syntax error in line 7
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 8
+stack top: TK_LIST, input ptr: TK_TYPE
+
+Syntax error in line 8
+stack top: TK_LIST, input ptr: TK_REAL
+
+Syntax error in line 8
+stack top: TK_LIST, input ptr: TK_COLON
+
+Syntax error in line 8
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 9
+stack top: TK_LIST, input ptr: TK_TYPE
+
+Syntax error in line 9
+stack top: TK_LIST, input ptr: TK_REAL
+
+Syntax error in line 9
+stack top: TK_LIST, input ptr: TK_COLON
+
+Syntax error in line 9
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 9
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 10
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 10
+stack top: TK_LIST, input ptr: TK_ASSIGNOP
+
+Syntax error in line 10
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_ASSIGNOP
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_PLUS
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_MUL
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_MINUS
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_MINUS
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_DIV
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 11
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_ASSIGNOP
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_MINUS
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_RNUM
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_MUL
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_MINUS
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_MUL
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_PLUS
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_MUL
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 12
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_IF
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_NOT
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_EQ
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_GT
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_RNUM
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 13
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 14
+stack top: TK_LIST, input ptr: TK_THEN
+
+Syntax error in line 15
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 15
+stack top: TK_LIST, input ptr: TK_ASSIGNOP
+
+Syntax error in line 15
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 15
+stack top: TK_LIST, input ptr: TK_DIV
+
+Syntax error in line 15
+stack top: TK_LIST, input ptr: TK_ID
 
 Syntax error in line 16
-stack top: <stmt>, input ptr: TK_NUM
+stack top: TK_LIST, input ptr: TK_ELSE
 
-Syntax error in line 16
-stack top: <stmt>, input ptr: TK_CL
+Syntax error in line 17
+stack top: TK_LIST, input ptr: TK_WRITE
 
-Syntax error in line 16
-stack top: <stmt>, input ptr: TK_SEM
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <funCallStmt>	
-Reducing using the rule: 
-Lhs: <funCallStmt>
-Rhs: <outputParameters>	TK_CALL	TK_FUNID	TK_WITH	TK_PARAMETERS	<inputParameters>	TK_SEM	
-Reducing using the rule: 
-Lhs: <outputParameters>
-Rhs: TK_SQL	<idList>	TK_SQR	TK_ASSIGNOP	
-Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
-Reducing using the rule: 
-Lhs: <more_ids>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <inputParameters>
-Rhs: TK_SQL	<idList>	TK_SQR	
-Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
-Reducing using the rule: 
-Lhs: <more_ids>
-Rhs: TK_COMMA	<idList>	
-Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
-Reducing using the rule: 
-Lhs: <more_ids>
-Rhs: TK_COMMA	<idList>	
-Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
-Reducing using the rule: 
-Lhs: <more_ids>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <ioStmt>	
-Reducing using the rule: 
-Lhs: <ioStmt>
-Rhs: TK_WRITE	TK_OP	<var>	TK_CL	TK_SEM	
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: TK_EPS	
+Syntax error in line 17
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 17
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 17
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 17
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 18
+stack top: TK_LIST, input ptr: TK_ENDIF
 
 Syntax error in line 20
-stack top: TK_ENDIF, input ptr: TK_RETURN
+stack top: TK_LIST, input ptr: TK_END
 
-Syntax error in line 20
-stack top: TK_ENDIF, input ptr: TK_SEM
+Syntax error in line 24
+stack top: TK_LIST, input ptr: TK_MAIN
 
-Syntax error in line 21
-stack top: TK_ENDIF, input ptr: TK_END
+Syntax error in line 25
+stack top: TK_LIST, input ptr: TK_TYPE
 
-Syntax error in line 22
-stack top: TK_ENDIF, input ptr: TK_DOLLAR
+Syntax error in line 25
+stack top: TK_LIST, input ptr: TK_INT
+
+Syntax error in line 25
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 25
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 26
+stack top: TK_LIST, input ptr: TK_TYPE
+
+Syntax error in line 26
+stack top: TK_LIST, input ptr: TK_INT
+
+Syntax error in line 26
+stack top: TK_LIST, input ptr: TK_COLON
+
+Syntax error in line 26
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 26
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_TYPE
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_INT
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_COLON
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_COLON
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_GLOBAL
+
+Syntax error in line 27
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 28
+stack top: TK_LIST, input ptr: TK_TYPE
+
+Syntax error in line 28
+stack top: TK_LIST, input ptr: TK_REAL
+
+Syntax error in line 28
+stack top: TK_LIST, input ptr: TK_COLON
+
+Syntax error in line 28
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 28
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 29
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 29
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 29
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 30
+stack top: TK_LIST, input ptr: TK_READ
+
+Syntax error in line 30
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 30
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 30
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 30
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 31
+stack top: TK_LIST, input ptr: TK_READ
+
+Syntax error in line 31
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 31
+stack top: TK_LIST, input ptr: TK_NUM
+
+Syntax error in line 31
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 31
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 32
+stack top: TK_LIST, input ptr: TK_READ
+
+Syntax error in line 32
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 32
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 32
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 32
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_SQL
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_SQR
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_ASSIGNOP
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_CALL
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_FUNID
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_WITH
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_PARAMETERS
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_SQL
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_COMMA
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_COMMA
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_SQR
+
+Syntax error in line 34
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 35
+stack top: TK_LIST, input ptr: TK_WRITE
+
+Syntax error in line 35
+stack top: TK_LIST, input ptr: TK_OP
+
+Syntax error in line 35
+stack top: TK_LIST, input ptr: TK_ID
+
+Syntax error in line 35
+stack top: TK_LIST, input ptr: TK_CL
+
+Syntax error in line 35
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 36
+stack top: TK_LIST, input ptr: TK_RETURN
+
+Syntax error in line 36
+stack top: TK_LIST, input ptr: TK_SEM
+
+Syntax error in line 37
+stack top: TK_LIST, input ptr: TK_END
+
+Syntax error in line 38
+stack top: TK_LIST, input ptr: TK_DOLLAR

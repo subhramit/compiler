@@ -650,7 +650,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
 
     printf("Parsing starting...\n"); fflush(stdout);
     for(int pritr=0 ;!isEmpty(theStack) && inputPtr; currentNode=top(theStack), pritr++){
-        printf("Parse iter %d...\n", pritr); fflush(stdout);
+        // printf("Parse iter %d...\n", pritr); fflush(stdout);
         if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType==LEXICAL_ERROR){
             inputPtr = inputPtr->next;
             continue;
@@ -660,11 +660,11 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             continue;
         }
         if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==inputPtr->STE->tokenType){
-            printf("cs 1...\n"); fflush(stdout);
+            // printf("cs 1...\n"); fflush(stdout);
             pop(theStack); inputPtr = inputPtr->next;
         }
         else if(!(currentNode->symbol->isNonTerminal)){
-            printf("cs 2...\n"); fflush(stdout);
+            // printf("cs 2...\n"); fflush(stdout);
             // Error; handle mismatch
             *hasSyntaxError = true;
             fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
@@ -672,7 +672,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             inputPtr = inputPtr->next;
         }
         else if(parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType]==NULL){
-            printf("cs 3...\n"); fflush(stdout);
+            // printf("cs 3...\n"); fflush(stdout);
             // Error; handle blank/error entry of parse table
             *hasSyntaxError = true;
             fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
@@ -684,7 +684,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
                 inputPtr=inputPtr->next;
         }
         else{
-            printf("cs 4...\n"); fflush(stdout);
+            // printf("cs 4...\n"); fflush(stdout);
             grammarRule* tmpRule = parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType];
             fprintf(foutP, "Reducing using the rule: \n"); 
             printRule(tmpRule, foutP);
@@ -715,12 +715,12 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
 
 int main(){
 
-    FILE* fp = fopen("./TestCases/t4.txt", "r");
+    FILE* fp = fopen("./TestCases/t6.txt", "r");
     if(!fp){
         printf("Could not open file input file for parsing\n");
         return 0;
     }
-    linkedList* tokensFromLexer = getAllTokens(fp);
+    linkedList* tokensFromLexer = LexInput(fp);
 
     initializeNonTerminalToString();
     readGrammar();

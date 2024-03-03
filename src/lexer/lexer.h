@@ -33,7 +33,7 @@ SymbolTableEntry* searchToken(SymbolTable* ST, char* lxm);
 linkedList* createNewList();
 tokenInfo* createNewNode(SymbolTableEntry* ste, int lineNo);
 void insertLLNode(linkedList* myList, tokenInfo* myNode);
-FILE* getStream(FILE* fp);
+linkedList* LexInput(FILE* fp);
 //tokenInfo getNextToken(twinBuffer B);
 void removeComments(char* testcaseFile, char* cleanFile);
 void printCleanFile(char* cleanFile);
