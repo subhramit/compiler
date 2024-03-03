@@ -26,7 +26,7 @@
 <fieldDefinitions> <fieldDefinition> <fieldDefinition> <moreFields>
 <fieldDefinition> TYPE <fieldType> COLON FIELDID SEM
 <fieldType> <primitiveDatatype>
-<fieldType> <constructedDatatype>
+<fieldType> RUID
 <moreFields> <fieldDefinition> <moreFields>
 <moreFields> EPS
 <declarations> <declaration> <declarations>

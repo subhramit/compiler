@@ -120,6 +120,8 @@ typedef struct ffRhs{
 
 ffRhs** First;
 ffRhs** Follow;
+ffRhs** AutoFirst;
+ffRhs** AutoFollow;
 
 grammarRule*** parseTable;
 

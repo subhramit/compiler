@@ -1641,10 +1641,10 @@ linkedList* LexInput(FILE* fp){
     //     printf("No head\n");
     // }
 
-    for(int i=0; i<theList->count && tmp; i++){
-        printf("Line: %d; lexeme: \"%s\", %s, %lf\n", tmp->lineNumber, tmp->STE->lexeme, tokenToString[tmp->STE->tokenType], tmp->STE->valueIfNumber);
-        tmp = tmp->next;
-    }
+    // for(int i=0; i<theList->count && tmp; i++){
+    //     printf("Line: %d; lexeme: \"%s\", %s, %lf\n", tmp->lineNumber, tmp->STE->lexeme, tokenToString[tmp->STE->tokenType], tmp->STE->valueIfNumber);
+    //     tmp = tmp->next;
+    // }
 
     tmp = theList->head;
     for(int i=0; i<theList->count && tmp; i++){

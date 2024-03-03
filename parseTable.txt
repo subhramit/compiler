@@ -2857,7 +2857,7 @@ Error Entry
 Error Entry
 ******Term 7 ******
 Lhs: <fieldType>
-Rhs: <constructedDatatype>	
+Rhs: TK_RUID	
 ******Term 8 ******
 Error Entry
 ******Term 9 ******
@@ -2867,8 +2867,7 @@ Error Entry
 ******Term 11 ******
 Error Entry
 ******Term 12 ******
-Lhs: <fieldType>
-Rhs: <constructedDatatype>	
+Error Entry
 ******Term 13 ******
 Error Entry
 ******Term 14 ******
@@ -2936,8 +2935,7 @@ Error Entry
 ******Term 44 ******
 Error Entry
 ******Term 45 ******
-Lhs: <fieldType>
-Rhs: <constructedDatatype>	
+Error Entry
 ******Term 46 ******
 Error Entry
 ******Term 47 ******
@@ -4314,8 +4312,7 @@ Rhs: TK_EPS
 ******Term 34 ******
 Error Entry
 ******Term 35 ******
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
+Error Entry
 ******Term 36 ******
 Error Entry
 ******Term 37 ******
@@ -4581,8 +4578,7 @@ Rhs: TK_EPS
 ******Term 34 ******
 Error Entry
 ******Term 35 ******
-Lhs: <moreExpansions>
-Rhs: TK_EPS	
+Error Entry
 ******Term 36 ******
 Error Entry
 ******Term 37 ******

@@ -500,6 +500,30 @@ void printFirstAndFollow(){
     
 }
 
+void printComputedFirstAndFollow(){
+    FILE* foutFirst = fopen("computedfrst.txt", "w");
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        fprintf(foutFirst, "%s:\t", nonTerminalToString[i]);
+        ffRhsNode* tmp = AutoFirst[i]->head;
+        for(; tmp; tmp=tmp->next){
+            fprintf(foutFirst, "%s\t", tokenToString[tmp->tk]);
+        }
+        fprintf(foutFirst, "\n");
+    }
+    fclose(foutFirst);
+
+    FILE* foutFollow = fopen("computedfllw.txt", "w");
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        fprintf(foutFollow, "%s:\t", nonTerminalToString[i]);
+        ffRhsNode* tmp = AutoFollow[i]->head;
+        for(; tmp; tmp=tmp->next){
+            fprintf(foutFollow, "%s\t", tokenToString[tmp->tk]);
+        }
+        fprintf(foutFollow, "\n");
+    }
+    fclose(foutFollow);
+}
+
 bool existsInRhs(ffRhs* lst, Token tmpkey){
     if(!lst) return false;
     ffRhsNode* current = lst->head;
@@ -527,7 +551,7 @@ ffRhs* getFirstOfRhs(symbolList* grhs){
             }
             break;
         }
-        for(tmp=First[ritr->symb->tOrNt.nt]->head; tmp; tmp=tmp->next){
+        for(tmp=AutoFirst[ritr->symb->tOrNt.nt]->head; tmp; tmp=tmp->next){
             if(tmp->tk==EPS){
                 hasEps=true; continue;
             }
@@ -574,7 +598,7 @@ void addRulesToParseTable(){
 
         if(existsInRhs(fOfRhs, EPS)){
             ffRhsNode* antItr;
-            for(antItr=Follow[tmpRule->lhs->tOrNt.nt]->head; antItr; antItr=antItr->next){
+            for(antItr=AutoFollow[tmpRule->lhs->tOrNt.nt]->head; antItr; antItr=antItr->next){
                 if(parseTable[tmpRule->lhs->tOrNt.nt][antItr->tk]!=NULL)
                     printf("\nMultiple defined entries in parse table detected! (Overwriting the rule!)\n");
                 parseTable[tmpRule->lhs->tOrNt.nt][antItr->tk]=tmpRule;
@@ -679,7 +703,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
             fprintf(foutP, "stack top: %s, input ptr: %s\n", nonTerminalToString[currentNode->symbol->tOrNt.nt], tokenToString[inputPtr->STE->tokenType]);
 
-            if(existsInRhs(Follow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType))
+            if(existsInRhs(AutoFollow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType))
                 pop(theStack);
             else 
                 inputPtr=inputPtr->next;
@@ -714,6 +738,131 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
     return theParseTree;
 }
 
+void computeFirstSets(){
+    bool modified = true;
+    for(; modified; ){
+        modified = false;
+
+        for(int gri=0; gri<numOfRules; ++gri){
+            NonTerminal currLhs = Grammar[gri]->lhs->tOrNt.nt;
+            symbolListNode* rhsItr = Grammar[gri]->rhs->head;
+
+            bool hasEps = true;
+            for(; rhsItr && hasEps; rhsItr=rhsItr->next){
+                hasEps = false;
+                
+                if(!(rhsItr->symb->isNonTerminal)){
+                    if(!existsInRhs(AutoFirst[currLhs], rhsItr->symb->tOrNt.t)){
+                        ffRhsNode* vtmp = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+                        vtmp->next=NULL; vtmp->tk = rhsItr->symb->tOrNt.t;
+                        insertFfRhsNode(AutoFirst[currLhs], vtmp);
+                        modified = true;
+                    }
+                    break;
+                }
+
+                ffRhsNode* feaItr;
+                for(feaItr=AutoFirst[rhsItr->symb->tOrNt.nt]->head; feaItr; feaItr=feaItr->next){
+                    if(feaItr->tk==EPS){
+                        hasEps=true; continue;
+                    }
+                    if(!existsInRhs(AutoFirst[currLhs], feaItr->tk)){
+                        ffRhsNode* cpytmp = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+                        cpytmp->next=NULL;
+                        cpytmp->tk = feaItr->tk;
+                        insertFfRhsNode(AutoFirst[currLhs], cpytmp);
+                        modified = true;
+                    }
+                }
+
+            }
+            if(rhsItr==NULL && hasEps){
+                if(!existsInRhs(AutoFirst[currLhs], EPS)){
+                    ffRhsNode* vvtmp = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+                    vvtmp->next=NULL; vvtmp->tk = EPS;
+                    insertFfRhsNode(AutoFirst[currLhs], vvtmp);
+                    modified = true;
+                } 
+            }
+        }
+    }
+}
+
+void computeFollowSets(){
+
+    ffRhsNode* thdl = (ffRhsNode*) malloc(sizeof(ffRhsNode));
+    thdl->next = NULL; thdl->tk = DOLLAR;
+    insertFfRhsNode(AutoFollow[program], thdl);
+
+    bool modified = true;
+    for(; modified; ){
+        modified = false;
+
+        for(int gri=0; gri<numOfRules; ++gri){
+            NonTerminal currLhs = Grammar[gri]->lhs->tOrNt.nt;
+            symbolListNode* rhsItr = Grammar[gri]->rhs->head;
+
+            for(; rhsItr;  rhsItr=rhsItr->next){
+                if(!(rhsItr->symb->isNonTerminal)) continue;
+
+                symbolList* tgl = (symbolList*) malloc(sizeof(symbolList));
+                tgl->head=rhsItr->next;
+                ffRhs* fOfNxtT = getFirstOfRhs(tgl);
+
+                ffRhsNode* felItr;
+                for(felItr=fOfNxtT->head; felItr; felItr=felItr->next){
+                    if(felItr->tk==EPS) continue;
+                    if(!existsInRhs(AutoFollow[rhsItr->symb->tOrNt.nt], felItr->tk)){
+                        ffRhsNode* vvvt = (ffRhsNode*) malloc(sizeof(ffRhs));
+                        vvvt->next=NULL; vvvt->tk = felItr->tk;
+                        insertFfRhsNode(AutoFollow[rhsItr->symb->tOrNt.nt], vvvt);
+                        modified = true;
+                    }
+                }
+
+                if(existsInRhs(fOfNxtT, EPS) || !(rhsItr->next)){
+                    ffRhsNode* flwItr;
+                    for(flwItr=AutoFollow[currLhs]->head; flwItr; flwItr=flwItr->next){
+                        if(!existsInRhs(AutoFollow[rhsItr->symb->tOrNt.nt], flwItr->tk)){
+                            ffRhsNode* avt = (ffRhsNode*) malloc(sizeof(ffRhs));
+                            avt->next = NULL; avt->tk = flwItr->tk;
+                            insertFfRhsNode(AutoFollow[rhsItr->symb->tOrNt.nt], avt);
+                            modified = true;
+                        }
+                    }
+                }
+                freeUpFfRhs(fOfNxtT);
+            }
+        }
+    }
+}
+
+void initializeAndComputeFirstAndFollow(){
+    AutoFirst = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
+    AutoFollow = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
+    if(!AutoFirst || !AutoFollow){
+        printf("Could not allocate memory for auto first and follow sets array\n");
+        return;
+    }
+
+    for(int i=0; i<NT_NOT_FOUND; i++){
+        AutoFirst[i] = (ffRhs*) malloc(sizeof(ffRhs));
+        if(!(AutoFirst[i])){
+            printf("Could not allocate memory for auto first sets\n");
+            return;
+        }
+        AutoFirst[i]->head = NULL; AutoFirst[i]->tail = NULL;
+        AutoFollow[i] = (ffRhs*) malloc(sizeof(ffRhs));
+        if(!(AutoFollow[i])){
+            printf("Could not allocate memory for auto follow sets\n");
+            return;
+        }
+        AutoFollow[i]->head = NULL; AutoFollow[i]->tail = NULL;
+    }
+    computeFirstSets();
+    computeFollowSets();
+}
+
 int main(){
 
     FILE* fp = fopen("./TestCases/t6.txt", "r");
@@ -727,11 +876,13 @@ int main(){
     readGrammar();
     // printGrammar();
 
-    initializeAndReadFirstAndFollow();
+    // initializeAndReadFirstAndFollow();
     // printFirstAndFollow();
+    initializeAndComputeFirstAndFollow();
+    printComputedFirstAndFollow();
 
     initializeParseTable();
-    printParseTable();
+    // printParseTable();
 
     FILE* fpout = fopen("ParserOutput.txt", "w");
     if(!fpout){
