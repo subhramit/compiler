@@ -84,6 +84,8 @@ typedef enum Token {
     EPS,
     DOLLAR, // End of File marker
     LEXICAL_ERROR,
+    ID_LENGTH_EXC,
+    FUN_LENGTH_EXC,
     TK_NOT_FOUND
 } Token;
 

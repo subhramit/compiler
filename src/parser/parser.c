@@ -651,7 +651,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
     printf("Parsing starting...\n"); fflush(stdout);
     for(int pritr=0 ;!isEmpty(theStack) && inputPtr; currentNode=top(theStack), pritr++){
         // printf("Parse iter %d...\n", pritr); fflush(stdout);
-        if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType==LEXICAL_ERROR){
+        if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType>=LEXICAL_ERROR){
             inputPtr = inputPtr->next;
             continue;
         }

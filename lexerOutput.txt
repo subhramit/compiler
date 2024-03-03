@@ -25,7 +25,7 @@ Line: 7; lexeme: ";", TK_SEM, 0.000000
 Line: 8; lexeme: "type", TK_TYPE, 0.000000
 Line: 8; lexeme: "real", TK_REAL, 0.000000
 Line: 8; lexeme: ":", TK_COLON, 0.000000
-Line: 8; lexeme: "d4cbcccccccccccccbbbbbbbbdddd5222222222222633333333333377", LEXICAL_ERROR, 0.000000
+Line: 8; lexeme: "d4cbcccccccccccccbbb...", IDENTIFIER_LENGTH_EXCEEDED, 0.000000
 Line: 8; lexeme: ";", TK_SEM, 0.000000
 Line: 9; lexeme: "type", TK_TYPE, 0.000000
 Line: 9; lexeme: "real", TK_REAL, 0.000000
