@@ -687,7 +687,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
         else{
             // printf("cs 4...\n"); fflush(stdout);
             grammarRule* tmpRule = parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType];
-            fprintf(foutP, "Reducing using the rule: \n"); 
+            fprintf(foutP, "\nReducing using the rule: \n"); 
             printRule(tmpRule, foutP);
             pop(theStack);
             symbolListNode* trhItr = tmpRule->rhs->head;

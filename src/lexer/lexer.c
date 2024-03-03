@@ -279,16 +279,16 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 break;
 
             case 2: 
-                tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
-                lexeme[1]='\0';
-                SymbolTableEntry* cmntSte = searchToken(symbolTable, lexeme);
-                if(!cmntSte){
-                    cmntSte = createToken(lexeme, COMMENT, 0);
-                    insertToken(symbolTable, cmntSte);
-                }
-                tokenInfo* cmntTok = createNewNode(cmntSte, *lineNumber);
-                ++(*lineNumber);
-                return cmntTok;
+                // tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                // lexeme[1]='\0';
+                // SymbolTableEntry* cmntSte = searchToken(symbolTable, lexeme);
+                // if(!cmntSte){
+                //     cmntSte = createToken(lexeme, COMMENT, 0);
+                //     insertToken(symbolTable, cmntSte);
+                // }
+                // tokenInfo* cmntTok = createNewNode(cmntSte, *lineNumber);
+                // ++(*lineNumber);
+                // return cmntTok;
                 break;
 
             case 3: 
@@ -909,11 +909,19 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 break;
 
             case 65: 
-                ch = nextChar(fp, twinBuff, fwdPtr);
-                if(ch=='\n'){
-                    state=2;
+                tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+                SymbolTableEntry* cmntSte = searchToken(symbolTable, lexeme);
+                if(!cmntSte){
+                    cmntSte = createToken(lexeme, COMMENT, 0);
+                    insertToken(symbolTable, cmntSte);
                 }
+                tokenInfo* cmntTok = createNewNode(cmntSte, *lineNumber);
 
+
+                for(; (ch = nextChar(fp, twinBuff, fwdPtr))!='\n';);
+
+                ++(*lineNumber);
+                return cmntTok;
                 break;
 
             case 66: 
