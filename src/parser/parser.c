@@ -669,7 +669,8 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             *hasSyntaxError = true;
             fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
             fprintf(foutP, "stack top: %s, input ptr: %s\n", tokenToString[currentNode->symbol->tOrNt.t], tokenToString[inputPtr->STE->tokenType]);
-            inputPtr = inputPtr->next;
+            // inputPtr = inputPtr->next;
+            pop(theStack);
         }
         else if(parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType]==NULL){
             // printf("cs 3...\n"); fflush(stdout);
