@@ -2,8 +2,8 @@
 Compiler design and implementation project for a toy language (with specifications provided) for the course CS F363 (Compiler Construction), Spring '24, BITS Pilani.
 ## To run the compiler
 1. Run ````make```` to prepare the executable
-2. Run ````./stage1exe <Input File> <Output File>```` <br>
-And then select your required option among the following: <br>
+2. Run ````./stage1exe <Input File> <Output File>````
+3. Select your required option among the following: <br>
  **0:** To exit <br>
  **1:** To remove comments from the source file, write it to the specified output file and print on the console <br>
  **2:** To print token list on console after lexical analysis (also write into a file "lexerOutput.txt") <br>
