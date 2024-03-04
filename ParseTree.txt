@@ -1,0 +1,21 @@
+                          lexeme   lineNumber        tokenName        valueIfNumber               parentNodeSymbol   isLeafNode                     nodeSymbol
+
+                         EPSILON            5           TK_EPS          Not number                <otherFunctions>          YES                          ----- 
+                           -----            5            -----          Not number                       <program>           NO               <otherFunctions> 
+                           -----            5            -----          Not number                            ROOT           NO                      <program> 
+                           _main            5          TK_MAIN          Not number                  <mainFunction>          YES                          ----- 
+                           -----            5            -----          Not number                       <program>           NO                 <mainFunction> 
+                         EPSILON            5           TK_EPS          Not number               <typeDefinitions>          YES                          ----- 
+                           -----            5            -----          Not number                         <stmts>           NO              <typeDefinitions> 
+                           -----            5            -----          Not number                  <mainFunction>           NO                        <stmts> 
+                         EPSILON            5           TK_EPS          Not number                  <declarations>          YES                          ----- 
+                           -----            5            -----          Not number                         <stmts>           NO                 <declarations> 
+                               [            5           TK_SQL          Not number              <outputParameters>          YES                          ----- 
+                           -----            5            -----          Not number                   <funCallStmt>           NO             <outputParameters> 
+                              c3            5            TK_ID          Not number                        <idList>          YES                          ----- 
+                           -----            5            -----          Not number              <outputParameters>           NO                       <idList> 
+                               ,            5         TK_COMMA          Not number                      <more_ids>          YES                          ----- 
+                           -----            5            -----          Not number                        <idList>           NO                     <more_ids> 
+                           -----            5            -----          Not number                      <more_ids>           NO                       <idList> 
+                               ]            5           TK_SQR          Not number              <outputParameters>          YES                          ----- 
+                          (null)            5 

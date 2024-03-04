@@ -877,8 +877,23 @@ void initializeAndComputeFirstAndFollow(){
 }
 
 void printTreeNode(pTreeNode* curr, pTreeNode* par, FILE* fp){
-    printf("\n");
-    // printf("", curr->symbol->)
+    // fprintf(fp, "\n");
+    fprintf(fp, "%*s ", 32, !(curr->symbol->isNonTerminal) ? curr->ste->lexeme : "-----");
+    fprintf(fp, "%*d ", 12, curr->lineNumber);
+    fprintf(fp, "%*s ", 16, curr->symbol->isNonTerminal ? "-----" : tokenToString[curr->ste->tokenType]);
+    if(!(curr->symbol->isNonTerminal) && (curr->ste->tokenType==NUM || curr->ste->tokenType==RNUM)){
+        if(curr->ste->tokenType==NUM)
+            fprintf(fp, "%*d ", 20, (int)(curr->ste->valueIfNumber));
+        else    
+            fprintf(fp, "%20.2lf ", curr->ste->valueIfNumber);
+    }
+    else{
+        fprintf(fp, "%*s ", 20, "Not number ");
+    }
+    fprintf(fp, "%*s ", 30, par ? nonTerminalToString[par->symbol->tOrNt.nt] : "ROOT");
+    fprintf(fp, "%*s ", 12, curr->symbol->isNonTerminal ? "NO" : "YES");
+    fprintf(fp, "%*s ", 30, curr->symbol->isNonTerminal ? nonTerminalToString[curr->symbol->tOrNt.nt] : "-----");
+    fprintf(fp, "\n");
 }
 
 void inorderTraverse(pTreeNode* curr, pTreeNode* par, FILE* fp){
@@ -900,13 +915,14 @@ void printParseTree(pTree* PT, char* outFile){
         return;
     }
     printf("Printing  Parse Tree:\n");
+    fprintf(fp, "%*s %*s %*s %*s %*s %*s %*s\n\n", 32, "lexeme", 12, "lineNumber", 16, "tokenName", 20, "valueIfNumber", 30, "parentNodeSymbol", 12, "isLeafNode", 30, "nodeSymbol");
     inorderTraverse(PT->root, NULL, fp);
     fclose(fp);
 }
 
 int main(){
 
-    FILE* fp = fopen("./TestCases/t5.txt", "r");
+    FILE* fp = fopen("./TestCases/t1.txt", "r");
     if(!fp){
         printf("Could not open file input file for parsing\n");
         return 0;
@@ -934,6 +950,7 @@ int main(){
     bool hasSyntaxError = false;
     pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
     
-    // printParseTree(parseTree);
+    if(!hasSyntaxError)
+        printParseTree(parseTree, "ParseTree.txt");
 
 }
