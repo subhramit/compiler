@@ -7,7 +7,7 @@ This uses a standard Pipe and Filter architecture as usually used for compilers.
 
 ![Screenshot](architecture.png)
 ## Dependencies
-The compiler has been developed and tested using GCC 11.4.0 on Ubuntu 22.04.3. The project uses **make** to build on Linux.
+The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.04.3**. The project uses **make** to build on Linux.
 ## To run the compiler
 1. Run ````make```` to build the executable
 2. Run ````./stage1exe <Input File> <Output File>````
