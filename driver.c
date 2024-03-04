@@ -40,8 +40,7 @@ int main(int argc, char* argv[]) {
                     return 0;
                     break;
 
-            case 1: removeComments(argv[1], "cleanedFile.txt");
-                    printCleanFile("cleanedFile.txt");
+            case 1: removeComments(argv[1], argv[2]);
                     break;
 
             case 2: FILE* lexIn = fopen(argv[1], "r");
