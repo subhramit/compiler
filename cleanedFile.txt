@@ -1,0 +1,8 @@
+_main 
+	record #marks
+		type real : maths; 
+		type real: physics; 
+		type real: chemistry;
+	endrecord
+	return;
+end
