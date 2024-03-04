@@ -1,5 +1,5 @@
 # A toy compiler
-Compiler design and implementation project for a toy language (with specifications provided) for the course CS F363 (Compiler Construction), Spring '24, BITS Pilani.
+Compiler design and implementation project for a high-level language (with specifications provided) for the course CS F363 (Compiler Construction), Spring '24, BITS Pilani.
 ## Modules
 The compiler has a fully functional lexical analyzer, predictive parser, syntax checker and error recovery mechanism.
 ## Architecture
