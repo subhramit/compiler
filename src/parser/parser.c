@@ -1003,7 +1003,7 @@ void parseInputSourceCode(char* inpFile, char* opFile){
     initializeParseTable();
     // printParseTable();
 
-    FILE* fpout = fopen("ParserOutput.txt", "w");
+    FILE* fpout = fopen(opFile, "w");
     if(!fpout){
         printf("Could not open file for parser output\n");
         return;
@@ -1025,4 +1025,3 @@ void parseInputSourceCode(char* inpFile, char* opFile){
         fclose(foptp);
     }
 }
-
