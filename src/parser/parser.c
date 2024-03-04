@@ -977,7 +977,7 @@ void printParseTree(pTree* PT, char* outFile){
         printf("Given parse tree is null. Could not print\n");
         return;
     }
-    printf("Printing  Parse Tree in the specified file...\n");
+    printf("Printing Parse Tree in the specified file...\n");
     fprintf(fp, "%*s %*s %*s %*s %*s %*s %*s\n\n", 32, "lexeme", 12, "lineNumber", 16, "tokenName", 20, "valueIfNumber", 30, "parentNodeSymbol", 12, "isLeafNode", 30, "nodeSymbol");
     inorderTraverse(PT->root, NULL, fp);
     fclose(fp);
@@ -994,16 +994,12 @@ void parseInputSourceCode(char* inpFile, char* opFile){
     linkedList* tokensFromLexer = LexInput(ifp);
     fclose(ifp);
     
-    printf("jkls\n"); fflush(stdout);
     initializeNonTerminalToString();
-    printf("nboi\n"); fflush(stdout);
     readGrammar();
     
-    printf("uomn\n"); fflush(stdout);
     initializeAndComputeFirstAndFollow();
     // printComputedFirstAndFollow();
 
-    printf("uooji\n"); fflush(stdout);
     initializeParseTable();
     // printParseTable();
 
@@ -1013,12 +1009,10 @@ void parseInputSourceCode(char* inpFile, char* opFile){
         return;
     }
 
-    printf("vbiu\n"); fflush(stdout);
     bool hasSyntaxError = false;
     pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
     fclose(fpout);
 
-    printf("mkjk\n"); fflush(stdout);
     if(!hasSyntaxError)
         printParseTree(parseTree, opFile);
     else{
