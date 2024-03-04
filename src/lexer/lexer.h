@@ -43,5 +43,6 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff);
 char nextChar(FILE* fp, char *twinBuff, int *fwdPtr);
 void initializeTokenToString();
+void printTokensOnConsole(linkedList* theListOfTokens);
 
 #endif

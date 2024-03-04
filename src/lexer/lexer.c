@@ -1534,7 +1534,7 @@ linkedList* getAllTokens(FILE* fp){
 
     linkedList* tokensList = createNewList();
 
-    for(int i=1; true ; i++){
+    for(; true ; ){
         tokenInfo* tkInfo = getNextToken(fp, twinBuffer, &fwdPtr, &lineNumber, keywordsLookup, symbolTable);
         if(!tkInfo){
             printf("No token retrieved\n");
@@ -1610,22 +1610,24 @@ void printCleanFile(char* cleanFile) {
 
 }
 
-FILE* getStream(FILE* fp){
-    
-    /*
-    This function takes the input from the file pointed to by 'fp'.
-    This file is the source code written in the given language.
-    The function uses efficient technique to populate twin buffer by bringing the fixed sized piece of source code into the memory for processing so as to avoid intensive I/O operations mixed with CPU intensive tasks.
-    The function also maintains the file pointer after every access so that it can get more data into the memory on demand.
-    The implementation can also be combined with getNextToken() implementation as per the convenience of the team.
-    */
+void printTokensOnConsole(linkedList* theListOfTokens){
+    tokenInfo* tmp = theListOfTokens->head;
+    for(int i=0; i<theListOfTokens->count && tmp; i++){
+        char* tms;
+        if(tmp->STE->tokenType < LEXICAL_ERROR) tms = strdup(tokenToString[tmp->STE->tokenType]);
+        else if(tmp->STE->tokenType == LEXICAL_ERROR) tms = strdup("Unrecognized pattern");
+        else if(tmp->STE->tokenType == ID_LENGTH_EXC) tms = strdup("Identifier length exceeded 20");
+        else if(tmp->STE->tokenType == FUN_LENGTH_EXC) tms = strdup("Function name length exceeded 30");
+        else tms = strdup("");
+        printf("Line No: %*d \t Lexeme: %*s \t Token: %*s \n", 5, tmp->lineNumber, 35, tmp->STE->lexeme, 35, tms);
+        tmp = tmp->next;
+    }
 }
 
 linkedList* LexInput(FILE* fp){
 
-
     if(!fp){
-        printf("Error opening file\n");
+        printf("Error opening input file for lexer\n");
         exit(-1);
     }
     FILE* fout = fopen("lexerOutput.txt", "w");
@@ -1637,21 +1639,19 @@ linkedList* LexInput(FILE* fp){
     }
 
     tokenInfo* tmp = theList->head;
-    // if(!tmp || !(theList->count)){
-    //     printf("No head\n");
-    // }
-
-    // for(int i=0; i<theList->count && tmp; i++){
-    //     printf("Line: %d; lexeme: \"%s\", %s, %lf\n", tmp->lineNumber, tmp->STE->lexeme, tokenToString[tmp->STE->tokenType], tmp->STE->valueIfNumber);
-    //     tmp = tmp->next;
-    // }
-
-    tmp = theList->head;
+    
     for(int i=0; i<theList->count && tmp; i++){
-        fprintf(fout, "Line: %d; lexeme: \"%s\", %s, %lf\n", tmp->lineNumber, tmp->STE->lexeme, tokenToString[tmp->STE->tokenType], tmp->STE->valueIfNumber);
+        char* tms;
+        if(tmp->STE->tokenType < LEXICAL_ERROR) tms = strdup(tokenToString[tmp->STE->tokenType]);
+        else if(tmp->STE->tokenType == LEXICAL_ERROR) tms = strdup("Unrecognized pattern");
+        else if(tmp->STE->tokenType == ID_LENGTH_EXC) tms = strdup("Identifier length exceeded 20");
+        else if(tmp->STE->tokenType == FUN_LENGTH_EXC) tms = strdup("Function name length exceeded 30");
+        else tms = strdup("");
+        fprintf(fout, "Line No: %*d \t Lexeme: %*s \t Token: %*s \n", 5, tmp->lineNumber, 35, tmp->STE->lexeme, 35, tms);
         tmp = tmp->next;
     }
     fclose(fout);
+    // printTokensOnConsole(theList);
     
     return theList;
 }

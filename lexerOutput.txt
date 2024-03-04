@@ -1,140 +1,140 @@
-Line: 1; lexeme: "%", TK_COMMENT, 0.000000
-Line: 2; lexeme: "%", TK_COMMENT, 0.000000
-Line: 4; lexeme: "%", TK_COMMENT, 0.000000
-Line: 5; lexeme: "_main", TK_MAIN, 0.000000
-Line: 5; lexeme: "input", TK_INPUT, 0.000000
-Line: 5; lexeme: "_input", TK_FUNID, 0.000000
-Line: 5; lexeme: "parameter", TK_PARAMETER, 0.000000
-Line: 5; lexeme: "list", TK_LIST, 0.000000
-Line: 5; lexeme: "[", TK_SQL, 0.000000
-Line: 5; lexeme: "int", TK_INT, 0.000000
-Line: 5; lexeme: "c3", TK_ID, 0.000000
-Line: 5; lexeme: ",", TK_COMMA, 0.000000
-Line: 5; lexeme: "]", TK_SQR, 0.000000
-Line: 5; lexeme: "output", TK_OUTPUT, 0.000000
-Line: 5; lexeme: "[", TK_SQL, 0.000000
-Line: 5; lexeme: "real", TK_REAL, 0.000000
-Line: 5; lexeme: "c6", TK_ID, 0.000000
-Line: 5; lexeme: "]", TK_SQR, 0.000000
-Line: 5; lexeme: ";", TK_SEM, 0.000000
-Line: 5; lexeme: "_computeFunctionValue", TK_FUNID, 0.000000
-Line: 6; lexeme: "d4cbcd5677", TK_ID, 0.000000
-Line: 6; lexeme: "<---", TK_ASSIGNOP, 0.000000
-Line: 6; lexeme: "(", TK_OP, 0.000000
-Line: 6; lexeme: "(", TK_OP, 0.000000
-Line: 6; lexeme: "c3", TK_ID, 0.000000
-Line: 6; lexeme: "+", TK_PLUS, 0.000000
-Line: 6; lexeme: "2", TK_NUM, 2.000000
-Line: 6; lexeme: "*", TK_MUL, 0.000000
-Line: 6; lexeme: "c4", TK_ID, 0.000000
-Line: 6; lexeme: "-", TK_MINUS, 0.000000
-Line: 6; lexeme: "(", TK_OP, 0.000000
-Line: 6; lexeme: "c5", TK_ID, 0.000000
-Line: 6; lexeme: "-", TK_MINUS, 0.000000
-Line: 6; lexeme: "5", TK_NUM, 5.000000
-Line: 6; lexeme: ")", TK_CL, 0.000000
-Line: 6; lexeme: ")", TK_CL, 0.000000
-Line: 6; lexeme: "/", TK_DIV, 0.000000
-Line: 6; lexeme: "4", TK_NUM, 4.000000
-Line: 6; lexeme: ";", TK_SEM, 0.000000
-Line: 6; lexeme: "c4bbb", TK_ID, 0.000000
-Line: 6; lexeme: "<", TK_LT, 0.000000
-Line: 6; lexeme: "<=", TK_LE, 0.000000
-Line: 6; lexeme: "<=", TK_LE, 0.000000
-Line: 6; lexeme: "=", LEXICAL_ERROR, 0.000000
-Line: 6; lexeme: "<---", TK_ASSIGNOP, 0.000000
-Line: 6; lexeme: "(", TK_OP, 0.000000
-Line: 6; lexeme: "d4cbcd5677", TK_ID, 0.000000
-Line: 6; lexeme: "-", TK_MINUS, 0.000000
-Line: 6; lexeme: "2.35", TK_RNUM, 2.350000
-Line: 6; lexeme: "+", TK_PLUS, 0.000000
-Line: 6; lexeme: "34.98E+23", TK_RNUM, inf
-Line: 6; lexeme: ")", TK_CL, 0.000000
-Line: 6; lexeme: "*", TK_MUL, 0.000000
-Line: 6; lexeme: "/", TK_DIV, 0.000000
-Line: 6; lexeme: "&&", LEXICAL_ERROR, 0.000000
-Line: 6; lexeme: "|", LEXICAL_ERROR, 0.000000
-Line: 6; lexeme: "|", LEXICAL_ERROR, 0.000000
-Line: 6; lexeme: "|", LEXICAL_ERROR, 0.000000
-Line: 6; lexeme: "&&&", TK_AND, 0.000000
-Line: 6; lexeme: ";", TK_SEM, 0.000000
-Line: 7; lexeme: "if", TK_IF, 0.000000
-Line: 7; lexeme: "+", TK_PLUS, 0.000000
-Line: 7; lexeme: "then", TK_THEN, 0.000000
-Line: 7; lexeme: "_AbC23", TK_FUNID, 0.000000
-Line: 7; lexeme: "#new", TK_RUID, 0.000000
-Line: 7; lexeme: "123.5", LEXICAL_ERROR, 0.000000
-Line: 7; lexeme: ".", TK_DOT, 0.000000
-Line: 7; lexeme: "34.54E-23", TK_RNUM, 0.000000
-Line: 7; lexeme: ";", TK_SEM, 0.000000
-Line: 7; lexeme: "else", TK_ELSE, 0.000000
-Line: 7; lexeme: "/", TK_DIV, 0.000000
-Line: 7; lexeme: "write", TK_WRITE, 0.000000
-Line: 7; lexeme: "(", TK_OP, 0.000000
-Line: 7; lexeme: "c4bbb", TK_ID, 0.000000
-Line: 7; lexeme: ")", TK_CL, 0.000000
-Line: 7; lexeme: ";", TK_SEM, 0.000000
-Line: 8; lexeme: "endif", TK_ENDIF, 0.000000
-Line: 8; lexeme: "<", TK_LT, 0.000000
-Line: 8; lexeme: "type", TK_TYPE, 0.000000
-Line: 8; lexeme: ">=", TK_GE, 0.000000
-Line: 8; lexeme: "int", TK_INT, 0.000000
-Line: 8; lexeme: ":", TK_COLON, 0.000000
-Line: 8; lexeme: "d5cb34567", TK_ID, 0.000000
-Line: 8; lexeme: ":", TK_COLON, 0.000000
-Line: 8; lexeme: "global", TK_GLOBAL, 0.000000
-Line: 8; lexeme: "_abc", TK_FUNID, 0.000000
-Line: 8; lexeme: "!=", TK_NE, 0.000000
-Line: 8; lexeme: "~", TK_NOT, 0.000000
-Line: 8; lexeme: "d4cbcccccccccccccbbb...", IDENTIFIER_LENGTH_EXCEEDED, 0.000000
-Line: 8; lexeme: "~", TK_NOT, 0.000000
-Line: 8; lexeme: ";", TK_SEM, 0.000000
-Line: 9; lexeme: "5000.7", LEXICAL_ERROR, 0.000000
-Line: 9; lexeme: "+", TK_PLUS, 0.000000
-Line: 9; lexeme: "2543.23E45", TK_RNUM, inf
-Line: 9; lexeme: "-", TK_MINUS, 0.000000
-Line: 9; lexeme: "432", TK_NUM, 432.000000
-Line: 9; lexeme: "+", TK_PLUS, 0.000000
-Line: 9; lexeme: "343333.55E-12", TK_RNUM, 0.000000
-Line: 9; lexeme: "4", TK_NUM, 4.000000
-Line: 9; lexeme: ";", TK_SEM, 0.000000
-Line: 10; lexeme: "$", LEXICAL_ERROR, 0.000000
-Line: 10; lexeme: "real", TK_REAL, 0.000000
-Line: 10; lexeme: ":", TK_COLON, 0.000000
-Line: 10; lexeme: "c3", TK_ID, 0.000000
-Line: 10; lexeme: ";", TK_SEM, 0.000000
-Line: 11; lexeme: "[", TK_SQL, 0.000000
-Line: 11; lexeme: "c3", TK_ID, 0.000000
-Line: 11; lexeme: "]", TK_SQR, 0.000000
-Line: 11; lexeme: "<---", TK_ASSIGNOP, 0.000000
-Line: 11; lexeme: "call", TK_CALL, 0.000000
-Line: 11; lexeme: "_computeFunctionValue", TK_FUNID, 0.000000
-Line: 11; lexeme: "with", TK_WITH, 0.000000
-Line: 11; lexeme: "parameters", TK_PARAMETERS, 0.000000
-Line: 11; lexeme: "[", TK_SQL, 0.000000
-Line: 11; lexeme: "listb", TK_FIELDID, 0.000000
-Line: 11; lexeme: "5", TK_NUM, 5.000000
-Line: 11; lexeme: ",", TK_COMMA, 0.000000
-Line: 11; lexeme: "d5cb34567", TK_ID, 0.000000
-Line: 11; lexeme: ",", TK_COMMA, 0.000000
-Line: 11; lexeme: "b3b444", TK_ID, 0.000000
-Line: 11; lexeme: "]", TK_SQR, 0.000000
-Line: 11; lexeme: ";", TK_SEM, 0.000000
-Line: 12; lexeme: "write", TK_WRITE, 0.000000
-Line: 12; lexeme: "(", TK_OP, 0.000000
-Line: 12; lexeme: "c3", TK_ID, 0.000000
-Line: 12; lexeme: ")", TK_CL, 0.000000
-Line: 12; lexeme: ";", TK_SEM, 0.000000
-Line: 13; lexeme: "return", TK_RETURN, 0.000000
-Line: 13; lexeme: ";", TK_SEM, 0.000000
-Line: 13; lexeme: "union", TK_UNION, 0.000000
-Line: 13; lexeme: "/", TK_DIV, 0.000000
-Line: 13; lexeme: "/", TK_DIV, 0.000000
-Line: 13; lexeme: "record", TK_RECORD, 0.000000
-Line: 13; lexeme: "+", TK_PLUS, 0.000000
-Line: 13; lexeme: "endrecorb", TK_FIELDID, 0.000000
-Line: 13; lexeme: "2", TK_NUM, 2.000000
-Line: 13; lexeme: "c3", TK_ID, 0.000000
-Line: 13; lexeme: "endrecord", TK_ENDRECORD, 0.000000
-Line: 14; lexeme: "end", TK_END, 0.000000
-Line: 15; lexeme: "", TK_DOLLAR, 0.000000
+Line No:     1 	 Lexeme:                                   % 	 Token:                          TK_COMMENT 
+Line No:     2 	 Lexeme:                                   % 	 Token:                          TK_COMMENT 
+Line No:     4 	 Lexeme:                                   % 	 Token:                          TK_COMMENT 
+Line No:     5 	 Lexeme:                               _main 	 Token:                             TK_MAIN 
+Line No:     5 	 Lexeme:                               input 	 Token:                            TK_INPUT 
+Line No:     5 	 Lexeme:                              _input 	 Token:                            TK_FUNID 
+Line No:     5 	 Lexeme:                           parameter 	 Token:                        TK_PARAMETER 
+Line No:     5 	 Lexeme:                                list 	 Token:                             TK_LIST 
+Line No:     5 	 Lexeme:                                   [ 	 Token:                              TK_SQL 
+Line No:     5 	 Lexeme:                                 int 	 Token:                              TK_INT 
+Line No:     5 	 Lexeme:                                  c3 	 Token:                               TK_ID 
+Line No:     5 	 Lexeme:                                   , 	 Token:                            TK_COMMA 
+Line No:     5 	 Lexeme:                                   ] 	 Token:                              TK_SQR 
+Line No:     5 	 Lexeme:                              output 	 Token:                           TK_OUTPUT 
+Line No:     5 	 Lexeme:                                   [ 	 Token:                              TK_SQL 
+Line No:     5 	 Lexeme:                                real 	 Token:                             TK_REAL 
+Line No:     5 	 Lexeme:                                  c6 	 Token:                               TK_ID 
+Line No:     5 	 Lexeme:                                   ] 	 Token:                              TK_SQR 
+Line No:     5 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:     5 	 Lexeme:               _computeFunctionValue 	 Token:                            TK_FUNID 
+Line No:     6 	 Lexeme:                          d4cbcd5677 	 Token:                               TK_ID 
+Line No:     6 	 Lexeme:                                <--- 	 Token:                         TK_ASSIGNOP 
+Line No:     6 	 Lexeme:                                   ( 	 Token:                               TK_OP 
+Line No:     6 	 Lexeme:                                   ( 	 Token:                               TK_OP 
+Line No:     6 	 Lexeme:                                  c3 	 Token:                               TK_ID 
+Line No:     6 	 Lexeme:                                   + 	 Token:                             TK_PLUS 
+Line No:     6 	 Lexeme:                                   2 	 Token:                              TK_NUM 
+Line No:     6 	 Lexeme:                                   * 	 Token:                              TK_MUL 
+Line No:     6 	 Lexeme:                                  c4 	 Token:                               TK_ID 
+Line No:     6 	 Lexeme:                                   - 	 Token:                            TK_MINUS 
+Line No:     6 	 Lexeme:                                   ( 	 Token:                               TK_OP 
+Line No:     6 	 Lexeme:                                  c5 	 Token:                               TK_ID 
+Line No:     6 	 Lexeme:                                   - 	 Token:                            TK_MINUS 
+Line No:     6 	 Lexeme:                                   5 	 Token:                              TK_NUM 
+Line No:     6 	 Lexeme:                                   ) 	 Token:                               TK_CL 
+Line No:     6 	 Lexeme:                                   ) 	 Token:                               TK_CL 
+Line No:     6 	 Lexeme:                                   / 	 Token:                              TK_DIV 
+Line No:     6 	 Lexeme:                                   4 	 Token:                              TK_NUM 
+Line No:     6 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:     6 	 Lexeme:                               c4bbb 	 Token:                               TK_ID 
+Line No:     6 	 Lexeme:                                   < 	 Token:                               TK_LT 
+Line No:     6 	 Lexeme:                                  <= 	 Token:                               TK_LE 
+Line No:     6 	 Lexeme:                                  <= 	 Token:                               TK_LE 
+Line No:     6 	 Lexeme:                                   = 	 Token:                Unrecognized pattern 
+Line No:     6 	 Lexeme:                                <--- 	 Token:                         TK_ASSIGNOP 
+Line No:     6 	 Lexeme:                                   ( 	 Token:                               TK_OP 
+Line No:     6 	 Lexeme:                          d4cbcd5677 	 Token:                               TK_ID 
+Line No:     6 	 Lexeme:                                   - 	 Token:                            TK_MINUS 
+Line No:     6 	 Lexeme:                                2.35 	 Token:                             TK_RNUM 
+Line No:     6 	 Lexeme:                                   + 	 Token:                             TK_PLUS 
+Line No:     6 	 Lexeme:                           34.98E+23 	 Token:                             TK_RNUM 
+Line No:     6 	 Lexeme:                                   ) 	 Token:                               TK_CL 
+Line No:     6 	 Lexeme:                                   * 	 Token:                              TK_MUL 
+Line No:     6 	 Lexeme:                                   / 	 Token:                              TK_DIV 
+Line No:     6 	 Lexeme:                                  && 	 Token:                Unrecognized pattern 
+Line No:     6 	 Lexeme:                                   | 	 Token:                Unrecognized pattern 
+Line No:     6 	 Lexeme:                                   | 	 Token:                Unrecognized pattern 
+Line No:     6 	 Lexeme:                                   | 	 Token:                Unrecognized pattern 
+Line No:     6 	 Lexeme:                                 &&& 	 Token:                              TK_AND 
+Line No:     6 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:     7 	 Lexeme:                                  if 	 Token:                               TK_IF 
+Line No:     7 	 Lexeme:                                   + 	 Token:                             TK_PLUS 
+Line No:     7 	 Lexeme:                                then 	 Token:                             TK_THEN 
+Line No:     7 	 Lexeme:                              _AbC23 	 Token:                            TK_FUNID 
+Line No:     7 	 Lexeme:                                #new 	 Token:                             TK_RUID 
+Line No:     7 	 Lexeme:                               123.5 	 Token:                Unrecognized pattern 
+Line No:     7 	 Lexeme:                                   . 	 Token:                              TK_DOT 
+Line No:     7 	 Lexeme:                           34.54E-23 	 Token:                             TK_RNUM 
+Line No:     7 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:     7 	 Lexeme:                                else 	 Token:                             TK_ELSE 
+Line No:     7 	 Lexeme:                                   / 	 Token:                              TK_DIV 
+Line No:     7 	 Lexeme:                               write 	 Token:                            TK_WRITE 
+Line No:     7 	 Lexeme:                                   ( 	 Token:                               TK_OP 
+Line No:     7 	 Lexeme:                               c4bbb 	 Token:                               TK_ID 
+Line No:     7 	 Lexeme:                                   ) 	 Token:                               TK_CL 
+Line No:     7 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:     8 	 Lexeme:                               endif 	 Token:                            TK_ENDIF 
+Line No:     8 	 Lexeme:                                   < 	 Token:                               TK_LT 
+Line No:     8 	 Lexeme:                                type 	 Token:                             TK_TYPE 
+Line No:     8 	 Lexeme:                                  >= 	 Token:                               TK_GE 
+Line No:     8 	 Lexeme:                                 int 	 Token:                              TK_INT 
+Line No:     8 	 Lexeme:                                   : 	 Token:                            TK_COLON 
+Line No:     8 	 Lexeme:                           d5cb34567 	 Token:                               TK_ID 
+Line No:     8 	 Lexeme:                                   : 	 Token:                            TK_COLON 
+Line No:     8 	 Lexeme:                              global 	 Token:                           TK_GLOBAL 
+Line No:     8 	 Lexeme:                                _abc 	 Token:                            TK_FUNID 
+Line No:     8 	 Lexeme:                                  != 	 Token:                               TK_NE 
+Line No:     8 	 Lexeme:                                   ~ 	 Token:                              TK_NOT 
+Line No:     8 	 Lexeme:             d4cbcccccccccccccbbb... 	 Token:       Identifier length exceeded 20 
+Line No:     8 	 Lexeme:                                   ~ 	 Token:                              TK_NOT 
+Line No:     8 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:     9 	 Lexeme:                              5000.7 	 Token:                Unrecognized pattern 
+Line No:     9 	 Lexeme:                                   + 	 Token:                             TK_PLUS 
+Line No:     9 	 Lexeme:                          2543.23E45 	 Token:                             TK_RNUM 
+Line No:     9 	 Lexeme:                                   - 	 Token:                            TK_MINUS 
+Line No:     9 	 Lexeme:                                 432 	 Token:                              TK_NUM 
+Line No:     9 	 Lexeme:                                   + 	 Token:                             TK_PLUS 
+Line No:     9 	 Lexeme:                       343333.55E-12 	 Token:                             TK_RNUM 
+Line No:     9 	 Lexeme:                                   4 	 Token:                              TK_NUM 
+Line No:     9 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:    10 	 Lexeme:                                   $ 	 Token:                Unrecognized pattern 
+Line No:    10 	 Lexeme:                                real 	 Token:                             TK_REAL 
+Line No:    10 	 Lexeme:                                   : 	 Token:                            TK_COLON 
+Line No:    10 	 Lexeme:                                  c3 	 Token:                               TK_ID 
+Line No:    10 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:    11 	 Lexeme:                                   [ 	 Token:                              TK_SQL 
+Line No:    11 	 Lexeme:                                  c3 	 Token:                               TK_ID 
+Line No:    11 	 Lexeme:                                   ] 	 Token:                              TK_SQR 
+Line No:    11 	 Lexeme:                                <--- 	 Token:                         TK_ASSIGNOP 
+Line No:    11 	 Lexeme:                                call 	 Token:                             TK_CALL 
+Line No:    11 	 Lexeme:               _computeFunctionValue 	 Token:                            TK_FUNID 
+Line No:    11 	 Lexeme:                                with 	 Token:                             TK_WITH 
+Line No:    11 	 Lexeme:                          parameters 	 Token:                       TK_PARAMETERS 
+Line No:    11 	 Lexeme:                                   [ 	 Token:                              TK_SQL 
+Line No:    11 	 Lexeme:                               listb 	 Token:                          TK_FIELDID 
+Line No:    11 	 Lexeme:                                   5 	 Token:                              TK_NUM 
+Line No:    11 	 Lexeme:                                   , 	 Token:                            TK_COMMA 
+Line No:    11 	 Lexeme:                           d5cb34567 	 Token:                               TK_ID 
+Line No:    11 	 Lexeme:                                   , 	 Token:                            TK_COMMA 
+Line No:    11 	 Lexeme:                              b3b444 	 Token:                               TK_ID 
+Line No:    11 	 Lexeme:                                   ] 	 Token:                              TK_SQR 
+Line No:    11 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:    12 	 Lexeme:                               write 	 Token:                            TK_WRITE 
+Line No:    12 	 Lexeme:                                   ( 	 Token:                               TK_OP 
+Line No:    12 	 Lexeme:                                  c3 	 Token:                               TK_ID 
+Line No:    12 	 Lexeme:                                   ) 	 Token:                               TK_CL 
+Line No:    12 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:    13 	 Lexeme:                              return 	 Token:                           TK_RETURN 
+Line No:    13 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
+Line No:    13 	 Lexeme:                               union 	 Token:                            TK_UNION 
+Line No:    13 	 Lexeme:                                   / 	 Token:                              TK_DIV 
+Line No:    13 	 Lexeme:                                   / 	 Token:                              TK_DIV 
+Line No:    13 	 Lexeme:                              record 	 Token:                           TK_RECORD 
+Line No:    13 	 Lexeme:                                   + 	 Token:                             TK_PLUS 
+Line No:    13 	 Lexeme:                           endrecorb 	 Token:                          TK_FIELDID 
+Line No:    13 	 Lexeme:                                   2 	 Token:                              TK_NUM 
+Line No:    13 	 Lexeme:                                  c3 	 Token:                               TK_ID 
+Line No:    13 	 Lexeme:                           endrecord 	 Token:                        TK_ENDRECORD 
+Line No:    14 	 Lexeme:                                 end 	 Token:                              TK_END 
+Line No:    15 	 Lexeme:                                     	 Token:                           TK_DOLLAR 

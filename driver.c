@@ -46,9 +46,9 @@ int main(int argc, char* argv[]) {
 
             case 2: //printTokens(argv[1]);
                     FILE* lexIn = fopen(argv[1], "r");
-                    FILE* lexOut = getStream(lexIn);
+                    linkedList* tokens = LexInput(lexIn);
+                    printTokensOnConsole(tokens);
                     fclose(lexIn);
-                    fclose(lexOut);
                     break;
 
             case 3: //parseInputSourceCode(argv[1], table T);
