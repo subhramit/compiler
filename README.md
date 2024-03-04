@@ -5,7 +5,7 @@ Compiler design and implementation project for a toy language (with specificatio
 2. Run ````./stage1exe <Input File> <Output File>```` <br>
 And then select your required option among the following: <br>
  **0:** To exit <br>
- **1:** To remove comments from the source file, write it to the specified output file and print it on the console <br>
+ **1:** To remove comments from the source file, write it to the specified output file and print the cleaned file on the console <br>
  **2:** To print token list on console after lexical analysis (also write into a file "lexerOutput.txt") <br>
  **3:** To parse and print the parse tree into the specified output file <br>
  **4:** To print total time taken (in CPU clock cycles and ms) for lexical analysis and parsing on console
