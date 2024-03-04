@@ -19,6 +19,15 @@
 #include "stack.h"
 
 
+char* nonTerminalToString[NT_NOT_FOUND];
+grammarRule* Grammar[MAX_GRAMMAR_RULES];
+int  numOfRules=0;
+ffRhs** First;
+ffRhs** Follow;
+ffRhs** AutoFirst;
+ffRhs** AutoFollow;
+grammarRule*** parseTable;
+
 //Stack ADT
 Stack* createNewStack() {
 
@@ -961,29 +970,28 @@ void printParseTree(pTree* PT, char* outFile){
         printf("Given parse tree is null. Could not print\n");
         return;
     }
-    printf("Printing  Parse Tree:\n");
+    printf("Printing  Parse Tree in the specified file...\n");
     fprintf(fp, "%*s %*s %*s %*s %*s %*s %*s\n\n", 32, "lexeme", 12, "lineNumber", 16, "tokenName", 20, "valueIfNumber", 30, "parentNodeSymbol", 12, "isLeafNode", 30, "nodeSymbol");
     inorderTraverse(PT->root, NULL, fp);
     fclose(fp);
+    printf("Printing parse tree completed\n");
 }
 
-int main(){
-
-    FILE* fp = fopen("./TestCases/t6.txt", "r");
-    if(!fp){
+void parseInputSourceCode(char* inpFile, char* opFile){
+    
+    FILE* ifp = fopen(inpFile, "r");
+    if(!ifp){
         printf("Could not open file input file for parsing\n");
-        return 0;
+        return;
     }
-    linkedList* tokensFromLexer = LexInput(fp);
+    linkedList* tokensFromLexer = LexInput(ifp);
+    fclose(ifp);
 
     initializeNonTerminalToString();
     readGrammar();
-    // printGrammar();
-
-    // initializeAndReadFirstAndFollow();
-    // printFirstAndFollow();
+    
     initializeAndComputeFirstAndFollow();
-    printComputedFirstAndFollow();
+    // printComputedFirstAndFollow();
 
     initializeParseTable();
     // printParseTable();
@@ -991,14 +999,23 @@ int main(){
     FILE* fpout = fopen("ParserOutput.txt", "w");
     if(!fpout){
         printf("Could not open file for parser output\n");
-        return 0;
+        return;
     }
 
     bool hasSyntaxError = false;
     pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
     fclose(fpout);
-    
-    if(!hasSyntaxError)
-        printParseTree(parseTree, "ParseTree.txt");
 
+    if(!hasSyntaxError)
+        printParseTree(parseTree, opFile);
+    else{
+        FILE* foptp = fopen(opFile, "w");
+        if(!foptp){
+            printf("Could not open file for printing parse tree\n");
+            return;
+        }
+        fprintf(foptp, "There were syntax errors in the input file. Not printing the parse tree!\n");
+        fclose(foptp);
+    }
 }
+

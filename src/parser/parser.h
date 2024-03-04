@@ -18,7 +18,7 @@
 
 //FirstAndFollow computeFirstAndFollowSets(grammar G);
 //void createParseTable(FirstAndFollow F, table T);
-//void parseInputSourceCode(char* testcaseFile, table T);
+void parseInputSourceCode(char* inpFile, char* opFile);
 //void printParseTree(parseTree PT, char* outfile);
 
 #endif

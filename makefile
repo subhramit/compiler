@@ -12,7 +12,7 @@ all: src/lexer/lexer.c src/parser/parser.c driver.c
 	mkdir -p build
 	
 	$(var) src/lexer/lexer.c -lm -o build/lexer.o
-#	$(var) src/parser/parser.c -o build/parser.o
+	$(var) src/parser/parser.c -o build/parser.o
 	$(var) driver.c -o build/driver.o
 
 	gcc build/*.o -lm -o stage1exe
@@ -20,3 +20,4 @@ all: src/lexer/lexer.c src/parser/parser.c driver.c
 clean:
 	rm -f build/*.o
 	rm -f stage1exe
+	rm cleanedFile.txt

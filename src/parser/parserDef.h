@@ -77,7 +77,7 @@ typedef enum NonTerminal{
     NT_NOT_FOUND
 } NonTerminal;
 
-char* nonTerminalToString[NT_NOT_FOUND];
+extern char* nonTerminalToString[NT_NOT_FOUND];
 
 typedef struct grammarSymbol{
     bool isNonTerminal;
@@ -104,8 +104,8 @@ typedef struct grammarRule{
     symbolList* rhs;
 } grammarRule;
 
-grammarRule* Grammar[MAX_GRAMMAR_RULES];
-int  numOfRules = 0;
+extern grammarRule* Grammar[MAX_GRAMMAR_RULES];
+extern int  numOfRules;
 
 typedef struct ffRhsNode{
     Token tk;
@@ -118,12 +118,12 @@ typedef struct ffRhs{
 } ffRhs;
 
 
-ffRhs** First;
-ffRhs** Follow;
-ffRhs** AutoFirst;
-ffRhs** AutoFollow;
+extern ffRhs** First;
+extern ffRhs** Follow;
+extern ffRhs** AutoFirst;
+extern ffRhs** AutoFollow;
 
-grammarRule*** parseTable;
+extern grammarRule*** parseTable;
 
 typedef struct pTreeNode{
     grammarSymbol* symbol;

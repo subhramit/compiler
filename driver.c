@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
     while(choice) {
 
-        printf("Welcome to our compiler! Select your option:\n 0: To exit\n 1: To remove comments and print on console\n 2: To print token list on console\n 3: To parse and print the parse tree\n 4: To print total time taken on console\n");
+        printf("\nWelcome to our compiler! Select your option:\n 0: To exit\n 1: To remove comments and print on console\n 2: To print token list on console\n 3: To parse and print the parse tree\n 4: To print total time taken on console\n");
         scanf("%d", &choice);
 
         switch(choice) {
@@ -50,8 +50,7 @@ int main(int argc, char* argv[]) {
                     fclose(lexIn);
                     break;
 
-            case 3: //parseInputSourceCode(argv[1], table T);
-                    //printParseTree(parseTree PT, argv[2]);
+            case 3: parseInputSourceCode(argv[1], argv[2]);
                     break;
             
             case 4: clock_t start_time, end_time;
@@ -60,7 +59,8 @@ int main(int argc, char* argv[]) {
                     start_time = clock();
 
                     // invoke your lexer and parser here
-                    //end
+                    parseInputSourceCode(argv[1], argv[2]);
+
                     end_time = clock();
                     total_CPU_time = (double) (end_time - start_time);
                     total_CPU_time_in_seconds = total_CPU_time / CLOCKS_PER_SEC;
