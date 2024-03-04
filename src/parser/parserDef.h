@@ -127,8 +127,9 @@ grammarRule*** parseTable;
 
 typedef struct pTreeNode{
     grammarSymbol* symbol;
+    SymbolTableEntry* ste;
     struct pTreeNode** children;
-    int capacity, size;
+    int capacity, size, lineNumber;
 } pTreeNode;
 
 typedef struct pTree{

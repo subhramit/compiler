@@ -112,6 +112,8 @@ pTreeNode* createPTreeNode(){
     newTreeNode->capacity = INITIAL_CHILDREN_CAPACITY;
     newTreeNode->size = 0;
     newTreeNode->symbol = NULL;
+    newTreeNode->ste = NULL;
+    newTreeNode->lineNumber = -1;
     for(int i=0; i<INITIAL_CHILDREN_CAPACITY; i++) newTreeNode->children[i] = NULL;
     
     return newTreeNode;
@@ -680,11 +682,18 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             continue;
         }
         if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==EPS){
-            pop(theStack); 
+            currentNode->lineNumber = inputPtr->lineNumber;
+            SymbolTableEntry* tste = (SymbolTableEntry*) malloc(sizeof(SymbolTableEntry));
+            strcpy(tste->lexeme, "EPSILON");
+            tste->valueIfNumber = 0;
+            currentNode->ste = tste; tste->tokenType = EPS;
+            pop(theStack);
             continue;
         }
         if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==inputPtr->STE->tokenType){
             // printf("cs 1...\n"); fflush(stdout);
+            currentNode->lineNumber = inputPtr->lineNumber;
+            currentNode->ste = inputPtr->STE;
             pop(theStack); inputPtr = inputPtr->next;
         }
         else if(!(currentNode->symbol->isNonTerminal)){
@@ -693,6 +702,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             *hasSyntaxError = true;
             fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
             fprintf(foutP, "stack top: %s, input ptr: %s\n", tokenToString[currentNode->symbol->tOrNt.t], tokenToString[inputPtr->STE->tokenType]);
+            currentNode->lineNumber = inputPtr->lineNumber;
             // inputPtr = inputPtr->next;
             pop(theStack);
         }
@@ -703,8 +713,10 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
             fprintf(foutP, "stack top: %s, input ptr: %s\n", nonTerminalToString[currentNode->symbol->tOrNt.nt], tokenToString[inputPtr->STE->tokenType]);
 
-            if(existsInRhs(AutoFollow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType))
+            if(existsInRhs(AutoFollow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType)){
+                currentNode->lineNumber = inputPtr->lineNumber;
                 pop(theStack);
+            }
             else 
                 inputPtr=inputPtr->next;
         }
@@ -714,6 +726,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             fprintf(foutP, "\nReducing using the rule: \n"); 
             printRule(tmpRule, foutP);
             pop(theStack);
+            currentNode->lineNumber = inputPtr->lineNumber;
             symbolListNode* trhItr = tmpRule->rhs->head;
             pTreeNode* pn;
             for(; trhItr; trhItr=trhItr->next){
@@ -729,7 +742,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             }
         }
     }
-    if(!(*hasSyntaxError)){
+    if(!(*hasSyntaxError) && (!inputPtr || inputPtr->STE->tokenType==DOLLAR)){
         printf("\nNo syntax errors. Parsing successful!\n");
     }
     else{
@@ -863,9 +876,37 @@ void initializeAndComputeFirstAndFollow(){
     computeFollowSets();
 }
 
+void printTreeNode(pTreeNode* curr, pTreeNode* par, FILE* fp){
+    printf("\n");
+    // printf("", curr->symbol->)
+}
+
+void inorderTraverse(pTreeNode* curr, pTreeNode* par, FILE* fp){
+    if(!curr) return;
+
+    if(curr->size) inorderTraverse(curr->children[0], curr, fp);
+    printTreeNode(curr, par, fp);
+    for(int chi=1; chi < curr->size; ++chi) inorderTraverse(curr->children[chi], curr, fp);
+}
+
+void printParseTree(pTree* PT, char* outFile){
+    FILE* fp = fopen(outFile, "w");
+    if(!fp){
+        printf("Could not open file for printing parse tree\n");
+        return;
+    }
+    if(!PT){
+        printf("Given parse tree is null. Could not print\n");
+        return;
+    }
+    printf("Printing  Parse Tree:\n");
+    inorderTraverse(PT->root, NULL, fp);
+    fclose(fp);
+}
+
 int main(){
 
-    FILE* fp = fopen("./TestCases/t6.txt", "r");
+    FILE* fp = fopen("./TestCases/t5.txt", "r");
     if(!fp){
         printf("Could not open file input file for parsing\n");
         return 0;
@@ -893,4 +934,6 @@ int main(){
     bool hasSyntaxError = false;
     pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
     
+    // printParseTree(parseTree);
+
 }

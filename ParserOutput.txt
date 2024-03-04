@@ -21,27 +21,11 @@ Rhs: <dataType>	TK_ID	<remaining_list>
 
 Reducing using the rule: 
 Lhs: <dataType>
-Rhs: <primitiveDatatype>	
+Rhs: <constructedDatatype>	
 
 Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_INT	
-
-Reducing using the rule: 
-Lhs: <remaining_list>
-Rhs: TK_COMMA	<parameter_list>	
-
-Reducing using the rule: 
-Lhs: <parameter_list>
-Rhs: <dataType>	TK_ID	<remaining_list>	
-
-Reducing using the rule: 
-Lhs: <dataType>
-Rhs: <primitiveDatatype>	
-
-Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_INT	
+Lhs: <constructedDatatype>
+Rhs: TK_RECORD	TK_RUID	
 
 Reducing using the rule: 
 Lhs: <remaining_list>
@@ -53,11 +37,11 @@ Rhs: <dataType>	TK_ID	<remaining_list>
 
 Reducing using the rule: 
 Lhs: <dataType>
-Rhs: <primitiveDatatype>	
+Rhs: <constructedDatatype>	
 
 Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_INT	
+Lhs: <constructedDatatype>
+Rhs: TK_RUID	
 
 Reducing using the rule: 
 Lhs: <remaining_list>
@@ -66,9 +50,6 @@ Rhs: TK_EPS
 Reducing using the rule: 
 Lhs: <output_par>
 Rhs: TK_OUTPUT	TK_PARAMETER	TK_LIST	TK_SQL	<parameter_list>	TK_SQR	
-
-Syntax error in line 7
-stack top: TK_LIST, input ptr: TK_SQL
 
 Reducing using the rule: 
 Lhs: <parameter_list>
@@ -92,6 +73,42 @@ Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>
 
 Reducing using the rule: 
 Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+
+Reducing using the rule: 
+Lhs: <typeDefinition>
+Rhs: TK_RECORD	TK_RUID	<fieldDefinitions>	TK_ENDRECORD	
+
+Reducing using the rule: 
+Lhs: <fieldDefinitions>
+Rhs: <fieldDefinition>	<fieldDefinition>	<moreFields>	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <moreFields>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
 Rhs: TK_EPS	
 
 Reducing using the rule: 
@@ -104,14 +121,11 @@ Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM
 
 Reducing using the rule: 
 Lhs: <dataType>
-Rhs: <primitiveDatatype>	
+Rhs: <constructedDatatype>	
 
 Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_REAL	
-
-Syntax error in line 8
-stack top: TK_ID, input ptr: TK_SEM
+Lhs: <constructedDatatype>
+Rhs: TK_RECORD	TK_RUID	
 
 Reducing using the rule: 
 Lhs: <global_or_not>
@@ -127,11 +141,31 @@ Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM
 
 Reducing using the rule: 
 Lhs: <dataType>
-Rhs: <primitiveDatatype>	
+Rhs: <constructedDatatype>	
 
 Reducing using the rule: 
-Lhs: <primitiveDatatype>
-Rhs: TK_REAL	
+Lhs: <constructedDatatype>
+Rhs: TK_RECORD	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <declarations>
+Rhs: <declaration>	<declarations>	
+
+Reducing using the rule: 
+Lhs: <declaration>
+Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <dataType>
+Rhs: <constructedDatatype>	
+
+Reducing using the rule: 
+Lhs: <constructedDatatype>
+Rhs: TK_RUID	
 
 Reducing using the rule: 
 Lhs: <global_or_not>
@@ -140,29 +174,6 @@ Rhs: TK_EPS
 Reducing using the rule: 
 Lhs: <declarations>
 Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Syntax error in line 10
-stack top: <arithmeticExpression>, input ptr: TK_SEM
 
 Reducing using the rule: 
 Lhs: <otherStmts>
@@ -194,7 +205,63 @@ Rhs: <factor>	<termPrime>
 
 Reducing using the rule: 
 Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <highPrecedenceOperators>
+Rhs: TK_MUL	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: TK_NUM	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+
+Reducing using the rule: 
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
 
 Reducing using the rule: 
 Lhs: <arithmeticExpression>
@@ -206,7 +273,227 @@ Rhs: <factor>	<termPrime>
 
 Reducing using the rule: 
 Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_MINUS	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <iterativeStmt>	
+
+Reducing using the rule: 
+Lhs: <iterativeStmt>
+Rhs: TK_WHILE	TK_OP	<booleanExpression>	TK_CL	<stmt>	<otherStmts>	TK_ENDWHILE	
+
+Reducing using the rule: 
+Lhs: <booleanExpression>
+Rhs: <var>	<relationalOp>	<var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <relationalOp>
+Rhs: TK_LE	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <ioStmt>	
+
+Reducing using the rule: 
+Lhs: <ioStmt>
+Rhs: TK_READ	TK_OP	<var>	TK_CL	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+
+Reducing using the rule: 
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_PLUS	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+
+Reducing using the rule: 
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
 
 Reducing using the rule: 
 Lhs: <arithmeticExpression>
@@ -258,141 +545,6 @@ Rhs: TK_NUM
 
 Reducing using the rule: 
 Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_DIV	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Syntax error in line 11
-stack top: TK_CL, input ptr: TK_SEM
-
-Reducing using the rule: 
-Lhs: <termPrime>
 Rhs: TK_EPS	
 
 Reducing using the rule: 
@@ -401,684 +553,18 @@ Rhs: TK_EPS
 
 Reducing using the rule: 
 Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_RNUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: TK_OP	<arithmeticExpression>	TK_CL	
-
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_MINUS	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <lowPrecedenceOperators>
-Rhs: TK_PLUS	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_MUL	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
 Rhs: TK_EPS	
 
 Reducing using the rule: 
 Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <conditionalStmt>	
-
-Reducing using the rule: 
-Lhs: <conditionalStmt>
-Rhs: TK_IF	TK_OP	<booleanExpression>	TK_CL	TK_THEN	<stmt>	<otherStmts>	<elsePart>	
-
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: TK_OP	<booleanExpression>	TK_CL	<logicalOp>	TK_OP	<booleanExpression>	TK_CL	
-
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: TK_NOT	TK_OP	<booleanExpression>	TK_CL	
-
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: <var>	<relationalOp>	<var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
 Rhs: TK_EPS	
 
 Reducing using the rule: 
-Lhs: <relationalOp>
-Rhs: TK_EQ	
+Lhs: <returnStmt>
+Rhs: TK_RETURN	<optionalReturn>	TK_SEM	
 
 Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Syntax error in line 13
-stack top: <logicalOp>, input ptr: TK_OP
-
-Reducing using the rule: 
-Lhs: <booleanExpression>
-Rhs: <var>	<relationalOp>	<var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <relationalOp>
-Rhs: TK_GT	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_RNUM	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <arithmeticExpression>
-Rhs: <term>	<expPrime>	
-
-Reducing using the rule: 
-Lhs: <term>
-Rhs: <factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
-
-Reducing using the rule: 
-Lhs: <highPrecedenceOperators>
-Rhs: TK_DIV	
-
-Reducing using the rule: 
-Lhs: <factor>
-Rhs: <var>	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Syntax error in line 16
-stack top: <option_single_constructed>, input ptr: TK_ELSE
-
-Syntax error in line 17
-stack top: <option_single_constructed>, input ptr: TK_WRITE
-
-Syntax error in line 17
-stack top: <option_single_constructed>, input ptr: TK_OP
-
-Syntax error in line 17
-stack top: <option_single_constructed>, input ptr: TK_ID
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <termPrime>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <expPrime>
-Rhs: TK_EPS	
-
-Syntax error in line 17
-stack top: TK_SEM, input ptr: TK_CL
-
-Syntax error in line 17
-stack top: <otherStmts>, input ptr: TK_CL
-
-Syntax error in line 17
-stack top: <otherStmts>, input ptr: TK_SEM
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <elsePart>
-Rhs: TK_ENDIF	
-
-Syntax error in line 20
-stack top: <otherStmts>, input ptr: TK_END
-
-Syntax error in line 24
-stack top: <otherStmts>, input ptr: TK_MAIN
-
-Syntax error in line 25
-stack top: <otherStmts>, input ptr: TK_TYPE
-
-Syntax error in line 25
-stack top: <otherStmts>, input ptr: TK_INT
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Syntax error in line 25
-stack top: TK_ASSIGNOP, input ptr: TK_SEM
-
-Syntax error in line 25
-stack top: <arithmeticExpression>, input ptr: TK_SEM
-
-Syntax error in line 26
-stack top: <otherStmts>, input ptr: TK_TYPE
-
-Syntax error in line 26
-stack top: <otherStmts>, input ptr: TK_INT
-
-Syntax error in line 26
-stack top: <otherStmts>, input ptr: TK_COLON
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Syntax error in line 26
-stack top: TK_ASSIGNOP, input ptr: TK_SEM
-
-Syntax error in line 26
-stack top: <arithmeticExpression>, input ptr: TK_SEM
-
-Syntax error in line 27
-stack top: <otherStmts>, input ptr: TK_TYPE
-
-Syntax error in line 27
-stack top: <otherStmts>, input ptr: TK_INT
-
-Syntax error in line 27
-stack top: <otherStmts>, input ptr: TK_COLON
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Syntax error in line 27
-stack top: <option_single_constructed>, input ptr: TK_COLON
-
-Syntax error in line 27
-stack top: <option_single_constructed>, input ptr: TK_GLOBAL
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Syntax error in line 27
-stack top: TK_ASSIGNOP, input ptr: TK_SEM
-
-Syntax error in line 27
-stack top: <arithmeticExpression>, input ptr: TK_SEM
-
-Syntax error in line 28
-stack top: <otherStmts>, input ptr: TK_TYPE
-
-Syntax error in line 28
-stack top: <otherStmts>, input ptr: TK_REAL
-
-Syntax error in line 28
-stack top: <otherStmts>, input ptr: TK_COLON
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Syntax error in line 28
-stack top: TK_ASSIGNOP, input ptr: TK_SEM
-
-Syntax error in line 28
-stack top: <arithmeticExpression>, input ptr: TK_SEM
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <assignmentStmt>	
-
-Reducing using the rule: 
-Lhs: <assignmentStmt>
-Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Syntax error in line 29
-stack top: <option_single_constructed>, input ptr: TK_NUM
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Syntax error in line 29
-stack top: TK_ASSIGNOP, input ptr: TK_SEM
-
-Syntax error in line 29
-stack top: <arithmeticExpression>, input ptr: TK_SEM
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <ioStmt>	
-
-Reducing using the rule: 
-Lhs: <ioStmt>
-Rhs: TK_READ	TK_OP	<var>	TK_CL	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <ioStmt>	
-
-Reducing using the rule: 
-Lhs: <ioStmt>
-Rhs: TK_READ	TK_OP	<var>	TK_CL	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: TK_NUM	
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <ioStmt>	
-
-Reducing using the rule: 
-Lhs: <ioStmt>
-Rhs: TK_READ	TK_OP	<var>	TK_CL	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <var>
-Rhs: <singleOrRecId>	
-
-Reducing using the rule: 
-Lhs: <singleOrRecId>
-Rhs: TK_ID	<option_single_constructed>	
-
-Reducing using the rule: 
-Lhs: <option_single_constructed>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <otherStmts>
-Rhs: <stmt>	<otherStmts>	
-
-Reducing using the rule: 
-Lhs: <stmt>
-Rhs: <funCallStmt>	
-
-Reducing using the rule: 
-Lhs: <funCallStmt>
-Rhs: <outputParameters>	TK_CALL	TK_FUNID	TK_WITH	TK_PARAMETERS	<inputParameters>	TK_SEM	
-
-Reducing using the rule: 
-Lhs: <outputParameters>
-Rhs: TK_SQL	<idList>	TK_SQR	TK_ASSIGNOP	
-
-Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
-
-Reducing using the rule: 
-Lhs: <more_ids>
-Rhs: TK_EPS	
-
-Reducing using the rule: 
-Lhs: <inputParameters>
+Lhs: <optionalReturn>
 Rhs: TK_SQL	<idList>	TK_SQR	
 
 Reducing using the rule: 
@@ -1087,22 +573,686 @@ Rhs: TK_ID	<more_ids>
 
 Reducing using the rule: 
 Lhs: <more_ids>
-Rhs: TK_COMMA	<idList>	
+Rhs: TK_EPS	
 
 Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
+Lhs: <otherFunctions>
+Rhs: TK_EPS	
 
 Reducing using the rule: 
-Lhs: <more_ids>
-Rhs: TK_COMMA	<idList>	
+Lhs: <mainFunction>
+Rhs: TK_MAIN	<stmts>	TK_END	
 
 Reducing using the rule: 
-Lhs: <idList>
-Rhs: TK_ID	<more_ids>	
+Lhs: <stmts>
+Rhs: <typeDefinitions>	<declarations>	<otherStmts>	<returnStmt>	
 
 Reducing using the rule: 
-Lhs: <more_ids>
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+
+Reducing using the rule: 
+Lhs: <typeDefinition>
+Rhs: TK_RECORD	TK_RUID	<fieldDefinitions>	TK_ENDRECORD	
+
+Reducing using the rule: 
+Lhs: <fieldDefinitions>
+Rhs: <fieldDefinition>	<fieldDefinition>	<moreFields>	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: <primitiveDatatype>	
+
+Reducing using the rule: 
+Lhs: <primitiveDatatype>
+Rhs: TK_REAL	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: <primitiveDatatype>	
+
+Reducing using the rule: 
+Lhs: <primitiveDatatype>
+Rhs: TK_REAL	
+
+Reducing using the rule: 
+Lhs: <moreFields>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <definetypestmt>	
+
+Reducing using the rule: 
+Lhs: <definetypestmt>
+Rhs: TK_DEFINETYPE	<A>	TK_RUID	TK_AS	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <A>
+Rhs: TK_RECORD	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <definetypestmt>	
+
+Reducing using the rule: 
+Lhs: <definetypestmt>
+Rhs: TK_DEFINETYPE	<A>	TK_RUID	TK_AS	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <A>
+Rhs: TK_RECORD	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+
+Reducing using the rule: 
+Lhs: <typeDefinition>
+Rhs: TK_UNION	TK_RUID	<fieldDefinitions>	TK_ENDUNION	
+
+Reducing using the rule: 
+Lhs: <fieldDefinitions>
+Rhs: <fieldDefinition>	<fieldDefinition>	<moreFields>	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <moreFields>
+Rhs: <fieldDefinition>	<moreFields>	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <moreFields>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <definetypestmt>	
+
+Reducing using the rule: 
+Lhs: <definetypestmt>
+Rhs: TK_DEFINETYPE	<A>	TK_RUID	TK_AS	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <A>
+Rhs: TK_RECORD	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+
+Reducing using the rule: 
+Lhs: <typeDefinition>
+Rhs: TK_RECORD	TK_RUID	<fieldDefinitions>	TK_ENDRECORD	
+
+Reducing using the rule: 
+Lhs: <fieldDefinitions>
+Rhs: <fieldDefinition>	<fieldDefinition>	<moreFields>	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <moreFields>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <definetypestmt>	
+
+Reducing using the rule: 
+Lhs: <definetypestmt>
+Rhs: TK_DEFINETYPE	<A>	TK_RUID	TK_AS	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <A>
+Rhs: TK_UNION	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: <actualOrRedefined>	<typeDefinitions>	
+
+Reducing using the rule: 
+Lhs: <actualOrRedefined>
+Rhs: <typeDefinition>	
+
+Reducing using the rule: 
+Lhs: <typeDefinition>
+Rhs: TK_RECORD	TK_RUID	<fieldDefinitions>	TK_ENDRECORD	
+
+Reducing using the rule: 
+Lhs: <fieldDefinitions>
+Rhs: <fieldDefinition>	<fieldDefinition>	<moreFields>	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: <primitiveDatatype>	
+
+Reducing using the rule: 
+Lhs: <primitiveDatatype>
+Rhs: TK_INT	
+
+Reducing using the rule: 
+Lhs: <fieldDefinition>
+Rhs: TK_TYPE	<fieldType>	TK_COLON	TK_FIELDID	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <fieldType>
+Rhs: TK_RUID	
+
+Reducing using the rule: 
+Lhs: <moreFields>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <typeDefinitions>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <declarations>
+Rhs: <declaration>	<declarations>	
+
+Reducing using the rule: 
+Lhs: <declaration>
+Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <dataType>
+Rhs: <constructedDatatype>	
+
+Reducing using the rule: 
+Lhs: <constructedDatatype>
+Rhs: TK_RECORD	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <declarations>
+Rhs: <declaration>	<declarations>	
+
+Reducing using the rule: 
+Lhs: <declaration>
+Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <dataType>
+Rhs: <primitiveDatatype>	
+
+Reducing using the rule: 
+Lhs: <primitiveDatatype>
+Rhs: TK_INT	
+
+Reducing using the rule: 
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <declarations>
+Rhs: <declaration>	<declarations>	
+
+Reducing using the rule: 
+Lhs: <declaration>
+Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <dataType>
+Rhs: <primitiveDatatype>	
+
+Reducing using the rule: 
+Lhs: <primitiveDatatype>
+Rhs: TK_INT	
+
+Reducing using the rule: 
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <declarations>
+Rhs: <declaration>	<declarations>	
+
+Reducing using the rule: 
+Lhs: <declaration>
+Rhs: TK_TYPE	<dataType>	TK_COLON	TK_ID	<global_or_not>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <dataType>
+Rhs: <constructedDatatype>	
+
+Reducing using the rule: 
+Lhs: <constructedDatatype>
+Rhs: TK_RECORD	TK_RUID	
+
+Reducing using the rule: 
+Lhs: <global_or_not>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <declarations>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+
+Reducing using the rule: 
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_PLUS	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_MINUS	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+
+Reducing using the rule: 
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: <lowPrecedenceOperators>	<term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <lowPrecedenceOperators>
+Rhs: TK_PLUS	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: TK_NUM	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <assignmentStmt>	
+
+Reducing using the rule: 
+Lhs: <assignmentStmt>
+Rhs: <singleOrRecId>	TK_ASSIGNOP	<arithmeticExpression>	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <arithmeticExpression>
+Rhs: <term>	<expPrime>	
+
+Reducing using the rule: 
+Lhs: <term>
+Rhs: <factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: <highPrecedenceOperators>	<factor>	<termPrime>	
+
+Reducing using the rule: 
+Lhs: <highPrecedenceOperators>
+Rhs: TK_DIV	
+
+Reducing using the rule: 
+Lhs: <factor>
+Rhs: <var>	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <termPrime>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <expPrime>
 Rhs: TK_EPS	
 
 Reducing using the rule: 
@@ -1131,6 +1281,94 @@ Rhs: TK_EPS
 
 Reducing using the rule: 
 Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <ioStmt>	
+
+Reducing using the rule: 
+Lhs: <ioStmt>
+Rhs: TK_WRITE	TK_OP	<var>	TK_CL	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
+Rhs: <stmt>	<otherStmts>	
+
+Reducing using the rule: 
+Lhs: <stmt>
+Rhs: <ioStmt>	
+
+Reducing using the rule: 
+Lhs: <ioStmt>
+Rhs: TK_WRITE	TK_OP	<var>	TK_CL	TK_SEM	
+
+Reducing using the rule: 
+Lhs: <var>
+Rhs: <singleOrRecId>	
+
+Reducing using the rule: 
+Lhs: <singleOrRecId>
+Rhs: TK_ID	<option_single_constructed>	
+
+Reducing using the rule: 
+Lhs: <option_single_constructed>
+Rhs: <oneExpansion>	<moreExpansions>	
+
+Reducing using the rule: 
+Lhs: <oneExpansion>
+Rhs: TK_DOT	TK_FIELDID	
+
+Reducing using the rule: 
+Lhs: <moreExpansions>
+Rhs: TK_EPS	
+
+Reducing using the rule: 
+Lhs: <otherStmts>
 Rhs: TK_EPS	
 
 Reducing using the rule: 
@@ -1140,6 +1378,3 @@ Rhs: TK_RETURN	<optionalReturn>	TK_SEM
 Reducing using the rule: 
 Lhs: <optionalReturn>
 Rhs: TK_EPS	
-
-Syntax error in line 38
-stack top: <otherFunctions>, input ptr: TK_DOLLAR
