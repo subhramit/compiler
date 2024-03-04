@@ -44,8 +44,7 @@ int main(int argc, char* argv[]) {
                     printCleanFile("cleanedFile.txt");
                     break;
 
-            case 2: //printTokens(argv[1]);
-                    FILE* lexIn = fopen(argv[1], "r");
+            case 2: FILE* lexIn = fopen(argv[1], "r");
                     linkedList* tokens = LexInput(lexIn);
                     printTokensOnConsole(tokens);
                     fclose(lexIn);

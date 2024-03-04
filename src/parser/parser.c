@@ -664,7 +664,7 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
     if(!tokensFromLexer){
         printf("Tokens list from lexer is null. Parsing failed\n"); return NULL;
     }
-    printf("Parsing...\n"); fflush(stdout);
+    // printf("Parsing...\n"); fflush(stdout);
     tokenInfo* inputPtr = tokensFromLexer->head;
     pTree* theParseTree = createPTree();
     pTreeNode* currentNode = theParseTree->root;
@@ -673,11 +673,26 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
     currentNode->symbol = gs;
     Stack* theStack = createNewStack();
     push(theStack, currentNode);
+    int cln=1;
 
     printf("Parsing starting...\n"); fflush(stdout);
     for(int pritr=0 ;!isEmpty(theStack) && inputPtr; currentNode=top(theStack), pritr++){
         // printf("Parse iter %d...\n", pritr); fflush(stdout);
+        cln = inputPtr->lineNumber;
         if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType>=LEXICAL_ERROR){
+            if(inputPtr->STE->tokenType==LEXICAL_ERROR){
+                printf("Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                fprintf(foutP, "Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+            }
+            else if(inputPtr->STE->tokenType==ID_LENGTH_EXC){
+                printf("Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                fprintf(foutP, "Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+            }
+            else if(inputPtr->STE->tokenType==FUN_LENGTH_EXC){
+                printf("Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                fprintf(foutP, "Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+            }
+            if(inputPtr->STE->tokenType!=COMMENT) *hasSyntaxError = true;
             inputPtr = inputPtr->next;
             continue;
         }
@@ -700,31 +715,37 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             // printf("cs 2...\n"); fflush(stdout);
             // Error; handle mismatch
             *hasSyntaxError = true;
-            fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
-            fprintf(foutP, "stack top: %s, input ptr: %s\n", tokenToString[currentNode->symbol->tOrNt.t], tokenToString[inputPtr->STE->tokenType]);
+            printf("Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
+                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
+            fprintf(foutP, "Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
+                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
+            
             currentNode->lineNumber = inputPtr->lineNumber;
-            // inputPtr = inputPtr->next;
             pop(theStack);
         }
         else if(parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType]==NULL){
             // printf("cs 3...\n"); fflush(stdout);
             // Error; handle blank/error entry of parse table
             *hasSyntaxError = true;
-            fprintf(foutP, "\nSyntax error in line %d\n", inputPtr->lineNumber);
-            fprintf(foutP, "stack top: %s, input ptr: %s\n", nonTerminalToString[currentNode->symbol->tOrNt.nt], tokenToString[inputPtr->STE->tokenType]);
+            printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
+                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
+            fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
+                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
 
             if(existsInRhs(AutoFollow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType)){
                 currentNode->lineNumber = inputPtr->lineNumber;
                 pop(theStack);
             }
-            else 
+            else {
                 inputPtr=inputPtr->next;
+                if(!inputPtr) {pop(theStack); currentNode=top(theStack);}
+            }
         }
         else{
             // printf("cs 4...\n"); fflush(stdout);
             grammarRule* tmpRule = parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType];
-            fprintf(foutP, "\nReducing using the rule: \n"); 
-            printRule(tmpRule, foutP);
+            // fprintf(foutP, "\nReducing using the rule: \n"); 
+            // printRule(tmpRule, foutP);
             pop(theStack);
             currentNode->lineNumber = inputPtr->lineNumber;
             symbolListNode* trhItr = tmpRule->rhs->head;
@@ -742,11 +763,37 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             }
         }
     }
-    if(!(*hasSyntaxError) && (!inputPtr || inputPtr->STE->tokenType==DOLLAR)){
+    if(!(*hasSyntaxError) && isEmpty(theStack) && (!inputPtr || inputPtr->STE->tokenType==DOLLAR)){
         printf("\nNo syntax errors. Parsing successful!\n");
     }
     else{
-        printf("\nehh\n");
+        *hasSyntaxError = true;
+        for(; !isEmpty(theStack); currentNode=top(theStack)) {
+            if(currentNode->symbol->isNonTerminal){
+                // printf("\nF\n"); fflush(stdout);
+                printf("Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
+                    5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]); 
+                fprintf(foutP, "Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
+                    5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
+            }
+            else{
+                // printf("\nG\n"); fflush(stdout);
+                printf("Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
+                    5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
+                fprintf(foutP, "Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
+                    5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
+            }
+
+            pop(theStack);
+        }
+        for(; inputPtr && inputPtr->STE->tokenType!=DOLLAR; inputPtr=inputPtr->next){
+            // printf("\nwwgg\n"); fflush(stdout);
+            printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
+                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
+            fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
+                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
+        }
+        printf("\nThe input file has got syntactic errors!\n");
     }
     return theParseTree;
 }
@@ -922,7 +969,7 @@ void printParseTree(pTree* PT, char* outFile){
 
 int main(){
 
-    FILE* fp = fopen("./TestCases/t1.txt", "r");
+    FILE* fp = fopen("./TestCases/t6.txt", "r");
     if(!fp){
         printf("Could not open file input file for parsing\n");
         return 0;
@@ -949,6 +996,7 @@ int main(){
 
     bool hasSyntaxError = false;
     pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
+    fclose(fpout);
     
     if(!hasSyntaxError)
         printParseTree(parseTree, "ParseTree.txt");
