@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
     while(choice) {
 
-        printf("\nWelcome to our compiler! Select your option:\n 0: To exit\n 1: To remove comments and print on console\n 2: To print token list on console\n 3: To parse and print the parse tree\n 4: To print total time taken on console\n");
+        printf("\nWelcome to our compiler!\n(a) FIRST and FOLLOW set automated.\n(c) Both lexical and syntax analysis modules implemented.\nOur compiler is fully functional!\nSelect your option:\n 0: To exit\n 1: To remove comments and print on console\n 2: To print token list on console\n 3: To parse and print the parse tree\n 4: To print total time taken on console\n");
         scanf("%d", &choice);
 
         switch(choice) {
