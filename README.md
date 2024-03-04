@@ -3,6 +3,12 @@ Compiler design and implementation project for a toy language (with specificatio
 ## To run the compiler
 1. Run ````make```` to prepare the executable
 2. Run ````./stage1exe <Input File> <Output File>````
+And then select your required option among the following:
+ 0: To exit
+ 1: To remove comments from the source file, write it to the specified output file and print it on the console
+ 2: To print token list on console after lexical analysis (also write into a file "lexerOutput.txt")
+ 3: To parse and print the parse tree into the specified output file
+ 4: To print total time taken (in CPU clock cycles and ms) for lexical analysis and parsing on console
 
 ## Architecture
 This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
