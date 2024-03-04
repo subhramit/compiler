@@ -20,4 +20,3 @@ all: src/lexer/lexer.c src/parser/parser.c driver.c
 clean:
 	rm -f build/*.o
 	rm -f stage1exe
-	rm -f cleanedFile.txt
