@@ -125,6 +125,8 @@ extern ffRhs** AutoFollow;
 
 extern grammarRule*** parseTable;
 
+extern bool grmRead;
+
 typedef struct pTreeNode{
     grammarSymbol* symbol;
     SymbolTableEntry* ste;

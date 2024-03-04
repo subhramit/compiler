@@ -28,6 +28,8 @@ ffRhs** AutoFirst;
 ffRhs** AutoFollow;
 grammarRule*** parseTable;
 
+bool grmRead=false;
+
 //Stack ADT
 Stack* createNewStack() {
 
@@ -329,6 +331,8 @@ NonTerminal getNonTerminalFromString(char* str){
 }
 
 void readGrammar(){
+    if(grmRead) return;
+    grmRead = true;
     char buff[MAX_RULE_LENGTH];
     FILE* fp = fopen("./src/parser/grammar.txt", "r");
     if(!fp){
@@ -336,6 +340,7 @@ void readGrammar(){
     }
     char* oneTok;
     for(; fgets(buff, MAX_RULE_LENGTH, fp); ){
+        // printf("io\n"); fflush(stdout);
         oneTok = strtok(buff, " \t\n\r");
 
         grammarRule* gRule = (grammarRule*) malloc(sizeof(grammarRule));
@@ -353,6 +358,7 @@ void readGrammar(){
         oneTok = strtok(NULL, " \t\n\r");
 
         for(; oneTok; ){
+            // printf("guho\n"); fflush(stdout);
             grammarSymbol* gsym = (grammarSymbol*) malloc(sizeof(grammarSymbol));
             if(!gsym){
                 printf("Could not allocate memory for rhs grammar symbol\n"); break;
@@ -374,6 +380,7 @@ void readGrammar(){
         }
         Grammar[numOfRules++] = gRule;
     }
+    fclose(fp);
 }
 
 void printGrammar(){
@@ -986,13 +993,17 @@ void parseInputSourceCode(char* inpFile, char* opFile){
     }
     linkedList* tokensFromLexer = LexInput(ifp);
     fclose(ifp);
-
+    
+    printf("jkls\n"); fflush(stdout);
     initializeNonTerminalToString();
+    printf("nboi\n"); fflush(stdout);
     readGrammar();
     
+    printf("uomn\n"); fflush(stdout);
     initializeAndComputeFirstAndFollow();
     // printComputedFirstAndFollow();
 
+    printf("uooji\n"); fflush(stdout);
     initializeParseTable();
     // printParseTable();
 
@@ -1002,10 +1013,12 @@ void parseInputSourceCode(char* inpFile, char* opFile){
         return;
     }
 
+    printf("vbiu\n"); fflush(stdout);
     bool hasSyntaxError = false;
     pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
     fclose(fpout);
 
+    printf("mkjk\n"); fflush(stdout);
     if(!hasSyntaxError)
         printParseTree(parseTree, opFile);
     else{
