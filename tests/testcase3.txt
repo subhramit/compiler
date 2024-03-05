@@ -1,5 +1,7 @@
 % Factorial.txt
-int: num, factorial, i;
+type int: num; 
+type int: factorial; 
+type int: i;
 num <--- 5;  % Change this value for different test cases
 factorial <--- 1;
 
