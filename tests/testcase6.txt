@@ -1,7 +1,7 @@
 % Program2.txt
 type int: x; 
 x <--- 10; 
-if (x > 5) 
+if (x > 5) then
     write(x);
 else 
     write(x-1);

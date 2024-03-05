@@ -1,5 +1,5 @@
 % Fibonacci.txt
-int: n;
+type int: n;
 type int: first;
 type int: second;
 type int: next;
@@ -13,7 +13,7 @@ write(first);
 write(second);
 
 i <--- 3;
-while (i <= n) do
+while (i <= n)
     next <--- first + second;
     write(next);
     first <--- second;

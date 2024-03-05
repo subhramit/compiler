@@ -5,11 +5,11 @@ record #complexNumber
 endrecord
 
 record #complexNumber num1, num2, sum;
-num1.realPart <--- 2.5;
-num1.imagPart <--- 3.7;
+num1.realPart <--- 2.52;
+num1.imagPart <--- 3.73;
 
-num2.realPart <--- 1.8;
-num2.imagPart <--- 2.2;
+num2.realPart <--- 1.84;
+num2.imagPart <--- 2.25;
 
 sum.realPart <--- num1.realPart + num2.realPart;
 sum.imagPart <--- num1.imagPart + num2.imagPart;
