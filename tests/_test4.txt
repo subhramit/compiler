@@ -1,0 +1,16 @@
+_test4
+union #shape
+type int: sides;
+type real: radius;
+endunion
+definetype union #shape as #geometry;
+record #geometry: shape;
+shape.sides <--- 4;
+shape.radius <--- 5.0;
+return [shape];
+end
+
+_main
+[geometry] <--- call _test4 with parameters [];
+write(geometry.sides);
+write(geometry.radius);
