@@ -1,0 +1,12 @@
+_simpleInterest
+type real: principal, rate, time, interest;
+principal <--- 5000.0;
+rate <--- 0.05;
+time <--- 2.5;
+interest <--- (principal * rate * time);
+return [interest];
+end
+
+_main
+[totalInterest] <--- call _simpleInterest with parameters [];
+write(totalInterest);
