@@ -52,13 +52,11 @@ Line No:     9 	 Lexeme:                               _main 	 Token:           
 Line No:    10 	 Lexeme:                                type 	 Token:                             TK_TYPE 
 Line No:    10 	 Lexeme:                                real 	 Token:                             TK_REAL 
 Line No:    10 	 Lexeme:                                   : 	 Token:                            TK_COLON 
-Line No:    10 	 Lexeme:                               total 	 Token:                          TK_FIELDID 
-Line No:    10 	 Lexeme:                                   I 	 Token:                Unrecognized pattern 
-Line No:    10 	 Lexeme:                             nterest 	 Token:                          TK_FIELDID 
+Line No:    10 	 Lexeme:                                  c5 	 Token:                               TK_ID 
 Line No:    10 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
-Line No:    11 	 Lexeme:                               total 	 Token:                          TK_FIELDID 
-Line No:    11 	 Lexeme:                                   I 	 Token:                Unrecognized pattern 
-Line No:    11 	 Lexeme:                             nterest 	 Token:                          TK_FIELDID 
+Line No:    11 	 Lexeme:                                   [ 	 Token:                              TK_SQL 
+Line No:    11 	 Lexeme:                                  c5 	 Token:                               TK_ID 
+Line No:    11 	 Lexeme:                                   ] 	 Token:                              TK_SQR 
 Line No:    11 	 Lexeme:                                <--- 	 Token:                         TK_ASSIGNOP 
 Line No:    11 	 Lexeme:                                call 	 Token:                             TK_CALL 
 Line No:    11 	 Lexeme:                     _simpleInterest 	 Token:                            TK_FUNID 
@@ -74,9 +72,7 @@ Line No:    11 	 Lexeme:                                   ] 	 Token:           
 Line No:    11 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
 Line No:    12 	 Lexeme:                               write 	 Token:                            TK_WRITE 
 Line No:    12 	 Lexeme:                                   ( 	 Token:                               TK_OP 
-Line No:    12 	 Lexeme:                               total 	 Token:                          TK_FIELDID 
-Line No:    12 	 Lexeme:                                   I 	 Token:                Unrecognized pattern 
-Line No:    12 	 Lexeme:                             nterest 	 Token:                          TK_FIELDID 
+Line No:    12 	 Lexeme:                                  c5 	 Token:                               TK_ID 
 Line No:    12 	 Lexeme:                                   ) 	 Token:                               TK_CL 
 Line No:    12 	 Lexeme:                                   ; 	 Token:                              TK_SEM 
 Line No:    13 	 Lexeme:                                 end 	 Token:                              TK_END 

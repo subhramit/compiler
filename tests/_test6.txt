@@ -7,7 +7,7 @@ return [b4];
 end
 
 _main
-type real: totalInterest;
-totalInterest <--- call _simpleInterest with parameters [1.15,2.52,3.53];
-write(totalInterest);
+type real: c5;
+[c5] <--- call _simpleInterest with parameters [1.15,2.52,3.53];
+write(c5);
 end
