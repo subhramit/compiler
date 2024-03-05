@@ -1,6 +1,6 @@
 % Program1.txt
-int: a; 
-real: b; 
+type int: a; 
+type real: b; 
 a <--- 5; 
 b <--- 3.14; 
 write(a + b);

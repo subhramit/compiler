@@ -1,5 +1,7 @@
 % PrimeCheck.txt
-int: num, isPrime, i;
+type int: num
+type int: isPrime;
+type int: i;
 num <--- 17;  % Change this value for different test cases
 isPrime <--- 1;
 

@@ -1,5 +1,9 @@
 % Fibonacci.txt
-int: n, first, second, next, i;
+int: n;
+type int: first;
+type int: second;
+type int: next;
+type int: i;
 n <--- 8;  % Change this value for different test cases
 first <--- 0;
 second <--- 1;

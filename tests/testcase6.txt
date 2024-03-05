@@ -1,5 +1,5 @@
 % Program2.txt
-int: x; 
+type int: x; 
 x <--- 10; 
 if (x > 5) 
     write(x);
