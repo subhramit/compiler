@@ -1,13 +1,13 @@
-_simpleInterest input parameter list[real principal, real rate, real time] output parameter list [real interest];
-principal <--- 5000.0;
-rate <--- 0.05;
-time <--- 2.5;
-interest <--- (principal * rate * time);
-return [interest];
+_simpleInterest input parameter list[real b7, real b6, real b5] output parameter list [real b4];
+b7 <--- 5000.05;
+b6 <--- 0.05;
+b5 <--- 2.55;
+b4 <--- (b7 * b6 * b5);
+return [b4];
 end
 
 _main
 type real: totalInterest;
-totalInterest <--- call _simpleInterest with parameters [1.1,2.2,3.3];
+totalInterest <--- call _simpleInterest with parameters [1.15,2.52,3.53];
 write(totalInterest);
 end
