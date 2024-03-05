@@ -1,5 +1,5 @@
 % Program3.txt
-int: add(int p, int q) 
+type int: add(int p, int q) 
     return [p + q];
 end
 

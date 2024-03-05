@@ -1,5 +1,8 @@
 % PalindromeCheck.txt
-int: num, reversedNum, originalNum, remainder;
+type int: num; 
+type int: reversedNum; 
+type int: originalNum;
+type int: remainder;
 originalNum <--- 121;  % Change this value for different test cases
 num <--- originalNum;
 reversedNum <--- 0;
