@@ -6,7 +6,7 @@ endunion
 definetype union #shape as #geometry;
 record #geometry: shape;
 shape.sides <--- 4;
-shape.radius <--- 5.0;
+shape.radius <--- 5.60;
 return [shape];
 end
 

@@ -5,9 +5,9 @@ type real: height;
 endrecord
 type record #person: person1, person2, result;
 person1.age <--- 25;
-person1.height <--- 5.8;
+person1.height <--- 5.85;
 person2.age <--- 30;
-person2.height <--- 6.0;
+person2.height <--- 6.60;
 result <--- person1 + person2;
 return [result];
 end
