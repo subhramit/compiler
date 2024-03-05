@@ -13,10 +13,10 @@ The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.0
 2. Run ````./stage1exe <Input File> <Output File>````
 3. Select your required option among the following: <br>
  **0:** To exit <br>
- **1:** To remove comments from the source file, write it to the specified output file and print on the console <br>
- **2:** To print token list on console after lexical analysis (also write into a file "lexerOutput.txt") <br>
- **3:** To parse and print the parse tree into the specified output file <br>
- **4:** To print total time taken (in CPU clock cycles and ms) for lexical analysis and parsing on console
+ **1:** To remove comments from the source file and print on the console <br>
+ **2:** To perform lexical analysis and print token list on console <br>
+ **3:** To perform syntax analysis and print the parse tree into the specified output file <br>
+ **4:** To print total time taken (in CPU clock cycles and ms) for lexical and syntax analysis on console
 
 ## Credits
 - [Aditya Thakur](https://github.com/cry0genic)
