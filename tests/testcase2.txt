@@ -1,0 +1,18 @@
+% ComplexAddition.txt
+record #complexNumber 
+    type real: realPart;
+    type real: imagPart;
+endrecord
+
+record #complexNumber num1, num2, sum;
+num1.realPart <--- 2.5;
+num1.imagPart <--- 3.7;
+
+num2.realPart <--- 1.8;
+num2.imagPart <--- 2.2;
+
+sum.realPart <--- num1.realPart + num2.realPart;
+sum.imagPart <--- num1.imagPart + num2.imagPart;
+
+write(sum.realPart);
+write(sum.imagPart);

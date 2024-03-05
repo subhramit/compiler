@@ -1,0 +1,8 @@
+% Program3.txt
+int: add(int p, int q) 
+    return [p + q];
+end
+
+int: result;
+[result] <--- call add with parameters [3, 7];
+write(result);

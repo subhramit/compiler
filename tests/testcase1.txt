@@ -1,0 +1,17 @@
+% PalindromeCheck.txt
+int: num, reversedNum, originalNum, remainder;
+originalNum <--- 121;  % Change this value for different test cases
+num <--- originalNum;
+reversedNum <--- 0;
+
+while (num > 0)
+    remainder <--- num % 10;
+    reversedNum <--- reversedNum * 10 + remainder;
+    num <--- num / 10;
+endwhile
+
+if (originalNum == reversedNum)
+    write(originalNum);
+else
+    write(reversedNum);
+endif

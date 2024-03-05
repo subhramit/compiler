@@ -1,0 +1,21 @@
+% Program8.txt
+definetype record #book as #item;
+definetype union #student as #item;
+
+record #item i;
+i <--- call processItem with parameters [1];
+write(i);
+
+type record #book b;
+type record #student s;
+
+[ b ] <--- call getItem;
+[ s ] <--- call getItem;
+
+write(b);
+write(s);
+
+definetype record #book as #item;
+definetype union #student as #item;
+
+[item] <--- call processItem with parameters [2];

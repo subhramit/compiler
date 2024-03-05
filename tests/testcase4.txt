@@ -1,0 +1,18 @@
+% Fibonacci.txt
+int: n, first, second, next, i;
+n <--- 8;  % Change this value for different test cases
+first <--- 0;
+second <--- 1;
+
+write(n);
+write(first);
+write(second);
+
+i <--- 3;
+while (i <= n) do
+    next <--- first + second;
+    write(next);
+    first <--- second;
+    second <--- next;
+    i <--- i + 1;
+endwhile

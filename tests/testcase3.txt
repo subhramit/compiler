@@ -1,0 +1,12 @@
+% Factorial.txt
+int: num, factorial, i;
+num <--- 5;  % Change this value for different test cases
+factorial <--- 1;
+
+i <--- 1;
+while (i <= num)
+    factorial <--- factorial * i;
+    i <--- i + 1;
+endwhile
+
+write(factorial);

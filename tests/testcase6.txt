@@ -1,0 +1,7 @@
+% Program2.txt
+int: x; 
+x <--- 10; 
+if (x > 5) 
+    write(x);
+else 
+    write(x-1);
