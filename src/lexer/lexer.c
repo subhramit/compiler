@@ -2,9 +2,9 @@
 #                    GROUP - 8
 # 2020B1A70630P                       Aditya Thakur
 # 2021A7PS2001P                       Amal Sayeed
-# 2020A7PS2005P                       Ohiduz Zaman
-# 2020A7PS2682P                       Priyansh Patel
-# 2020A7PS2002P                       Rachoita Das
+# 2021A7PS2005P                       Ohiduz Zaman
+# 2021A7PS2682P                       Priyansh Patel
+# 2021A7PS2002P                       Rachoita Das
 # 2020B1A70611P                       Subhramit Basu Bhowmick
 */
 
@@ -16,17 +16,13 @@
 
 char* tokenToString[TK_NOT_FOUND];
 bool specialThing=false;
-//tokenInfo getNextToken(twinBuffer B) {
-    /*
-    This function reads the input character stream and uses efficient mechanism to recognize lexemes.
-    The function tokenizes the lexeme appropriately and returns all relevant information it collects in this phase (lexical analysis phase) encapsulated as tokenInfo. 
-    The function also displays lexical errors appropriately.
-    */
+bool tkSInit=false;
 
-//}
 
-// Function to create a new Trie node
 TrieNode* createTrieNode() {
+    /*
+        Function to create a new Trie node; The trie data structure will be used for fast and efficient lookup of keywords
+    */ 
     TrieNode* newNode = (TrieNode*)malloc(sizeof(TrieNode));
     if (newNode) {
         newNode->isEndOfWord = 0;
@@ -40,8 +36,10 @@ TrieNode* createTrieNode() {
     return newNode;
 }
 
-// Function to create a new Trie
 Trie* createTrie(){
+    /*
+        Function to create a new Trie and its root node
+    */ 
     Trie* newTrie = (Trie*) malloc(sizeof(Trie));
     if(newTrie){
         newTrie->root = createTrieNode();
@@ -52,12 +50,14 @@ Trie* createTrie(){
     return newTrie;
 }
 
-// Function to insert a keyword into the Trie
 void insertKeyword(Trie* myTrie, const char* word, Token tkType) {
+    /*
+        Insert a keyword into the Trie
+    */
     TrieNode* currentNode = myTrie->root;
     for (int i = 0; word[i] != '\0'; i++) {
         int index = word[i] - 'a';
-        if (!(currentNode->children[index])) {
+        if (!(currentNode->children[index])) {  
             currentNode->children[index] = createTrieNode();
         }
         currentNode = currentNode->children[index];
@@ -66,8 +66,10 @@ void insertKeyword(Trie* myTrie, const char* word, Token tkType) {
     currentNode->tokenType = tkType;
 }
 
-// Function to search for a keyword in the Trie and return the corresponding token
 Token searchKeyword(Trie* myTrie, const char* word) {
+    /*
+        Searches for a given word in the Trie. Returns the type of token found or NT_NOT_FOUND if word doesn't exist
+    */
     TrieNode* currentNode = myTrie->root;
     for (int i = 0; word[i] != '\0'; i++) {
         int index = word[i] - 'a';
@@ -81,8 +83,11 @@ Token searchKeyword(Trie* myTrie, const char* word) {
     return TK_NOT_FOUND;
 }
 
-// Create a new Symbol Table
 SymbolTable* createSymbolTable(){
+    /*
+        Create a new Symbol Table and allocate some initial capacity.
+        We will resize as needed.
+    */
     SymbolTable* newSymbolTable = (SymbolTable*) malloc(sizeof(SymbolTable));
     if(!(newSymbolTable)){
         printf("Could not allocate memory for Symbol Table struct\n"); return NULL;
@@ -97,9 +102,12 @@ SymbolTable* createSymbolTable(){
 }
 
 
-// Insert a token and other details as an entry into the Symbol Table
 void insertToken(SymbolTable* ST, SymbolTableEntry* stEntry){
-    if(ST->size == ST->capacity){
+    /*
+        After tokenizing, insert the token and other details as an entry into the Symbol Table.
+    */
+    if(ST->size == ST->capacity){   
+        // If size of table reaches the current capacity, resize it to double its capacity.
         ST->capacity *= 2;
         ST->table = (SymbolTableEntry**) realloc(ST->table , ST->capacity*sizeof(SymbolTableEntry*));
         if(!(ST->table)){
@@ -107,11 +115,13 @@ void insertToken(SymbolTable* ST, SymbolTableEntry* stEntry){
             return;
         }
     }
-    ST->table[(ST->size)++] = stEntry;
+    ST->table[(ST->size)++] = stEntry;  // Add the new entry at the end of the table and increment size.
 }
 
-// Create a token / an entry in the Symbol Table
 SymbolTableEntry* createToken(char* lxm, Token tkType, double valNum){
+    /*
+        // Create a token / an entry in the Symbol Table from lexeme and type information.
+    */
     SymbolTableEntry* newTok = (SymbolTableEntry*) malloc(sizeof(SymbolTableEntry));
     if(!(newTok)){
         printf("Could not allocate memory for creating a new token\n");
@@ -123,8 +133,10 @@ SymbolTableEntry* createToken(char* lxm, Token tkType, double valNum){
     return newTok;
 }
 
-// Search for a lexeme in the Symbol Table
 SymbolTableEntry* searchToken(SymbolTable* ST, char* lxm){
+    /*
+        Search for a lexeme in the Symbol Table
+    */
     for(int i=0; i<ST->size; ++i)
         if(!strcmp(lxm, ST->table[i]->lexeme)) 
             return ST->table[i];
@@ -132,6 +144,7 @@ SymbolTableEntry* searchToken(SymbolTable* ST, char* lxm){
 }
 
 linkedList* createNewList(){
+    // Create a linked list for storing tokens tokenized by the Lexer
     linkedList* myList = (linkedList*) malloc(sizeof(linkedList));
     if(!(myList)){
         printf("Could not allocate memory for creation of linked list\n");
@@ -145,6 +158,7 @@ linkedList* createNewList(){
 
 
 tokenInfo* createNewNode(SymbolTableEntry* ste, int lineNo){
+    // Create a linkedList node for storing token information from the symbol table combined with line number
     tokenInfo* myNode = (tokenInfo*) malloc(sizeof(tokenInfo));
     if(!(myNode)){
         printf("Could not allocate memory for linked list node\n");
@@ -158,6 +172,7 @@ tokenInfo* createNewNode(SymbolTableEntry* ste, int lineNo){
 
 
 void insertLLNode(linkedList* myList, tokenInfo* myNode){
+    // Inserts a node (corresponding to each token information) into the list of tokens
     if(!(myList->count)){
         myList->head = myNode;
         myList->tail = myNode;
@@ -170,7 +185,14 @@ void insertLLNode(linkedList* myList, tokenInfo* myNode){
 }
 
 char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
-    if(*fwdPtr==BUFFER_SIZE-1 && !specialThing){
+    /*
+        NOTE: We are NOT fetching character by character from the file.
+        This function simply advances the forward pointer within the twin buffer and returns the character at the 
+        position of the forward pointer. If the forward pointer reaches the end of either one of the twin buffers,
+        then the other buffer is populated by reading a stream of characters  at once from the file.
+    */
+    if(*fwdPtr==BUFFER_SIZE-1 && !specialThing){ 
+        // If forward pointer is in end of first buffer
         if(feof(fp))
             twinBuff[BUFFER_SIZE] = '\0';
         else {
@@ -180,6 +202,7 @@ char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
     }
     
     else if(*fwdPtr==(2*BUFFER_SIZE-1) && !specialThing){
+        // If forward pointer is in end of second buffer
         if(feof(fp))
             twinBuff[0] = '\0';
         else{
@@ -194,7 +217,7 @@ char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
 }
 
 void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff){
-    // printf("beg: %d, fwd: %d\n", beginPtr, *fwdPtr);
+    // Copies the string corresponding to the characters between begin and forward pointer into the variable lexeme
     if(*fwdPtr >= beginPtr){
         int i;
         for(i=0; i<=(*fwdPtr-beginPtr); i++) 
@@ -210,11 +233,16 @@ void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff){
 }
 
 int getLength(int begPtr, int fwdPtr){
+    // Returns length of string corresponding to characters between begin and forward pointers
     if(fwdPtr>=begPtr) return  (fwdPtr-begPtr+1);
     else return (2*BUFFER_SIZE+fwdPtr-begPtr+1);
 }
 
 tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, Trie* keywordsLookup, SymbolTable* symbolTable){
+    /*
+        This function is the DFA for pattern matching of the lexer. The cases in the switch correspond to states. 
+        Based on characters read, takes appropriate actions and changes states following the transition rules of the DFA
+    */
     tokenInfo* tokenNode;
     int beginPtr = (*fwdPtr + 1) % (2*BUFFER_SIZE);
     int state=0;
@@ -1361,6 +1389,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
 }
 
 void initializeKeywordsLookup(Trie* keywordsLookup){
+    // Fills up the Trie (for keywords lookup) with all the keywords.
     insertKeyword(keywordsLookup, "with", WITH);
     insertKeyword(keywordsLookup, "parameters", PARAMETERS);
     insertKeyword(keywordsLookup, "end", END);
@@ -1391,137 +1420,79 @@ void initializeKeywordsLookup(Trie* keywordsLookup){
 }
 
 void initializeTokenToString(){
-    
+    // Initializes the array tokenToString that'll be used to retrieve the corresponding string for a given token's enum.
+    if(tkSInit) return;
+    tkSInit=true;
     for(int i=0; i<TK_NOT_FOUND; i++){
         tokenToString[i] = malloc(TOKEN_NAME_LENGTH);
     }
-    // char asgn[TOKEN_NAME_LENGTH] = "TK_ASSIGNOP"; 
     tokenToString[ASSIGNOP] = "TK_ASSIGNOP";
-    // char cmnt[TOKEN_NAME_LENGTH] = "TK_COMMENT"; 
     tokenToString[COMMENT] = "TK_COMMENT"; 
-    // char fdid[TOKEN_NAME_LENGTH] = "TK_FIELDID"; 
     tokenToString[FIELDID] = "TK_FIELDID"; 
-    // char id[TOKEN_NAME_LENGTH] = "TK_ID"; 
     tokenToString[ID] = "TK_ID"; 
-    // char num[TOKEN_NAME_LENGTH] = "TK_NUM"; 
     tokenToString[NUM] = "TK_NUM"; 
-    // char rnum[TOKEN_NAME_LENGTH] = "TK_RNUM"; 
     tokenToString[RNUM] = "TK_RNUM"; 
-    // char fnid[TOKEN_NAME_LENGTH] = "TK_FUNID"; 
     tokenToString[FUNID] = "TK_FUNID"; 
-    // char ruid[TOKEN_NAME_LENGTH] = "TK_RUID"; 
     tokenToString[RUID] = "TK_RUID"; 
-    // char with[TOKEN_NAME_LENGTH] = "TK_WITH"; 
     tokenToString[WITH] = "TK_WITH"; 
-    // char pmtrs[TOKEN_NAME_LENGTH] = "TK_PARAMETERS"; 
     tokenToString[PARAMETERS] = "TK_PARAMETERS";
-    // char end[TOKEN_NAME_LENGTH] = "TK_END"; 
     tokenToString[END] = "TK_END"; 
-    // char whle[TOKEN_NAME_LENGTH] = "TK_WHILE"; 
     tokenToString[WHILE] = "TK_WHILE";
-    // char unon[TOKEN_NAME_LENGTH] = "TK_UNION"; 
     tokenToString[UNION] = "TK_UNION";
-    // char eunon[TOKEN_NAME_LENGTH] = "TK_ENDUNION"; 
     tokenToString[ENDUNION] = "TK_ENDUNION";
-    // char dftp[TOKEN_NAME_LENGTH] = "TK_DEFINETYPE"; 
     tokenToString[DEFINETYPE] = "TK_DEFINETYPE";
-    // char as[TOKEN_NAME_LENGTH] = "TK_AS"; 
     tokenToString[AS] = "TK_AS";
-    // char type[TOKEN_NAME_LENGTH] = "TK_TYPE"; 
     tokenToString[TYPE] = "TK_TYPE";
-    // char mainf[TOKEN_NAME_LENGTH] = "TK_MAIN"; 
     tokenToString[MAIN] = "TK_MAIN";
-    // char glbl[TOKEN_NAME_LENGTH] = "TK_GLOBAL"; 
     tokenToString[GLOBAL] = "TK_GLOBAL";
-    // char pmtr[TOKEN_NAME_LENGTH] = "TK_PARAMETER"; 
     tokenToString[PARAMETER] = "TK_PARAMETER";
-    // char list[TOKEN_NAME_LENGTH] = "TK_LIST"; 
     tokenToString[LIST] = "TK_LIST"; 
-    // char sql[TOKEN_NAME_LENGTH] = "TK_SQL"; 
     tokenToString[SQL] = "TK_SQL";
-    // char sqr[TOKEN_NAME_LENGTH] = "TK_SQR"; 
     tokenToString[SQR] = "TK_SQR";
-    // char inpt[TOKEN_NAME_LENGTH] = "TK_INPUT"; 
     tokenToString[INPUT] = "TK_INPUT";
-    // char otpt[TOKEN_NAME_LENGTH] = "TK_OUTPUT"; 
     tokenToString[OUTPUT] = "TK_OUTPUT";
-    // char dint[TOKEN_NAME_LENGTH] = "TK_INT"; 
     tokenToString[INT] = "TK_INT";
-    // char dreal[TOKEN_NAME_LENGTH] = "TK_REAL"; 
     tokenToString[REAL] = "TK_REAL";
-    // char cmma[TOKEN_NAME_LENGTH] = "TK_COMMA"; 
     tokenToString[COMMA] = "TK_COMMA";
-    // char semc[TOKEN_NAME_LENGTH] = "TK_SEM"; 
     tokenToString[SEM] = "TK_SEM";
-    // char ifcl[TOKEN_NAME_LENGTH] = "TK_IF"; 
     tokenToString[IF] = "TK_IF";
-    // char clon[TOKEN_NAME_LENGTH] = "TK_COLON"; 
     tokenToString[COLON] = "TK_COLON";
-    // char dot[TOKEN_NAME_LENGTH] = "TK_DOT"; 
     tokenToString[DOT] = "TK_DOT";
-    // char ewhle[TOKEN_NAME_LENGTH] = "TK_ENDWHILE"; 
     tokenToString[ENDWHILE] = "TK_ENDWHILE";
-    // char opp[TOKEN_NAME_LENGTH] = "TK_OP"; 
     tokenToString[OP] = "TK_OP";
-    // char clp[TOKEN_NAME_LENGTH] = "TK_CL"; 
     tokenToString[CL] = "TK_CL";
-    // char then[TOKEN_NAME_LENGTH] = "TK_THEN"; 
     tokenToString[THEN] = "TK_THEN";
-    // char eif[TOKEN_NAME_LENGTH] = "TK_ENDIF"; 
     tokenToString[ENDIF] = "TK_ENDIF";
-    // char read[TOKEN_NAME_LENGTH] = "TK_READ"; 
     tokenToString[READ] = "TK_READ";
-    // char wrte[TOKEN_NAME_LENGTH] = "TK_WRITE"; 
     tokenToString[WRITE] = "TK_WRITE";
-    // char rtrn[TOKEN_NAME_LENGTH] = "TK_RETURN"; 
     tokenToString[RETURN] = "TK_RETURN";
-    // char plus[TOKEN_NAME_LENGTH] = "TK_PLUS"; 
     tokenToString[PLUS] = "TK_PLUS";
-    // char minus[TOKEN_NAME_LENGTH] = "TK_MINUS"; 
     tokenToString[MINUS] = "TK_MINUS";
-    // char mul[TOKEN_NAME_LENGTH] = "TK_MUL"; 
     tokenToString[MUL] = "TK_MUL";
-    // char div[TOKEN_NAME_LENGTH] = "TK_DIV"; 
     tokenToString[DIV] = "TK_DIV";
-    // char call[TOKEN_NAME_LENGTH] = "TK_CALL"; 
     tokenToString[CALL] = "TK_CALL";
-    // char rcrd[TOKEN_NAME_LENGTH] = "TK_RECORD"; 
     tokenToString[RECORD] = "TK_RECORD";
-    // char erec[TOKEN_NAME_LENGTH] = "TK_ENDRECORD"; 
     tokenToString[ENDRECORD] = "TK_ENDRECORD";
-    // char elsecl[TOKEN_NAME_LENGTH] = "TK_ELSE"; 
     tokenToString[ELSE] = "TK_ELSE";
-    // char and[TOKEN_NAME_LENGTH] = "TK_AND"; 
     tokenToString[AND] = "TK_AND";
-    // char or[TOKEN_NAME_LENGTH] = "TK_OR"; 
     tokenToString[OR] = "TK_OR";
-    // char not[TOKEN_NAME_LENGTH] = "TK_NOT"; 
     tokenToString[NOT] = "TK_NOT";
-    // char lthan[TOKEN_NAME_LENGTH] = "TK_LT"; 
     tokenToString[LT] = "TK_LT";
-    // char leq[TOKEN_NAME_LENGTH] = "TK_LE"; 
     tokenToString[LE] = "TK_LE";
-    // char eql[TOKEN_NAME_LENGTH] = "TK_EQ"; 
     tokenToString[EQ] = "TK_EQ";
-    // char gthan[TOKEN_NAME_LENGTH] = "TK_GT"; 
     tokenToString[GT] = "TK_GT";
-    // char geq[TOKEN_NAME_LENGTH] = "TK_GE"; 
     tokenToString[GE] = "TK_GE";
-    // char neq[TOKEN_NAME_LENGTH] = "TK_NE"; 
     tokenToString[NE] = "TK_NE";
-    // char eps[TOKEN_NAME_LENGTH] = "TK_EPS"; 
     tokenToString[EPS] = "TK_EPS";
-    // char dlr[TOKEN_NAME_LENGTH] = "TK_DOLLAR"; 
     tokenToString[DOLLAR] = "TK_DOLLAR";
-    // char lxer[TOKEN_NAME_LENGTH] = "LEXICAL_ERROR"; 
     tokenToString[LEXICAL_ERROR] = "LEXICAL_ERROR";
-    // char idlng[TOKEN_NAME_LENGTH] = "ID_LENGTH_EXC"; 
     tokenToString[ID_LENGTH_EXC] = "IDENTIFIER_LENGTH_EXCEEDED";
-    // char fnlng[TOKEN_NAME_LENGTH] = "FUN_LENGTH_EXC"; 
     tokenToString[FUN_LENGTH_EXC] = "FUNCTION_NAME_LENGTH_EXCEEDED";
 }
 
 linkedList* getAllTokens(FILE* fp){
+    // This function calls the necessary initialization functions and retrieves and returns a list of tokens 
+    // tokenized by the lexer with each call to getNextToken()
     char twinBuffer[BUFFER_SIZE*2];
     int fwdPtr = 2*BUFFER_SIZE-1;
     int lineNumber=1;
@@ -1561,8 +1532,8 @@ void removeComments(char* testcaseFile, char* cleanFile) {
         return;
     }
 
-    char buf[2048]; //buffer to temporarily hold lines
-    FILE* outputfile = fopen(cleanFile, "w");
+    char buf[4096]; //buffer to temporarily hold lines
+    // FILE* outputfile = fopen(cleanFile, "w");
     char* commentSym;
     
     while(fgets(buf, sizeof(buf), inputfile) != NULL) { //loop through each line
@@ -1573,15 +1544,16 @@ void removeComments(char* testcaseFile, char* cleanFile) {
             *(commentSym+1) = '\0'; //truncate the rest of the line
         }
         printf("%s",buf);
-        fputs(buf, outputfile); //copy the modified line
+        // fputs(buf, outputfile); //copy the modified line
     }
 
     fclose(inputfile);
-    fclose(outputfile);
+    // fclose(outputfile);
 
 }
 
 void printTokensOnConsole(linkedList* theListOfTokens){
+    // Prints the list on tokens retrieved from lexer on the console
     tokenInfo* tmp = theListOfTokens->head;
     for(int i=0; i<theListOfTokens->count && tmp; i++){
         char* tms;
@@ -1595,13 +1567,15 @@ void printTokensOnConsole(linkedList* theListOfTokens){
     }
 }
 
-linkedList* LexInput(FILE* fp){
+linkedList* LexInput(FILE* fp, char* outp){
+    // Wrapper function that calls the getAllTokens to get and return all the tokens tokenized by lexer
+    // This function will be called by the driver
 
     if(!fp){
         printf("Error opening input file for lexer\n");
         exit(-1);
     }
-    FILE* fout = fopen("lexerOutput.txt", "w");
+    
 
     linkedList* theList = getAllTokens(fp);
     if(!theList){
@@ -1611,18 +1585,6 @@ linkedList* LexInput(FILE* fp){
 
     tokenInfo* tmp = theList->head;
     
-    for(int i=0; i<theList->count && tmp; i++){
-        char* tms;
-        if(tmp->STE->tokenType < LEXICAL_ERROR) tms = strdup(tokenToString[tmp->STE->tokenType]);
-        else if(tmp->STE->tokenType == LEXICAL_ERROR) tms = strdup("Unrecognized pattern");
-        else if(tmp->STE->tokenType == ID_LENGTH_EXC) tms = strdup("Identifier length exceeded 20");
-        else if(tmp->STE->tokenType == FUN_LENGTH_EXC) tms = strdup("Function name length exceeded 30");
-        else tms = strdup("");
-        fprintf(fout, "Line No: %*d \t Lexeme: %*s \t Token: %*s \n", 5, tmp->lineNumber, 35, tmp->STE->lexeme, 35, tms);
-        tmp = tmp->next;
-    }
-    fclose(fout);
-    // printTokensOnConsole(theList);
     
     return theList;
 }

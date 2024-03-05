@@ -1,9 +1,0 @@
-_test5
-type int: globalVar: global;
-globalVar <--- 42;
-return [globalVar];
-end
-
-_main
-[result] <--- call _test5 with parameters [];
-write(result);

@@ -2,9 +2,9 @@
 #                    GROUP - 8
 # 2020B1A70630P                       Aditya Thakur
 # 2021A7PS2001P                       Amal Sayeed
-# 2020A7PS2005P                       Ohiduz Zaman
-# 2020A7PS2682P                       Priyansh Patel
-# 2020A7PS2002P                       Rachoita Das
+# 2021A7PS2005P                       Ohiduz Zaman
+# 2021A7PS2682P                       Priyansh Patel
+# 2021A7PS2002P                       Rachoita Das
 # 2020B1A70611P                       Subhramit Basu Bhowmick
 */
 
@@ -33,7 +33,7 @@ SymbolTableEntry* searchToken(SymbolTable* ST, char* lxm);
 linkedList* createNewList();
 tokenInfo* createNewNode(SymbolTableEntry* ste, int lineNo);
 void insertLLNode(linkedList* myList, tokenInfo* myNode);
-linkedList* LexInput(FILE* fp);
+linkedList* LexInput(FILE* fp, char* outp);
 //tokenInfo getNextToken(twinBuffer B);
 void removeComments(char* testcaseFile, char* cleanFile);
 void printCleanFile(char* cleanFile);

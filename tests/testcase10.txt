@@ -1,7 +1,0 @@
-% Program5.txt
-type int: counter; 
-counter <--- 1;
-while (counter <= 5) 
-    write(counter); 
-    counter <--- counter + 1; 
-endwhile

@@ -2,9 +2,9 @@
 #                    GROUP - 8
 # 2020B1A70630P                       Aditya Thakur
 # 2021A7PS2001P                       Amal Sayeed
-# 2020A7PS2005P                       Ohiduz Zaman
-# 2020A7PS2682P                       Priyansh Patel
-# 2020A7PS2002P                       Rachoita Das
+# 2021A7PS2005P                       Ohiduz Zaman
+# 2021A7PS2682P                       Priyansh Patel
+# 2021A7PS2002P                       Rachoita Das
 # 2020B1A70611P                       Subhramit Basu Bhowmick
 */
 
@@ -29,10 +29,13 @@ ffRhs** AutoFollow;
 grammarRule*** parseTable;
 
 bool grmRead=false;
+bool ntInit=false;
+bool ffInit=false;
+bool ptInit=false;
 
 //Stack ADT
 Stack* createNewStack() {
-
+    // Creates a new stack (linked list implementation of stack)
     Stack* newStack = (Stack*)malloc(sizeof(Stack));
 
     if (newStack == NULL) {
@@ -45,7 +48,7 @@ Stack* createNewStack() {
 }
 
 void push(Stack* stack, pTreeNode* ptn) {
-
+    // Pushes an element onto the top of the stack.
     stackNODE newNode = (stackNODE)malloc(sizeof(stackNode));
     
     if (newNode == NULL) {
@@ -59,7 +62,7 @@ void push(Stack* stack, pTreeNode* ptn) {
 }
 
 void pop(Stack* stack) {
-
+    // Pops the top element of the stack if not empty
     if (!isEmpty(stack)) {
         stackNODE temp = stack->top;
         stack->top = stack->top->next;
@@ -68,19 +71,21 @@ void pop(Stack* stack) {
 }
 
 pTreeNode* top(Stack* stack) {
-
+    // returns the top element of the stack if not empty, and null otherwise
     if(!isEmpty(stack)) 
         return stack->top->data;
     else 
         return NULL;
 }
 
-bool isEmpty(Stack* stack) {
+bool isEmpty(Stack* stack) { 
     return (stack->top == NULL);
 }
 
 
 symbolListNode* createSymbolListNode(grammarSymbol* gs){
+    // structure for a node in the linked list of grammar rules
+
     symbolListNode* newNode = (symbolListNode*)malloc(sizeof(symbolListNode));
     if(!newNode){
         printf("Could not allocate memory for symbol List Node\n"); return NULL;
@@ -91,6 +96,8 @@ symbolListNode* createSymbolListNode(grammarSymbol* gs){
 }
 
 symbolList* createSymbolList(){
+    // creates the linked list for a grammar rule's RHS
+
     symbolList* newList = (symbolList*) malloc(sizeof(symbolList));
     if(!newList){
         printf("Could not allocate memory for Symbol List\n"); return NULL;
@@ -100,7 +107,9 @@ symbolList* createSymbolList(){
     return newList;
 }
 
-void insertSymbolListNode(symbolList* symList, symbolListNode* symListNode){
+void insertSymbolListNode(symbolList* symList, symbolListNode* symListNode){ 
+    // Inserts a node into the linked list
+
     if(symList->tail==NULL)
         symList->head = symListNode;
     else{
@@ -112,6 +121,8 @@ void insertSymbolListNode(symbolList* symList, symbolListNode* symListNode){
 }
 
 pTreeNode* createPTreeNode(){
+    // Creates a node for the parse tree
+
     pTreeNode* newTreeNode = (pTreeNode*) malloc(sizeof(pTreeNode));
     if(!newTreeNode){
         printf("Couldnt allocate memory for creating parse tree node\n"); return NULL;
@@ -131,6 +142,8 @@ pTreeNode* createPTreeNode(){
 }
 
 pTree* createPTree(){
+    // Creates the parse tree structure
+
     pTree* newTree = (pTree*) malloc(sizeof(pTree));
     if(!newTree){
         printf("Could not allocate memory for creating parse tree\n"); return NULL;
@@ -140,13 +153,15 @@ pTree* createPTree(){
 }
 
 void insertNodeAsChild(pTreeNode* par, pTreeNode* child){
+    // Inserts the node child as a child of the node par
+
     if(!par){
         printf("Parent node is null. Couldnt add child\n"); return;
     }
     if(!child){
         printf("Child node is null. Couldnt add child\n"); return;
     }
-    if(par->size == par->capacity){
+    if(par->size == par->capacity){ // If the number of children reaches parent's capacity, double parent's capacity
         par->capacity *= 2;
         par->children = (pTreeNode**) realloc(par->children, par->capacity*sizeof(pTreeNode*)); 
         if(!(par->children)){
@@ -156,166 +171,73 @@ void insertNodeAsChild(pTreeNode* par, pTreeNode* child){
     par->children[(par->size)++] = child;
 }
 
-//FirstAndFollow computeFirstAndFollowSets(grammar G) {
-    /*
-    This function takes as input the grammar G, computes FIRST and FOLLOW information and populates appropriate data structure FirstAndFollow.
-    First and Follow set automation must be attempted, keeping in view the programming confidence of the team members and the available time with the teams.
-    If teams opt not to develop the module for computation of First and follow sets, the same can be computed manually and information be populated in the data structure appropriately.
-    However, all members of the team must understand that any new grammar rule for any new construct will then require their expertise in computing FIRST and FOLLOW sets manually.
-    */
-
-//}
-
-//void createParseTable(FirstAndFollow F, table T) {
-    /*
-    This function takes as input the FIRST and FOLLOW  information in F to populate the table T appropriately.
-    */
-
-//}
-
-// void parseInputSourceCode(char* testcaseFile, table T) {
-    /*
-    This function takes as input the source code file and parses using the rules as per the predictive parse table T and returns a parse tree.
-    The function gets the tokens using lexical analysis interface and establishes the syntactic structure of the input source code using rules in T.
-    The function must report all errors appropriately (with line numbers) if the source code is syntactically incorrect.
-    If the source code is correct then the token and all its relevant information is added to the parse tree.
-    The start symbol of the grammar is the root of the parse tree and the tree grows as the syntax analysis moves in top down way.
-    The function must display a message "Input source code is syntactically correct..........." for successful parsing.
-    */
-
-// }
-
-//void printParseTree(parseTree PT, char* outfile) {
-    /*
-    This function provides an interface for observing the correctness of the creation of parse tree. The function prints the parse tree in inorder in the file outfile. The output is such that each line of the file outfile must contain the information corresponding to the currently visited node of the parse tree in the following format:
-
-    lexeme CurrentNode lineno tokenName valueIfNumber parentNodeSymbol isLeafNode(yes/no) NodeSymbol
-
-    The lexeme of the current node is printed when it is the leaf node else a dummy string of characters "‐‐‐‐" is printed.
-    The line number is one of the information collected by the lexical analyzer during single pass of the source code.
-    The token name corresponding to the current node is printed third.
-    If the lexeme is an integer or real number, then its value computed by the lexical analyzer should be printed at the fourth place.
-    Print the grammar symbol (non-terminal symbol) of the parent node of the currently visited node appropriately at fifth place (for the root node print ROOT for parent symbol).
-    The sixth column is for printing yes or no appropriately.
-    Print the non-terminal symbol of the node being currently visited at the 7th place, if the node is not the leaf node [Print the actual non-terminal symbol and not the enumerated values for the non-terminal].
-    Ensure appropriate justification so that the columns appear neat and straight.
-    */
-
-//}
 
 void initializeNonTerminalToString(){
+    /*
+        Initializes the array nonTerminalToString which will be used to fetch the string corresponding to a 
+        given non terminal's enum
+    */
+    if(ntInit) return; ntInit=true;
     for(int i=0; i<NT_NOT_FOUND; i++){
         nonTerminalToString[i]=malloc(NON_TERM_LENGTH);
     }
-    // char prg[NON_TERM_LENGTH] = "<program>"; 
     nonTerminalToString[program] = "<program>";
-    // char othFn[NON_TERM_LENGTH] = "<otherFunctions>"; 
     nonTerminalToString[otherFunctions] = "<otherFunctions>";
-    // char mfn[NON_TERM_LENGTH] = "<mainFunction>"; 
     nonTerminalToString[mainFunction] = "<mainFunction>";
-    // char sms[NON_TERM_LENGTH] = "<stmts>"; 
     nonTerminalToString[stmts] = "<stmts>";
-    // char sm[NON_TERM_LENGTH] = "<stmt>"; 
     nonTerminalToString[stmt] = "<stmt>";
-    // char fn[NON_TERM_LENGTH] = "<function>"; 
     nonTerminalToString[function] = "<function>";
-    // char ipr[NON_TERM_LENGTH] = "<input_par>"; 
     nonTerminalToString[input_par] = "<input_par>";
-    // char opr[NON_TERM_LENGTH] = "<output_par>"; 
     nonTerminalToString[output_par] = "<output_par>";
-    // char prmls[NON_TERM_LENGTH] = "<parameter_list>"; 
     nonTerminalToString[parameter_list] = "<parameter_list>";
-    // char dtyp[NON_TERM_LENGTH] = "<dataType>"; 
     nonTerminalToString[dataType] = "<dataType>";
-    // char rmlst[NON_TERM_LENGTH] = "<remaining_list>"; 
     nonTerminalToString[remaining_list] = "<remaining_list>";
-    // char prmdtyp[NON_TERM_LENGTH] = "<primitiveDatatype>"; 
     nonTerminalToString[primitiveDatatype] = "<primitiveDatatype>";
-    // char cnsdtyp[NON_TERM_LENGTH] = "<constructedDatatype>"; 
     nonTerminalToString[constructedDatatype] = "<constructedDatatype>";
-    // char tpdfns[NON_TERM_LENGTH] = "<typeDefinitions>"; 
     nonTerminalToString[typeDefinitions] = "<typeDefinitions>"; 
-    // char acorredf[NON_TERM_LENGTH] = "<actualOrRedefined>"; 
     nonTerminalToString[actualOrRedefined] = "<actualOrRedefined>"; 
-    // char tpdfn[NON_TERM_LENGTH] = "<typeDefinition>"; 
     nonTerminalToString[typeDefinition] = "<typeDefinition>"; 
-    // char dclns[NON_TERM_LENGTH] = "<declarations>"; 
     nonTerminalToString[declarations] = "<declarations>"; 
-    // char dcln[NON_TERM_LENGTH] = "<declaration>"; 
     nonTerminalToString[declaration] = "<declaration>"; 
-    // char othsms[NON_TERM_LENGTH] = "<otherStmts>"; 
     nonTerminalToString[otherStmts] = "<otherStmts>"; 
-    // char rtrnst[NON_TERM_LENGTH] = "<returnStmt>"; 
     nonTerminalToString[returnStmt] = "<returnStmt>"; 
-    // char dftypst[NON_TERM_LENGTH] = "<definetypestmt>"; 
     nonTerminalToString[definetypestmt] = "<definetypestmt>";
-    // char flddef[NON_TERM_LENGTH] = "<fieldDefinition>"; 
     nonTerminalToString[fieldDefinition] = "<fieldDefinition>";
-    // char fldtyp[NON_TERM_LENGTH] = "<fieldType>"; 
     nonTerminalToString[fieldType] = "<fieldType>"; 
-    // char flddefns[NON_TERM_LENGTH] = "<fieldDefinitions>"; 
     nonTerminalToString[fieldDefinitions] = "<fieldDefinitions>";
-    // char mrflds[NON_TERM_LENGTH] = "<moreFields>"; 
     nonTerminalToString[moreFields] = "<moreFields>"; 
-    // char gon[NON_TERM_LENGTH] = "<global_or_not>"; 
     nonTerminalToString[global_or_not] = "<global_or_not>"; 
-    // char asgnsm[NON_TERM_LENGTH] = "<assignmentStmt>"; 
     nonTerminalToString[assignmentStmt] = "<assignmentStmt>"; 
-    // char itrsm[NON_TERM_LENGTH] = "<iterativeStmt>"; 
     nonTerminalToString[iterativeStmt] = "<iterativeStmt>"; 
-    // char cndsm[NON_TERM_LENGTH] = "<conditionalStmt>"; 
     nonTerminalToString[conditionalStmt] = "<conditionalStmt>"; 
-    // char elpr[NON_TERM_LENGTH] = "<elsePart>"; 
     nonTerminalToString[elsePart] = "<elsePart>"; 
-    // char iosm[NON_TERM_LENGTH] = "<ioStmt>"; 
     nonTerminalToString[ioStmt] = "<ioStmt>"; 
-    // char fnclsm[NON_TERM_LENGTH] = "<funCallStmt>"; 
     nonTerminalToString[funCallStmt] = "<funCallStmt>";
-    // char sngorrec[NON_TERM_LENGTH] = "<SingleOrRecId>"; 
     nonTerminalToString[SingleOrRecId] = "<singleOrRecId>";
-    // char optsngl[NON_TERM_LENGTH] = "<option_single_constructed>"; 
     nonTerminalToString[option_single_constructed] = "<option_single_constructed>"; 
-    // char oneexp[NON_TERM_LENGTH] = "<oneExpansion>"; 
     nonTerminalToString[oneExpansion] = "<oneExpansion>"; 
-    // char mrexp[NON_TERM_LENGTH] = "<moreExpansions>"; 
     nonTerminalToString[moreExpansions] = "<moreExpansions>"; 
-    // char arthexpr[NON_TERM_LENGTH] = "<arithmeticExpression>"; 
     nonTerminalToString[arithmeticExpression] = "<arithmeticExpression>";
-    // char exprm[NON_TERM_LENGTH] = "<expPrime>"; 
     nonTerminalToString[expPrime] = "<expPrime>"; 
-    // char trm[NON_TERM_LENGTH] = "<term>"; 
     nonTerminalToString[term] = "<term>"; 
-    // char trmprm[NON_TERM_LENGTH] = "<termPrime>"; 
     nonTerminalToString[termPrime] = "<termPrime>";
-    // char fctr[NON_TERM_LENGTH] = "<factor>"; 
     nonTerminalToString[factor] = "<factor>"; 
-    // char hghprc[NON_TERM_LENGTH] = "<highPrecedenceOperators>"; 
     nonTerminalToString[highPrecedenceOperators] = "<highPrecedenceOperators>";
-    // char lowprc[NON_TERM_LENGTH] = "<lowPrecedenceOperators>"; 
     nonTerminalToString[lowPrecedenceOperators] = "<lowPrecedenceOperators>"; 
-    // char otptprm[NON_TERM_LENGTH] = "<outputParameters>"; 
     nonTerminalToString[outputParameters] = "<outputParameters>"; 
-    // char inptprm[NON_TERM_LENGTH] = "<inputParameters>"; 
     nonTerminalToString[inputParameters] = "<inputParameters>"; 
-    // char idlst[NON_TERM_LENGTH] = "<idList>"; 
     nonTerminalToString[idList] = "<idList>"; 
-    // char blexpr[NON_TERM_LENGTH] = "<booleanExpression>"; 
     nonTerminalToString[booleanExpression] = "<booleanExpression>";
-    // char vr[NON_TERM_LENGTH] = "<var>"; 
     nonTerminalToString[var] = "<var>";  
-    // char lgclop[NON_TERM_LENGTH] = "<logicalOp>"; 
     nonTerminalToString[logicalOp] = "<logicalOp>";
-    // char rlop[NON_TERM_LENGTH] = "<relationalOp>"; 
     nonTerminalToString[relationalOp] = "<relationalOp>"; 
-    // char optnrtn[NON_TERM_LENGTH] = "<optionalReturn>"; 
     nonTerminalToString[optionalReturn] = "<optionalReturn>"; 
-    // char mrids[NON_TERM_LENGTH] = "<more_ids>"; 
     nonTerminalToString[more_ids] = "<more_ids>"; 
-    // char thnta[NON_TERM_LENGTH] = "<A>"; 
     nonTerminalToString[A] = "<A>"; 
 }
 
 Token getTokenFromString(char* str){
+    // Given a string, returns the corresponding token's enum
     
     for(int i=0; i<TK_NOT_FOUND; i++){
         if(!strcmp(tokenToString[i], str))  return (Token)i;
@@ -324,6 +246,7 @@ Token getTokenFromString(char* str){
 }
 
 NonTerminal getNonTerminalFromString(char* str){
+    // Given a string, returns the corresponding non-terminal's enum
     for(int i=0; i<NT_NOT_FOUND; i++){
         if(!strcmp(nonTerminalToString[i], str)) return  (NonTerminal)i;
     }
@@ -331,10 +254,12 @@ NonTerminal getNonTerminalFromString(char* str){
 }
 
 void readGrammar(){
+    // Reads the grammar from the input file grammar.txt and stores in an array of structs
+
     if(grmRead) return;
     grmRead = true;
     char buff[MAX_RULE_LENGTH];
-    FILE* fp = fopen("./src/parser/grammar.txt", "r");
+    FILE* fp = fopen("src/parser/grammar.txt", "r");
     if(!fp){
         printf("Could not open grammar file\n"); return;
     }
@@ -402,6 +327,8 @@ void printGrammar(){
 }
 
 void insertFfRhsNode(ffRhs* lst, ffRhsNode* nd){
+    // inserts a node into a list (list of tokens in first set or follow set)
+
     if(!(lst->tail)){
         lst->head = nd;
         lst->tail = nd;
@@ -412,111 +339,6 @@ void insertFfRhsNode(ffRhs* lst, ffRhsNode* nd){
     }
 }
 
-void readFirst(){
-    FILE* fp = fopen("./src/parser/FIRST.txt", "r");
-    if(!fp){
-        printf("Could not open First set file\n");
-        return;
-    }
-    char buff[MAX_RULE_LENGTH];
-    char* oneTok;
-
-    for(int i=0; fgets(buff, MAX_RULE_LENGTH, fp); i++){  
-        oneTok = strtok(buff, " \t\n\r");
-        NonTerminal nt = getNonTerminalFromString(oneTok);
-        // printf("%dhh %d\n", i, nt); fflush(stdout);
-
-        for(; oneTok=strtok(NULL, " \t\n\r"); ){
-            ffRhsNode* newNode = (ffRhsNode*) malloc(sizeof(ffRhsNode));
-            if(!newNode){
-                printf("Could not allocate memory for First set item\n");
-                return;
-            }
-            newNode->next = NULL;
-            newNode->tk = getTokenFromString(oneTok);
-            insertFfRhsNode(First[nt], newNode);
-        }
-    }
-}
-
-void readFollow(){
-    FILE* fp = fopen("./src/parser/FOLLOW.txt", "r");
-    if(!fp){
-        printf("Could not open Follow set file\n");
-        return;
-    }
-    char buff[MAX_RULE_LENGTH];
-    char* oneTok;
-
-    for(; fgets(buff, MAX_RULE_LENGTH, fp); ){
-        oneTok = strtok(buff, " \t\n\r");
-        NonTerminal nt = getNonTerminalFromString(oneTok);
-
-        for(; oneTok=strtok(NULL, " \t\n\r"); ){
-            ffRhsNode* newNode = (ffRhsNode*) malloc(sizeof(ffRhsNode));
-            if(!newNode){
-                printf("Could not allocate memory for Follow set item\n");
-                return;
-            }
-            newNode->next = NULL;
-            newNode->tk = getTokenFromString(oneTok);
-            insertFfRhsNode(Follow[nt], newNode);
-        }
-    }
-}
-
-void initializeAndReadFirstAndFollow(){
-    First = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
-    Follow = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
-    if(!First || !Follow){
-        printf("Could not allocate memory for first and follow arrays\n");
-        return;
-    }
-
-    for(int i=0; i<NT_NOT_FOUND; i++){
-        First[i] = (ffRhs*) malloc(sizeof(ffRhs));
-        if(!(First[i])){
-            printf("Could not allocate memory for first sets initialization\n");
-            return;
-        }
-        First[i]->head = NULL; First[i]->tail = NULL;
-
-        Follow[i] = (ffRhs*) malloc(sizeof(ffRhs));
-        if(!(Follow[i])){
-            printf("Could not allocate memory for follow sets initialization\n");
-            return;
-        }
-        Follow[i]->head = NULL; Follow[i]->tail = NULL;
-    }
-    readFirst();
-    readFollow();
-
-}
-
-void printFirstAndFollow(){
-    FILE* foutFirst = fopen("readfrst.txt", "w");
-    for(int i=0; i<NT_NOT_FOUND; i++){
-        fprintf(foutFirst, "%s:\t", nonTerminalToString[i]);
-        ffRhsNode* tmp = First[i]->head;
-        for(; tmp; tmp=tmp->next){
-            fprintf(foutFirst, "%s\t", tokenToString[tmp->tk]);
-        }
-        fprintf(foutFirst, "\n");
-    }
-    fclose(foutFirst);
-
-    FILE* foutFollow = fopen("readfllw.txt", "w");
-    for(int i=0; i<NT_NOT_FOUND; i++){
-        fprintf(foutFollow, "%s:\t", nonTerminalToString[i]);
-        ffRhsNode* tmp = Follow[i]->head;
-        for(; tmp; tmp=tmp->next){
-            fprintf(foutFollow, "%s\t", tokenToString[tmp->tk]);
-        }
-        fprintf(foutFollow, "\n");
-    }
-    fclose(foutFollow);
-    
-}
 
 void printComputedFirstAndFollow(){
     FILE* foutFirst = fopen("computedfrst.txt", "w");
@@ -543,6 +365,7 @@ void printComputedFirstAndFollow(){
 }
 
 bool existsInRhs(ffRhs* lst, Token tmpkey){
+    // checks if a token exists in the given list
     if(!lst) return false;
     ffRhsNode* current = lst->head;
     for(; current; current=current->next){
@@ -552,6 +375,8 @@ bool existsInRhs(ffRhs* lst, Token tmpkey){
 }
 
 ffRhs* getFirstOfRhs(symbolList* grhs){
+    // Returns a list containing the "First" of a given grammar's RHS
+
     ffRhs* res = (ffRhs*) malloc(sizeof(ffRhs));
     res->head = NULL;
     res->tail = NULL;
@@ -592,6 +417,8 @@ ffRhs* getFirstOfRhs(symbolList* grhs){
 }
 
 void freeUpFfRhs(ffRhs* rl){
+    // Frees up memory for the RHS list of a grammar or First/Follow set
+
     if(!rl) return;
     ffRhsNode *tmp, *tn;
     tmp = rl->head;
@@ -603,7 +430,8 @@ void freeUpFfRhs(ffRhs* rl){
 }
 
 void addRulesToParseTable(){
-    // printf("\nAdding rules to parse table\n");
+    //  Adds all rules to the parse table 
+
     for(int gri=0; gri<numOfRules; ++gri){
         grammarRule* tmpRule = Grammar[gri];
         ffRhs* fOfRhs = getFirstOfRhs(tmpRule->rhs);
@@ -628,6 +456,9 @@ void addRulesToParseTable(){
 }
 
 void initializeParseTable(){
+    // Creates the parse table structure and calls the initialization of parse table
+
+    if(ptInit) return; ptInit=true;
     parseTable = (grammarRule***) malloc(NT_NOT_FOUND*sizeof(grammarRule**));
     if(!parseTable){
         printf("Couldn't allocate memory for parseTable rows\n");
@@ -676,7 +507,12 @@ void printParseTable(){
     fclose(fParseOut);
 }
 
-pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxError){
+pTree* parseTokens(linkedList* tokensFromLexer, bool* hasSyntaxError){
+    /*
+        This function uses the list of tokens from lexer, the parse table, and starting from the start symbol of the
+        grammar <program> at the parse tree root, parses the input and builds the corresponding parse tree.
+        Any violation of the grammar syntax is detected and reported. Returns the parse tree built during parsing.
+    */
     if(!tokensFromLexer){
         printf("Tokens list from lexer is null. Parsing failed\n"); return NULL;
     }
@@ -691,22 +527,26 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
     push(theStack, currentNode);
     int cln=1;
 
-    printf("Parsing starting...\n"); fflush(stdout);
+    if(shouldPrint)
+        printf("Parsing starting...\n"); fflush(stdout);
     for(int pritr=0 ;!isEmpty(theStack) && inputPtr; currentNode=top(theStack), pritr++){
         // printf("Parse iter %d...\n", pritr); fflush(stdout);
         cln = inputPtr->lineNumber;
         if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType>=LEXICAL_ERROR){
             if(inputPtr->STE->tokenType==LEXICAL_ERROR){
-                printf("Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-                fprintf(foutP, "Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                if(shouldPrint)
+                    printf("Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                // fprintf(foutP, "Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
             }
             else if(inputPtr->STE->tokenType==ID_LENGTH_EXC){
-                printf("Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-                fprintf(foutP, "Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                if(shouldPrint)
+                    printf("Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                // fprintf(foutP, "Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
             }
             else if(inputPtr->STE->tokenType==FUN_LENGTH_EXC){
-                printf("Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-                fprintf(foutP, "Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                if(shouldPrint)
+                    printf("Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
+                // fprintf(foutP, "Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
             }
             if(inputPtr->STE->tokenType!=COMMENT) *hasSyntaxError = true;
             inputPtr = inputPtr->next;
@@ -731,10 +571,11 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             // printf("cs 2...\n"); fflush(stdout);
             // Error; handle mismatch
             *hasSyntaxError = true;
-            printf("Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
+            if(shouldPrint)
+                printf("Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
                 5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
-            fprintf(foutP, "Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
-                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
+            // fprintf(foutP, "Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
+                // 5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
             
             currentNode->lineNumber = inputPtr->lineNumber;
             pop(theStack);
@@ -743,10 +584,11 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
             // printf("cs 3...\n"); fflush(stdout);
             // Error; handle blank/error entry of parse table
             *hasSyntaxError = true;
-            printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
+            if(shouldPrint)
+                printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
                 5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
-            fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
-                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
+            // fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
+            //     5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
 
             if(existsInRhs(AutoFollow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType)){
                 currentNode->lineNumber = inputPtr->lineNumber;
@@ -780,41 +622,47 @@ pTree* parseTokens(linkedList* tokensFromLexer, FILE* foutP, bool* hasSyntaxErro
         }
     }
     if(!(*hasSyntaxError) && isEmpty(theStack) && (!inputPtr || inputPtr->STE->tokenType==DOLLAR)){
-        printf("\nNo syntax errors. Parsing successful!\n");
+        if(shouldPrint)
+            printf("\nParsing successful! No syntax errors! The input is syntactically correct!\n");
     }
     else{
         *hasSyntaxError = true;
         for(; !isEmpty(theStack); currentNode=top(theStack)) {
             if(currentNode->symbol->isNonTerminal){
                 // printf("\nF\n"); fflush(stdout);
-                printf("Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
+                if(shouldPrint)
+                    printf("Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
                     5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]); 
-                fprintf(foutP, "Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
-                    5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
+                // fprintf(foutP, "Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
+                //     5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
             }
             else{
                 // printf("\nG\n"); fflush(stdout);
-                printf("Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
+                if(shouldPrint)
+                    printf("Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
                     5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
-                fprintf(foutP, "Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
-                    5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
+                // fprintf(foutP, "Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
+                //     5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
             }
 
             pop(theStack);
         }
         for(; inputPtr && inputPtr->STE->tokenType!=DOLLAR; inputPtr=inputPtr->next){
             // printf("\nwwgg\n"); fflush(stdout);
-            printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
+            if(shouldPrint)
+                printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
                 5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
-            fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
-                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
+            // fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
+            //     5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
         }
-        printf("\nThe input file has got syntactic errors!\n");
+        if(shouldPrint)
+            printf("\nThe input file has got syntactic errors!\n");
     }
     return theParseTree;
 }
 
 void computeFirstSets(){
+    //Computes the first sets for the non terminals in the grammar
     bool modified = true;
     for(; modified; ){
         modified = false;
@@ -865,6 +713,7 @@ void computeFirstSets(){
 }
 
 void computeFollowSets(){
+    // Computes the follow sets for the non terminals in the grammar
 
     ffRhsNode* thdl = (ffRhsNode*) malloc(sizeof(ffRhsNode));
     thdl->next = NULL; thdl->tk = DOLLAR;
@@ -914,6 +763,9 @@ void computeFollowSets(){
 }
 
 void initializeAndComputeFirstAndFollow(){
+    // Creates the data structures for the first and follow and calls computeFirstSets() and computeFollowSets()
+
+    if(ffInit) return; ffInit=true;
     AutoFirst = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
     AutoFollow = (ffRhs**) malloc(NT_NOT_FOUND*sizeof(ffRhs*));
     if(!AutoFirst || !AutoFollow){
@@ -940,6 +792,8 @@ void initializeAndComputeFirstAndFollow(){
 }
 
 void printTreeNode(pTreeNode* curr, pTreeNode* par, FILE* fp){
+    // Prints the details of a specific tree node on a line in the specified file following the format provided
+
     // fprintf(fp, "\n");
     fprintf(fp, "%*s ", 32, !(curr->symbol->isNonTerminal) ? curr->ste->lexeme : "-----");
     fprintf(fp, "%*d ", 12, curr->lineNumber);
@@ -960,6 +814,7 @@ void printTreeNode(pTreeNode* curr, pTreeNode* par, FILE* fp){
 }
 
 void inorderTraverse(pTreeNode* curr, pTreeNode* par, FILE* fp){
+    // Traverses the tree inorder and prints node details
     if(!curr) return;
 
     if(curr->size) inorderTraverse(curr->children[0], curr, fp);
@@ -977,21 +832,28 @@ void printParseTree(pTree* PT, char* outFile){
         printf("Given parse tree is null. Could not print\n");
         return;
     }
-    printf("Printing Parse Tree in the specified file...\n");
+    if(shouldPrint)
+        printf("Printing Parse Tree in the specified file...\n");
     fprintf(fp, "%*s %*s %*s %*s %*s %*s %*s\n\n", 32, "lexeme", 12, "lineNumber", 16, "tokenName", 20, "valueIfNumber", 30, "parentNodeSymbol", 12, "isLeafNode", 30, "nodeSymbol");
     inorderTraverse(PT->root, NULL, fp);
     fclose(fp);
-    printf("Printing parse tree completed\n");
+    if(shouldPrint)
+        printf("Printing parse tree completed...\n");
 }
 
 void parseInputSourceCode(char* inpFile, char* opFile){
+
+    /*
+        Wrapper function for the parser that'll call all initialization functions and the parseTokens() function.
+        This function will be called by the driver.
+    */
     
     FILE* ifp = fopen(inpFile, "r");
     if(!ifp){
         printf("Could not open file input file for parsing\n");
         return;
     }
-    linkedList* tokensFromLexer = LexInput(ifp);
+    linkedList* tokensFromLexer = LexInput(ifp, opFile);
     fclose(ifp);
     
     initializeNonTerminalToString();
@@ -1003,15 +865,15 @@ void parseInputSourceCode(char* inpFile, char* opFile){
     initializeParseTable();
     // printParseTable();
 
-    FILE* fpout = fopen(opFile, "w");
-    if(!fpout){
-        printf("Could not open file for parser output\n");
-        return;
-    }
+    // FILE* fpout = fopen("ParserErrors.txt", "w");
+    // if(!fpout){
+    //     printf("Could not open file for parser output\n");
+    //     return;
+    // }
 
     bool hasSyntaxError = false;
-    pTree* parseTree = parseTokens(tokensFromLexer, fpout, &hasSyntaxError);
-    fclose(fpout);
+    pTree* parseTree = parseTokens(tokensFromLexer, &hasSyntaxError);
+    // fclose(fpout);
 
     if(!hasSyntaxError)
         printParseTree(parseTree, opFile);
@@ -1021,7 +883,7 @@ void parseInputSourceCode(char* inpFile, char* opFile){
             printf("Could not open file for printing parse tree\n");
             return;
         }
-        fprintf(foptp, "There were syntax errors in the input file. Not printing the parse tree!\n");
+        fprintf(foptp, "There were syntax errors in the input file. Not printing the parse tree!\nCheck the console for error details.");
         fclose(foptp);
     }
 }

@@ -1,1 +1,0 @@
-There were syntax errors in the input file. Not printing the parse tree!
