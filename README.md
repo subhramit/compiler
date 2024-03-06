@@ -55,7 +55,9 @@ The program structure is modular such that all function definitions precede the 
 The language supports keywords while, return, main, if, type, read, write, call, input, output, parameter, parameters, list, record, union, definetype, as and so on. A list of all keywords is given in the Language specification document. <br>
 
 <a name="identifiers"></a>
-***(ii) Identifiers*** <br> 
+***(ii) Identifiers*** <br>
+Identifiers in our language can be categorized into two types: <br>
+
 <ins>**Variable Identifiers**</ins>: The identifiers are the names with the following pattern: <br>
 ```
 [b-d][2-7][b-d]*[2-7]*
@@ -259,7 +261,8 @@ A function that does not return any value is invoked as below:
 call _function1 with parameters [b4d333, c3ddd34];
 ```
 <a name="expressions"></a>
-***(vi) Expressions*** <br> 
+***(vi) Expressions*** <br>
+The language supports two kinds of expressions: <br>
 
 <ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to ````*```` and ````/````. <br>
 
