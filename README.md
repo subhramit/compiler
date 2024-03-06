@@ -118,6 +118,127 @@ type record #finance : c4;
 type record #finance : c3;
 c3 <--- c4 + d5;
 ```
+<ins>**Union type**</ins>: A union type is similar to record structure in its lexical formations other than the union keyword used. For example:
+```
+union #student
+  type int: rollno;
+  type real:marks;
+  type int: age;
+endunion
+```
+As usual, the union data type refers to maximum of all fields memory allocation to the variables. It is understood that the static type checking is not possible for union types and it leads to spurious data access. In order to prevent the users from this situation, "tagged union" is supported in this language where the tag is computed at run time. The tag is part of the variant record following the same syntax as that of the record defining the (a) variant field as the union data type and (b) the fixed field of the tag. The tag can be of any primitive type integer or real.
+```
+definetype union #student as #newname;
+record #taggedunionexample
+  type int: tagvalue;
+  type newname: field;
+endrecord
+```
+The tagged union variable is defined in the similar way as other variables are. For example:
+```
+type record #taggedunionexample b7bc34;
+```
+The variable b7bc34 of type #taggedunionexample which is a variant record has a fixed field tagvalue of integer type and the variant field of union type newname. The tagvalue field is used as:
+```
+b7bc34.tagvalue = 1;
+b7bc34. field.rollno = 23;
+write(b7bc34. field.rollno); %No type error
+write(b7bc34. field.marks); %Compiler reports the type error – dynamic type checking
+b7bc34.tagvalue = 2;
+b7bc34. field.marks = 97.5;
+b7bc34.tagvalue = 3;
+b7bc34. field.age = 21;
+```
+
+<ins>**global**</ins>: This defines the scope of the variable as global and the variable specified as global is visible anywhere in the code. The syntax for specifying a variable of any type to be global is as follows:
+```
+type int: c5d2: global;
+```
+
+<ins>**Type definition (Aliases)**</ins>: The language supports type redefinition using the keyword definetype for record and union data type. For example:
+```
+definetype union #student as #newname;
+definetype record #book as #newbook;
+```
+Since record and union type definitions are visible anywhere in the program, their type definitions representing equivalent names are also visible anywhere in the program. Hence, the type definition for other records or unions cannot be type defined similar to the ones already defined. <br>
+
+***Functions*** <br>
+There is a main function preceded by the keyword _main. The function definitions precede the function calls. Function names start with an underscore. For example:
+```
+_function1
+input parameter list [int c2, int d2cd]
+output parameter list [int b5d, int d3];
+  b5d<---c2+234-d2cd;
+  d3<---b5d+20;
+  return [b5d, d3];
+end
+
+_main
+  type int: b4d333;
+  type int : c3ddd34; type int:c2d3; type int c2d4; read(b4d333); 
+  read(c3ddd34);
+  [c2d3, c2d4]<--- call _function1 with parameters [b4d333, c3ddd34]; 
+  write(c2d3); write(c2d4);
+end
+```
+The language does not support recursive function calls. Also, function overloading is not allowed in the language. Function's actual parameters types should match with those of formal parameters. Even if the type of a single actual parameter in a function call statement does not match with the type of the formal parameter in function definition, it is considered an error.
+
+***Statements:*** <br>
+The language supports following type of statements: <br>
+<ins>**Assignment Statement**</ins>: An expression to the right hand side assigned to an identifier is the form of these statements. For example:
+```
+c2ddd2 <--- (4 + 3)*(d3bd - 73);
+```
+<ins>**Input output statements**</ins>: These are without any format and can take only one variable at a time to read or write. Examples are:
+```
+read(b4d333); read(c3ddd34);
+[c2d3, c2d4]<--- call _function1 with parameters [b4d333, c3ddd34];
+write(c2d3); write(c2d4);
+```
+If the type of the variable is a record then writing is challenging and writes the values of all fields but if the variable is of variant record type then the write statement only prints the relevant field’s value validated by its tag value at run time.
+
+<ins>**Declaration Statement**</ins>: Declaration statements precede any other statements and cannot be declared in between the function code. A declaration statement for example is:
+```
+type int : b2cdb234;
+```
+Each variable is declared in a separate declaration (unlike C where a list of variables of similar type can be declared in one statement e.g. ````int a,b,c;````) <br>
+
+<ins>**Return Statement**</ins>: A return statement is the last statement in any function definition. A function not returning any value simply causes the flow of execution control to return to the calling function using the following statement:
+```
+return;
+```
+A function that returns the values; single or multiple, returns a list of in the following format:
+```
+return [b5d, d3];
+```
+<ins>**Iterative Statement**</ins>: There is a single type of iterative statement. A while loop is designed for performing iterations. The example code is:
+```
+while(c2d3<=d2c3)
+  c2d3 = c2d3+1;
+  write(c2d3);
+endwhile
+```
+<ins>**Conditional Statements**</ins>: Only one type of conditional statement is provided in this language. The 'if' conditional statement is of two forms; 'if-then' and 'if-then-else'. Example code is as follows:
+```
+if(c7>=d2dc)
+then
+  write(c7);
+else
+  write(d2dc);
+endif
+```
+<ins>**Function Call Statement**</ins>: Function Call Statements are used to invoke the function with the given actual input parameters. The returned values are copied in a list of variables as given below:
+```
+[c2d3, c2d4]<---call _function1 with parameters [b4d333, c3ddd34];
+```
+A function that does not return any value is invoked as below:
+```
+call _function1 with parameters [b4d333, c3ddd34];
+```
+***Expressions*** <br>
+<ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to ````*```` and ````/````. <br>
+
+<ins>**Boolean**</ins>: Conditional expressions control the flow of execution through the while loop. The logical AND and OR operators are ````&&&```` and ````@@@```` respectively. An example conditional expression is ````(d3<=c5cd) &&& (b4>d2cd234)````. We do not use arithmetic expressions as arguments of boolean expressions, nor do we have record variables used in the boolean expressions.
 ## Dependencies
 The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.04.3**. The project uses **GNU make** to build on **Linux**.
 ## To run the compiler
