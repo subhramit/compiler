@@ -1,16 +1,30 @@
 # A toy compiler
 Compiler design and implementation project in C for a high-level language (with specifications provided) for the course CS F363 (Compiler Construction), Spring '24, BITS Pilani.
-## Modules
+## Index
+1. [Modules](#modules)
+2. [Architecture](#architecture)
+3. [Language specifications](#language)
+    1. [Keywords](#keywords)
+    2. [Identifiers](#identifiers)
+    3. [Data Types](#datatypes)
+    4. [Functions](#functions)
+    5. [Statements](#statements)
+    6. [Expressions](#expressions)
+4. [Dependencies](#dependencies)
+5. [Running the compiler](#running)
+6. [Credits](#credits)
+7. [License](#license)
+## 1. Modules <a name="modules"></a>
 The compiler comprises of a fully functional preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery mechanism. <br>
 
 <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean file. <br>
 <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to "tokens.txt" inside the "lexer" folder (or the Language Specifications document) to see the list of valid tokens. <br>
 <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to "grammar.txt" inside the "parser" folder (or the Modified LL(1) Grammar document) to see the grammar rules.
-## Architecture
+## 2. Architecture <a name="architecture"></a>
 This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
 
 ![Screenshot](architecture.png)
-## Language specifications
+## 3. Language specifications <a name="language"></a>
 The language supports primitive data types that are used as integers and real numbers. The language also supports record type and union type. The operations on variables of record type are addition and subtraction. These operations can be applied for two operands of record type. The scalar multiplication and division of record variables are also supported. Record type definitions are defined in any function but are available for any other function as well. The language supports modular code in terms of function, which uses call by value mechanism of parameter passing. The function may return many values of different types or may not return any value. The scope ofthe variables is local i.e. the variables are not visible outside the function where they are declared. The variables with prefix 'global' are visible outside the function and can be used within any function. <br> <br>
 Sample code:
 ```
@@ -33,8 +47,10 @@ The infix expressions are used in assignment statements. The assignment operator
 The mathematical operations are many: addition, subtraction, multiplication and division which can be applied to both types of operands integer and real, provided both the operands are of the same type. The operations + and – also add and subtract records, while multiplication and division can be used to perform scalar multiplication and scalar division of record variables. <br> <br>
 The program structure is modular such that all function definitions precede the main driver function. Function prototype declarations are not required. Each function definition must have declaration statements first and the return statement only at the end. A return statement is necessary for every function. All other statements such as assignment statements, conditional or iterative statements, input output statements etc. appear before the return statement. A function can have within it a record definition and the same should be available globally. <br>
 ### **Language Constructs:**
-***Keywords*** <br>
+***(i) Keywords*** <br> <a name="keywords"></a>
 The language supports keywords while, return, main, if, type, read, write, call, input, output, parameter, parameters, list, record, union, definetype, as and so on. A list of all keywords is given in the Language specification document. <br>
+
+***(iii) Identifiers*** <br> <a name="identifiers"></a>
 
 ***Variable Identifiers*** <br>
 The identifiers are the names with the following pattern: <br>
@@ -54,7 +70,7 @@ Function identifier names start with an underscore and must have the following p
 ```
 i.e. a function name can have one or more number of English alphabet following the underscore. Also any number of digits can follow towards the trail. A function identifier is of maximum size of 30. <br>
 
-***Data Types*** <br>
+***(iii) Data Types*** <br> <a name="datatypes"></a>
 The language supports the following types: <br> <br>
 <ins>**Integer type**</ins>: The keyword used for representing integer data type is int and will be supported by the underlying architecture. A statically available number of the pattern ````[0-9][0-9]*```` is of integer type. <br> <br>
 <ins>**Real type**</ins>: The keyword used for representing integer data type is real and will be supported by the underlying architecture. A statically available real number has the pattern ````[0-9][0-9]*[.][0-9][0-9]```` and is of type real. The language also supports exponent and mantissa form of real number representation. The regular expression for the same is ````[0-9][0-9]*[.][0-9][0-9][E][+|-|∈][0-9][0-9]```` restricting to exactly two digits in the exponent part. <br> <br>
@@ -162,7 +178,7 @@ definetype record #book as #newbook;
 ```
 Since record and union type definitions are visible anywhere in the program, their type definitions representing equivalent names are also visible anywhere in the program. Hence, the type definition for other records or unions cannot be type defined similar to the ones already defined. <br>
 
-***Functions*** <br>
+***(iv) Functions*** <br> <a name="functions"></a>
 There is a main function preceded by the keyword _main. The function definitions precede the function calls. Function names start with an underscore. For example:
 ```
 _function1
@@ -183,7 +199,7 @@ end
 ```
 The language does not support recursive function calls. Also, function overloading is not allowed in the language. Function's actual parameters types should match with those of formal parameters. Even if the type of a single actual parameter in a function call statement does not match with the type of the formal parameter in function definition, it is considered an error.
 
-***Statements:*** <br>
+***(v) Statements:*** <br> <a name="statements"></a>
 The language supports following type of statements: <br>
 <ins>**Assignment Statement**</ins>: An expression to the right hand side assigned to an identifier is the form of these statements. For example:
 ```
@@ -235,13 +251,14 @@ A function that does not return any value is invoked as below:
 ```
 call _function1 with parameters [b4d333, c3ddd34];
 ```
-***Expressions*** <br>
+***(vi) Expressions*** <br> <a name="expressions"></a>
+
 <ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to ````*```` and ````/````. <br>
 
 <ins>**Boolean**</ins>: Conditional expressions control the flow of execution through the while loop. The logical AND and OR operators are ````&&&```` and ````@@@```` respectively. An example conditional expression is ````(d3<=c5cd) &&& (b4>d2cd234)````. We do not use arithmetic expressions as arguments of boolean expressions, nor do we have record variables used in the boolean expressions.
-## Dependencies
+## 4. Dependencies <a name="dependencies"></a>
 The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.04.3**. The project uses **GNU make** to build on **Linux**.
-## To run the compiler
+## 5. To run the compiler <a name="running"></a>
 1. Run ````make```` to build the executable
 2. Run ````./stage1exe <Input File> <Output File>````
 3. Select your required option among the following: <br>
@@ -251,12 +268,12 @@ The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.0
  **3:** To perform syntax analysis and print the parse tree into the specified output file <br>
  **4:** To print total time taken (in CPU clock cycles and ms) for lexical and syntax analysis on console
 
-## Credits
+## 6. Credits <a name="credits"></a>
 - [Aditya Thakur](https://github.com/cry0genic)
 - [Amal Sayeed](https://github.com/amal-sayeed)
 - [Ohiduz Zaman](https://github.com/Ohiduz)
 - [Priyansh Patel](https://github.com/PriyanshPatelBits)
 - [Rachoita Das](https://github.com/Rachoita-Das)
 - [Subhramit Basu](https://github.com/subhramit)
-## License
+## 7. License <a name="license"></a>
 This piece of software is licensed under an [MIT License](https://opensource.org/licenses/MIT).  For more details, refer to the LICENSE file.
