@@ -55,7 +55,6 @@ The program structure is modular such that all function definitions precede the 
 The language supports keywords while, return, main, if, type, read, write, call, input, output, parameter, parameters, list, record, union, definetype, as and so on. A list of all keywords is given in the Language specification document. <br>
 
 <a name="identifiers"></a>
-
 ***(ii) Identifiers*** <br> 
 <ins>**Variable Identifiers**</ins>: The identifiers are the names with the following pattern: <br>
 ```
