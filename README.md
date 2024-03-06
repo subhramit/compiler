@@ -27,7 +27,7 @@ This uses a standard Pipe and Filter architecture as usually used for compilers.
 
 ![Screenshot](architecture.png)
 <a name="language"></a>
-## 3. Language specifications 
+## 3. Language specifications
 The language supports primitive data types that are used as integers and real numbers. The language also supports record type and union type. The operations on variables of record type are addition and subtraction. These operations can be applied for two operands of record type. The scalar multiplication and division of record variables are also supported. Record type definitions are defined in any function but are available for any other function as well. The language supports modular code in terms of function, which uses call by value mechanism of parameter passing. The function may return many values of different types or may not return any value. The scope ofthe variables is local i.e. the variables are not visible outside the function where they are declared. The variables with prefix 'global' are visible outside the function and can be used within any function. <br> <br>
 Sample code:
 ```
@@ -55,6 +55,7 @@ The program structure is modular such that all function definitions precede the 
 The language supports keywords while, return, main, if, type, read, write, call, input, output, parameter, parameters, list, record, union, definetype, as and so on. A list of all keywords is given in the Language specification document. <br>
 
 <a name="identifiers"></a>
+
 ***(ii) Identifiers*** <br> 
 <ins>**Variable Identifiers**</ins>: The identifiers are the names with the following pattern: <br>
 ```
