@@ -21,11 +21,13 @@ The compiler comprises of a fully functional preprocessor, lexical analyzer and 
 <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean file. <br>
 <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to "tokens.txt" inside the "lexer" folder (or the Language Specifications document) to see the list of valid tokens. <br>
 <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to "grammar.txt" inside the "parser" folder (or the Modified LL(1) Grammar document) to see the grammar rules.
-## 2. Architecture <a name="architecture"></a>
+<a name="architecture"></a>
+## 2. Architecture 
 This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
 
 ![Screenshot](architecture.png)
-## 3. Language specifications <a name="language"></a>
+<a name="language"></a>
+## 3. Language specifications 
 The language supports primitive data types that are used as integers and real numbers. The language also supports record type and union type. The operations on variables of record type are addition and subtraction. These operations can be applied for two operands of record type. The scalar multiplication and division of record variables are also supported. Record type definitions are defined in any function but are available for any other function as well. The language supports modular code in terms of function, which uses call by value mechanism of parameter passing. The function may return many values of different types or may not return any value. The scope ofthe variables is local i.e. the variables are not visible outside the function where they are declared. The variables with prefix 'global' are visible outside the function and can be used within any function. <br> <br>
 Sample code:
 ```
@@ -48,13 +50,13 @@ The infix expressions are used in assignment statements. The assignment operator
 The mathematical operations are many: addition, subtraction, multiplication and division which can be applied to both types of operands integer and real, provided both the operands are of the same type. The operations + and – also add and subtract records, while multiplication and division can be used to perform scalar multiplication and scalar division of record variables. <br> <br>
 The program structure is modular such that all function definitions precede the main driver function. Function prototype declarations are not required. Each function definition must have declaration statements first and the return statement only at the end. A return statement is necessary for every function. All other statements such as assignment statements, conditional or iterative statements, input output statements etc. appear before the return statement. A function can have within it a record definition and the same should be available globally. <br>
 ### **Language Constructs:**
-***(i) Keywords*** <br> <a name="keywords"></a>
+<a name="keywords"></a>
+***(i) Keywords*** <br> 
 The language supports keywords while, return, main, if, type, read, write, call, input, output, parameter, parameters, list, record, union, definetype, as and so on. A list of all keywords is given in the Language specification document. <br>
 
-***(iii) Identifiers*** <br> <a name="identifiers"></a>
-
-***Variable Identifiers*** <br>
-The identifiers are the names with the following pattern: <br>
+<a name="identifiers"></a>
+***(ii) Identifiers*** <br> 
+<ins>**Variable Identifiers**</ins>: The identifiers are the names with the following pattern: <br>
 ```
 [b-d][2-7][b-d]*[2-7]*
 ```
@@ -64,15 +66,16 @@ The list of invalid identifiers is d2bdcbdcb5c, 2cdc765 and so on. <br>
 An identifier cannot be declared multiple times in the same scope and it should be declared before its use. <br>
 Also, an identifier declared globally cannot be declared anywhere else in function definitions. <br>
 
-***Function Identifiers*** <br>
-Function identifier names start with an underscore and must have the following pattern:
+<ins>**Function Identifiers**</ins>: Function identifier names start with an underscore and must have the following pattern:
 ```
 [_][a-z|A-Z][a-z|A-Z]*[0-9]*
 ```
 i.e. a function name can have one or more number of English alphabet following the underscore. Also any number of digits can follow towards the trail. A function identifier is of maximum size of 30. <br>
 
-***(iii) Data Types*** <br> <a name="datatypes"></a>
-The language supports the following types: <br> <br>
+<a name="datatypes"></a>
+***(iii) Data Types*** <br> 
+The language supports the following types: <br>
+
 <ins>**Integer type**</ins>: The keyword used for representing integer data type is int and will be supported by the underlying architecture. A statically available number of the pattern ````[0-9][0-9]*```` is of integer type. <br> <br>
 <ins>**Real type**</ins>: The keyword used for representing integer data type is real and will be supported by the underlying architecture. A statically available real number has the pattern ````[0-9][0-9]*[.][0-9][0-9]```` and is of type real. The language also supports exponent and mantissa form of real number representation. The regular expression for the same is ````[0-9][0-9]*[.][0-9][0-9][E][+|-|∈][0-9][0-9]```` restricting to exactly two digits in the exponent part. <br> <br>
 <ins>**Record type**</ins>: This is the constructed data type of the form of the Cartesian product of types of its constituent fields. For example, the following record is defined to be of type 'finance' and its actual type is ***<int, real, int>***, preserving the types and sequence of fields appearing in the record type definition: <br>
@@ -179,7 +182,8 @@ definetype record #book as #newbook;
 ```
 Since record and union type definitions are visible anywhere in the program, their type definitions representing equivalent names are also visible anywhere in the program. Hence, the type definition for other records or unions cannot be type defined similar to the ones already defined. <br>
 
-***(iv) Functions*** <br> <a name="functions"></a>
+<a name="functions"></a>
+***(iv) Functions*** <br> 
 There is a main function preceded by the keyword _main. The function definitions precede the function calls. Function names start with an underscore. For example:
 ```
 _function1
@@ -200,8 +204,10 @@ end
 ```
 The language does not support recursive function calls. Also, function overloading is not allowed in the language. Function's actual parameters types should match with those of formal parameters. Even if the type of a single actual parameter in a function call statement does not match with the type of the formal parameter in function definition, it is considered an error.
 
-***(v) Statements:*** <br> <a name="statements"></a>
+<a name="statements"></a>
+***(v) Statements*** <br> 
 The language supports following type of statements: <br>
+
 <ins>**Assignment Statement**</ins>: An expression to the right hand side assigned to an identifier is the form of these statements. For example:
 ```
 c2ddd2 <--- (4 + 3)*(d3bd - 73);
@@ -252,7 +258,8 @@ A function that does not return any value is invoked as below:
 ```
 call _function1 with parameters [b4d333, c3ddd34];
 ```
-***(vi) Expressions*** <br> <a name="expressions"></a>
+<a name="expressions"></a>
+***(vi) Expressions*** <br> 
 
 <ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to ````*```` and ````/````. <br>
 
@@ -269,12 +276,14 @@ The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.0
  **3:** To perform syntax analysis and print the parse tree into the specified output file <br>
  **4:** To print total time taken (in CPU clock cycles and ms) for lexical and syntax analysis on console
 
-## 6. Credits <a name="credits"></a>
+<a name="credits"></a>
+## 6. Credits 
 - [Aditya Thakur](https://github.com/cry0genic)
 - [Amal Sayeed](https://github.com/amal-sayeed)
 - [Ohiduz Zaman](https://github.com/Ohiduz)
 - [Priyansh Patel](https://github.com/PriyanshPatelBits)
 - [Rachoita Das](https://github.com/Rachoita-Das)
 - [Subhramit Basu](https://github.com/subhramit)
-## 7. License <a name="license"></a>
+<a name="license"></a>
+## 7. License 
 This piece of software is licensed under an [MIT License](https://opensource.org/licenses/MIT).  For more details, refer to the LICENSE file.
