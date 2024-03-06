@@ -14,7 +14,8 @@ Compiler design and implementation project in C for a high-level language (with 
 5. [Running the compiler](#running)
 6. [Credits](#credits)
 7. [License](#license)
-## 1. Modules <a name="modules"></a>
+<a name="modules"></a>
+## 1. Modules 
 The compiler comprises of a fully functional preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery mechanism. <br>
 
 <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean file. <br>
