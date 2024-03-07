@@ -164,8 +164,8 @@ The variable b7bc34 of type #taggedunionexample which is a variant record has a 
 ```
 b7bc34.tagvalue = 1;
 b7bc34. field.rollno = 23;
-write(b7bc34. field.rollno); %No type error
-write(b7bc34. field.marks); %Compiler reports the type error – dynamic type checking
+write(b7bc34. field.rollno); % No type error
+write(b7bc34. field.marks); % Compiler reports the type error – dynamic type checking
 b7bc34.tagvalue = 2;
 b7bc34. field.marks = 97.5;
 b7bc34.tagvalue = 3;
