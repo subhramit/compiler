@@ -19,7 +19,7 @@ Compiler design and implementation project in C for a high-level language (with 
 The compiler comprises of a fully functional preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery mechanism. <br>
 
 <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean file. <br>
-<ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to "tokens.txt" inside the "lexer" folder (or the Language Specifications document) to see the list of valid tokens. <br>
+<ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to "tokens.txt" inside the "lexer" folder (or the Language specifications document) to see the list of valid tokens. <br>
 <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to "grammar.txt" inside the "parser" folder (or the Modified LL(1) Grammar document) to see the grammar rules.
 <a name="architecture"></a>
 ## 2. Architecture 
