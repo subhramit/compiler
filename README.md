@@ -2,18 +2,19 @@
 Compiler design and implementation project in C for a high-level language (with specifications provided), for the course "CS F363" (Compiler Construction), Spring '24, BITS Pilani.
 ## Index
 1. [Modules](#modules)
-2. [Architecture](#architecture)
-3. [Language specifications](#language)
+2. [File organization](#structure)
+3. [Architecture](#architecture)
+4. [Language specifications](#language)
     1. [Keywords](#keywords)
     2. [Identifiers](#identifiers)
     3. [Data Types](#datatypes)
     4. [Functions](#functions)
     5. [Statements](#statements)
     6. [Expressions](#expressions)
-4. [Dependencies](#dependencies)
-5. [Running the compiler](#running)
-6. [Credits](#credits)
-7. [License](#license)
+5. [Dependencies](#dependencies)
+6. [Running the compiler](#running)
+7. [Credits](#credits)
+8. [License](#license)
 <a name="modules"></a>
 ## 1. Modules 
 The compiler comprises of a fully functional preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery mechanism. <br>
@@ -21,13 +22,65 @@ The compiler comprises of a fully functional preprocessor, lexical analyzer and 
 <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean file. <br>
 <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to ````tokens.txt```` inside the ````src/lexer/```` directory (or the Language specifications document inside the ````docs/```` directory) to see the list of valid tokens. <br>
 <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to ````grammar.txt```` inside the ````src/parser/```` directory (or the Modified LL(1) Grammar document inside the ````docs/```` directory) to see the grammar rules.
+<a name="structure"></a>
+## 2. File organization:
+The structure of the project as visualised by ```tree``` is given below:
+```
+.
+├── LICENSE
+├── README.md
+├── build
+│   ├── driver.o
+│   ├── lexer.o
+│   └── parser.o
+├── docs
+│   ├── DFA.jpg
+│   ├── FnF_submission.pdf
+│   ├── Language specifications.pdf
+│   ├── Modified LL(1) Grammar.pdf
+│   ├── architecture.png
+│   └── coding_details.pdf
+├── driver.c
+├── makefile
+├── output.txt
+├── src
+│   ├── lexer
+│   │   ├── lexer.c
+│   │   ├── lexer.h
+│   │   ├── lexerDef.h
+│   │   └── tokens.txt
+│   └── parser
+│       ├── FIRST.txt
+│       ├── FOLLOW.txt
+│       ├── grammar.txt
+│       ├── parser.c
+│       ├── parser.h
+│       ├── parserDef.h
+│       └── stack.h
+├── stage1exe
+└── tests
+    ├── commentremoval_t2.txt
+    ├── lexemesandtokens_t1.txt
+    ├── lexemesandtokens_t2.txt
+    ├── listoferrors_t6.txt
+    ├── output.txt
+    ├── t1.txt
+    ├── t2.txt
+    ├── t3.txt
+    ├── t4.txt
+    ├── t5.txt
+    ├── t6.txt
+    └── test.txt
+
+6 directories, 38 files
+```
 <a name="architecture"></a>
-## 2. Architecture 
+## 3. Architecture 
 This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
 
 ![Screenshot](docs/architecture.png)
 <a name="language"></a>
-## 3. Language specifications
+## 4. Language specifications
 The language supports primitive data types that are used as integers and real numbers. The language also supports record type and union type. The operations on variables of record type are addition and subtraction. These operations can be applied for two operands of record type. The scalar multiplication and division of record variables are also supported. Record type definitions are defined in any function but are available for any other function as well. The language supports modular code in terms of function, which uses call by value mechanism of parameter passing. The function may return many values of different types or may not return any value. The scope ofthe variables is local i.e. the variables are not visible outside the function where they are declared. The variables with prefix 'global' are visible outside the function and can be used within any function. <br> <br>
 Sample code:
 ```
@@ -267,9 +320,9 @@ The language supports two kinds of expressions: <br>
 <ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to ````*```` and ````/````. <br>
 
 <ins>**Boolean**</ins>: Conditional expressions control the flow of execution through the while loop. The logical AND and OR operators are ````&&&```` and ````@@@```` respectively. An example conditional expression is ````(d3<=c5cd) &&& (b4>d2cd234)````. We do not use arithmetic expressions as arguments of boolean expressions, nor do we have record variables used in the boolean expressions.
-## 4. Dependencies <a name="dependencies"></a>
+## 5. Dependencies <a name="dependencies"></a>
 The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.04.3**. The project uses **GNU make** to build on **Linux**.
-## 5. To run the compiler <a name="running"></a>
+## 6. To run the compiler <a name="running"></a>
 1. Run ````make```` to build the executable
 2. Run ````./stage1exe <Input File> <Output File>````
 3. Select your required option among the following: <br>
@@ -280,7 +333,7 @@ The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.0
  **4:** To print total time taken (in CPU clock cycles and ms) for lexical and syntax analysis on console
 
 <a name="credits"></a>
-## 6. Credits 
+## 7. Credits 
 - [Aditya Thakur](https://github.com/cry0genic)
 - [Amal Sayeed](https://github.com/amal-sayeed)
 - [Ohiduz Zaman](https://github.com/Ohiduz)
@@ -288,5 +341,5 @@ The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.0
 - [Rachoita Das](https://github.com/Rachoita-Das)
 - [Subhramit Basu](https://github.com/subhramit)
 <a name="license"></a>
-## 7. License 
+## 8. License 
 This piece of software is licensed under an [MIT License](https://opensource.org/licenses/MIT).  For more details, refer to the LICENSE file.
