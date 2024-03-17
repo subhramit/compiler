@@ -24,7 +24,7 @@ The compiler comprises of a fully functional preprocessor, lexical analyzer and 
 <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to ````grammar.txt```` inside the ````src/parser/```` directory (or the Modified LL(1) Grammar document inside the ````docs/```` directory) to see the grammar rules.
 <a name="structure"></a>
 ## 2. File organization
-The structure of the project as visualised by ```tree``` is given below:
+The structure of the project as visualized by ```tree``` is given below:
 ```
 .
 ├── LICENSE
