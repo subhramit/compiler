@@ -23,7 +23,7 @@ The compiler comprises of a fully functional preprocessor, lexical analyzer and 
 <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to ````tokens.txt```` inside the ````src/lexer/```` directory (or the Language specifications document inside the ````docs/```` directory) to see the list of valid tokens. <br>
 <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to ````grammar.txt```` inside the ````src/parser/```` directory (or the Modified LL(1) Grammar document inside the ````docs/```` directory) to see the grammar rules.
 <a name="structure"></a>
-## 2. File organization:
+## 2. File organization
 The structure of the project as visualised by ```tree``` is given below:
 ```
 .
