@@ -1,5 +1,5 @@
 # A toy compiler
-Compiler design and implementation project in C for a high-level language (with specifications provided), for the course "CS F363" (Compiler Construction), Spring '24, BITS Pilani.
+Compiler design and implementation project in C for a custom high-level language (with specifications provided), for the course "CS F363" (Compiler Construction), Spring '24, BITS Pilani.
 ## Index
 1. [Modules](#modules)
 2. [Architecture](#architecture)
