@@ -333,7 +333,8 @@ The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.0
  **4:** To print total time taken (in CPU clock cycles and ms) for lexical and syntax analysis on console
 
 <a name="credits"></a>
-## 7. Credits 
+## 7. Credits
+In alphabetical order,
 - [Aditya Thakur](https://github.com/cry0genic)
 - [Amal Sayeed](https://github.com/amal-sayeed)
 - [Ohiduz Zaman](https://github.com/Ohiduz)
