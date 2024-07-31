@@ -20,8 +20,8 @@ Compiler design and implementation project in C for a custom high-level language
 The compiler comprises of a fully functional preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery mechanism. <br>
 
 <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean file. <br>
-<ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to ````tokens.txt```` inside the ````src/lexer/```` directory (or the Language specifications document inside the ````docs/```` directory) to see the list of valid tokens. <br>
-<ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to ````grammar.txt```` inside the ````src/parser/```` directory (or the Modified LL(1) Grammar document inside the ````docs/```` directory) to see the grammar rules.
+<ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to `tokens.txt` inside the `src/lexer/` directory (or the Language specifications document inside the `docs/` directory) to see the list of valid tokens. <br>
+<ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to `grammar.txt` inside the `src/parser/` directory (or the Modified LL(1) Grammar document inside the `docs/` directory) to see the grammar rules.
 <a name="architecture"></a>
 ## 2. Architecture 
 This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
@@ -79,8 +79,8 @@ i.e. a function name can have one or more number of English alphabet following t
 ***(iii) Data Types*** <br> 
 The language supports the following types: <br>
 
-<ins>**Integer type**</ins>: The keyword used for representing integer data type is int and will be supported by the underlying architecture. A statically available number of the pattern ````[0-9][0-9]*```` is of integer type. <br> <br>
-<ins>**Real type**</ins>: The keyword used for representing integer data type is real and will be supported by the underlying architecture. A statically available real number has the pattern ````[0-9][0-9]*[.][0-9][0-9]```` and is of type real. The language also supports exponent and mantissa form of real number representation. The regular expression for the same is ````[0-9][0-9]*[.][0-9][0-9][E][+|-|∈][0-9][0-9]```` restricting to exactly two digits in the exponent part. <br> <br>
+<ins>**Integer type**</ins>: The keyword used for representing integer data type is int and will be supported by the underlying architecture. A statically available number of the pattern `[0-9][0-9]*` is of integer type. <br> <br>
+<ins>**Real type**</ins>: The keyword used for representing integer data type is real and will be supported by the underlying architecture. A statically available real number has the pattern `[0-9][0-9]*[.][0-9][0-9]` and is of type real. The language also supports exponent and mantissa form of real number representation. The regular expression for the same is `[0-9][0-9]*[.][0-9][0-9][E][+|-|∈][0-9][0-9]` restricting to exactly two digits in the exponent part. <br> <br>
 <ins>**Record type**</ins>: This is the constructed data type of the form of the Cartesian product of types of its constituent fields. For example, the following record is defined to be of type 'finance' and its actual type is ***<int, real, int>***, preserving the types and sequence of fields appearing in the record type definition: <br>
 ```
 record #finance
@@ -227,7 +227,7 @@ If the type of the variable is a record then writing is challenging and writes t
 ```
 type int : b2cdb234;
 ```
-Each variable is declared in a separate declaration (unlike C where a list of variables of similar type can be declared in one statement e.g. ````int a,b,c;````) <br>
+Each variable is declared in a separate declaration (unlike C where a list of variables of similar type can be declared in one statement e.g. `int a,b,c;`) <br>
 
 <ins>**Return Statement**</ins>: A return statement is the last statement in any function definition. A function not returning any value simply causes the flow of execution control to return to the calling function using the following statement:
 ```
@@ -265,9 +265,9 @@ call _function1 with parameters [b4d333, c3ddd34];
 ***(vi) Expressions*** <br>
 The language supports two kinds of expressions: <br>
 
-<ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to ````*```` and ````/````. <br>
+<ins>**Arithmetic**</ins>: Supports all expressions in usual infix notation with the precedence of parentheses pair over multiplication and division. While addition and subtraction operators are given less precedence with respect to `*` and `/`. <br>
 
-<ins>**Boolean**</ins>: Conditional expressions control the flow of execution through the while loop. The logical AND and OR operators are ````&&&```` and ````@@@```` respectively. An example conditional expression is ````(d3<=c5cd) &&& (b4>d2cd234)````. We do not use arithmetic expressions as arguments of boolean expressions, nor do we have record variables used in the boolean expressions.
+<ins>**Boolean**</ins>: Conditional expressions control the flow of execution through the while loop. The logical AND and OR operators are `&&&` and `@@@` respectively. An example conditional expression is `(d3<=c5cd) &&& (b4>d2cd234)`. We do not use arithmetic expressions as arguments of boolean expressions, nor do we have record variables used in the boolean expressions.
 <a name="structure"></a>
 ## 4. File organization
 The structure of the project as visualized by ```tree``` is given below:
@@ -323,8 +323,8 @@ The structure of the project as visualized by ```tree``` is given below:
 ## 5. Dependencies <a name="dependencies"></a>
 The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.04.3**. The project uses **GNU make** to build on **Linux**.
 ## 6. To run the compiler <a name="running"></a>
-1. Run ````make```` to build the executable
-2. Run ````./stage1exe <Input File> <Output File>````
+1. Run `make` to build the executable
+2. Run `./stage1exe <Input File> <Output File>`
 3. Select your required option among the following: <br>
  **0:** To exit <br>
  **1:** To remove comments from the source file and print on the console <br>
