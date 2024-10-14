@@ -31,7 +31,7 @@ This uses a standard Pipe and Filter architecture as usually used for compilers.
 ## 3. Language specifications
 The language supports primitive data types that are used as integers and real numbers. The language also supports record type and union type. The operations on variables of record type are addition and subtraction. These operations can be applied for two operands of record type. The scalar multiplication and division of record variables are also supported. Record type definitions are defined in any function but are available for any other function as well. The language supports modular code in terms of function, which uses call by value mechanism of parameter passing. The function may return many values of different types or may not return any value. The scope ofthe variables is local i.e. the variables are not visible outside the function where they are declared. The variables with prefix 'global' are visible outside the function and can be used within any function. <br> <br>
 Sample code:
-```pascal
+```kotlin
 % Program1.txt
 _statistics input parameter list [int c2dbc,int d7,int b2d567] output parameter list [real d2, real c3bcd];
   type real: c3 : global; c3 <---3;
@@ -42,7 +42,7 @@ end
 ```
 A semicolon is used as the separator between two statements and a % sign is used to start the comment. The white spaces and comments are non-executable and should be cleaned as a preprocessing step of the lexical analyzer. <br> <br>
 The function call is through the statements of following type:
-```pascal
+```kotlin
 type real : c4;
 type real : d3cd6 ;
 [c4, d3cd6] <--- call _statistics with parameters [2,3,5];
@@ -95,13 +95,13 @@ A variable identifier of type finance is declared as follows:
 type record #finance : d5bb45;
 ```
 The names of fields start with any alphabet and can have names as words of English alphabet (only small case). The fields are accessed using a dot in an expression as follows:
-```pascal
+```kotlin
 d5bb45.value <--- 30;
 d5bb45.rate <--- 30.5;
 ```
 and so on. The types of these constructed names using variable name and record fields are same as field types defined in the record type definition correspondingly. Nested record definitions are supported in this language. However, the definition of the record type in nested positions cannot be used as standalone definitions. <br> <br>
 A test case handling addition operation on two records and use of record variables in parameters list is depicted below. The record type #book declared in _main function is also visible in function _recordDemo1. The language supports name equivalence and not structural equivalence, which means that similar structured record definitions are treated different. For example, #new and #book are the two record types with similar structure (sequence and type of variables) but different names.
-```pascal
+```kotlin
 _recordDemo1 input parameter list [record #book d5cc34, record #book d2cd]
 output parameter list[record #book d3];
   record #new
@@ -135,7 +135,7 @@ end
 ```
 An assignment statement with variables from two different record types is not allowed in the language. Also, once a record type is defined, its re-occurrence anywhere in the program is not allowed and is treated as an error. <br> <br>
 A variable of record type can only be multiplied or divided by a scalar (integer or real) i.e. two record type variables cannot be multiplied together nor can be divided by the other. Two operands (variables) of record type can be added, subtracted from one provided the types of the operands match and both the operands are of record type. An addition/subtraction means addition/subtraction of corresponding field values, for example:
-```pascal
+```kotlin
 type record #finance : d5;
 type record #finance : c4;
 type record #finance : c3;
@@ -188,7 +188,7 @@ Since record and union type definitions are visible anywhere in the program, the
 <a name="functions"></a>
 ***(iv) Functions*** <br> 
 There is a main function preceded by the keyword _main. The function definitions precede the function calls. Function names start with an underscore. For example:
-```pascal
+```kotlin
 _function1
 input parameter list [int c2, int d2cd]
 output parameter list [int b5d, int d3];
@@ -212,11 +212,11 @@ The language does not support recursive function calls. Also, function overloadi
 The language supports following type of statements: <br>
 
 <ins>**Assignment Statement**</ins>: An expression to the right hand side assigned to an identifier is the form of these statements. For example:
-```pascal
+```kotlin
 c2ddd2 <--- (4 + 3)*(d3bd - 73);
 ```
 <ins>**Input output statements**</ins>: These are without any format and can take only one variable at a time to read or write. Examples are:
-```pascal
+```kotlin
 read(b4d333); read(c3ddd34);
 [c2d3, c2d4]<--- call _function1 with parameters [b4d333, c3ddd34];
 write(c2d3); write(c2d4);
@@ -230,11 +230,11 @@ type int : b2cdb234;
 Each variable is declared in a separate declaration (unlike C where a list of variables of similar type can be declared in one statement e.g. `int a,b,c;`) <br>
 
 <ins>**Return Statement**</ins>: A return statement is the last statement in any function definition. A function not returning any value simply causes the flow of execution control to return to the calling function using the following statement:
-```pascal
+```kotlin
 return;
 ```
 A function that returns the values; single or multiple, returns a list of in the following format:
-```pascal
+```kotlin
 return [b5d, d3];
 ```
 <ins>**Iterative Statement**</ins>: There is a single type of iterative statement. A while loop is designed for performing iterations. The example code is:
@@ -254,11 +254,11 @@ else
 endif
 ```
 <ins>**Function Call Statement**</ins>: Function Call Statements are used to invoke the function with the given actual input parameters. The returned values are copied in a list of variables as given below:
-```pascal
+```kotlin
 [c2d3, c2d4]<---call _function1 with parameters [b4d333, c3ddd34];
 ```
 A function that does not return any value is invoked as below:
-```pascal
+```kotlin
 call _function1 with parameters [b4d333, c3ddd34];
 ```
 <a name="expressions"></a>
