@@ -85,7 +85,7 @@ The language supports the following types: <br>
 ```pascal
 record #finance
   type int: value;
-  type real:rate;
+  type real: rate;
   type int: interest;
 endrecord
 ```
