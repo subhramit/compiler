@@ -34,7 +34,7 @@ Sample code:
 ```kotlin
 % Program1.txt
 _statistics input parameter list [int c2dbc,int d7,int b2d567] output parameter list [real d2, real c3bcd];
-  type real: c3 : global; c3 <---3;
+  type real : c3 : global; c3 <--- 3;
   d2 <--- (c2dbc + d7 + b2d567)/c3;
   c3bcd <--- d2*3.23;
   return [d2,c3bcd];
@@ -84,9 +84,9 @@ The language supports the following types: <br>
 <ins>**Record type**</ins>: This is the constructed data type of the form of the Cartesian product of types of its constituent fields. For example, the following record is defined to be of type 'finance' and its actual type is ***<int, real, int>***, preserving the types and sequence of fields appearing in the record type definition: <br>
 ```pascal
 record #finance
-  type int: value;
-  type real: rate;
-  type int: interest;
+  type int : value;
+  type real : rate;
+  type int : interest;
 endrecord
 ```
 A record type must have at least two fields in it, while there can be any more fields as well. <br>
@@ -106,16 +106,16 @@ _recordDemo1 input parameter list [record #book d5cc34, record #book d2cd]
 output parameter list[record #book d3];
   record #new
     type int : value;
-    type real: cost;
+    type real : cost;
   endrecord;
-  d3<--- d5cc34 + d2cd;
+  d3 <--- d5cc34 + d2cd;
   return [d3];
 end
 
 _main
   record #book
     type int : edition;
-    type real: price;
+    type real : price;
   endrecord;
   type record #book b2;
   type record #book c2;
@@ -126,10 +126,10 @@ _main
   c2.edition <--- 2;
   c2.price <--- 98.80;
   % following is a valid statement as the types of d2, b2 and c2 are same
-  d2<--- b2+ c2;
-  % Note that d2<--- b2 + b7bc34; is not type correct as the language follows name equivalence.
+  d2 <--- b2 + c2;
+  % Note that d2 <--- b2 + b7bc34; is not type correct as the language follows name equivalence.
   % Note that the types of b2 and b7bc34 are not same.
-  [d2]<--- call _recordDemo with parameters[b2,c2];
+  [d2] <--- call _recordDemo with parameters [b2,c2];
   write(d2);
 end
 ```
@@ -144,17 +144,17 @@ c3 <--- c4 + d5;
 <ins>**Union type**</ins>: A union type is similar to record structure in its lexical formations other than the union keyword used. For example:
 ```pascal
 union #student
-  type int: rollno;
-  type real:marks;
-  type int: age;
+  type int : rollno;
+  type real : marks;
+  type int : age;
 endunion
 ```
 As usual, the union data type refers to maximum of all fields memory allocation to the variables. It is understood that the static type checking is not possible for union types and it leads to spurious data access. In order to prevent the users from this situation, "tagged union" is supported in this language where the tag is computed at run time. The tag is part of the variant record following the same syntax as that of the record defining the (a) variant field as the union data type and (b) the fixed field of the tag. The tag can be of any primitive type integer or real.
 ```pascal
 definetype union #student as #newname;
 record #taggedunionexample
-  type int: tagvalue;
-  type newname: field;
+  type int : tagvalue;
+  type newname : field;
 endrecord
 ```
 The tagged union variable is defined in the similar way as other variables are. For example:
@@ -175,7 +175,7 @@ b7bc34. field.age = 21;
 
 <ins>**global**</ins>: This defines the scope of the variable as global and the variable specified as global is visible anywhere in the code. The syntax for specifying a variable of any type to be global is as follows:
 ```pascal
-type int: c5d2: global;
+type int : c5d2 : global;
 ```
 
 <ins>**Type definition (Aliases)**</ins>: The language supports type redefinition using the keyword definetype for record and union data type. For example:
@@ -192,16 +192,16 @@ There is a main function preceded by the keyword _main. The function definitions
 _function1
 input parameter list [int c2, int d2cd]
 output parameter list [int b5d, int d3];
-  b5d<---c2+234-d2cd;
-  d3<---b5d+20;
+  b5d <--- c2 + 234 - d2cd;
+  d3 <--- b5d + 20;
   return [b5d, d3];
 end
 
 _main
-  type int: b4d333;
-  type int : c3ddd34; type int:c2d3; type int c2d4; read(b4d333); 
+  type int : b4d333;
+  type int : c3ddd34; type int : c2d3; type int : c2d4; read(b4d333); 
   read(c3ddd34);
-  [c2d3, c2d4]<--- call _function1 with parameters [b4d333, c3ddd34]; 
+  [c2d3, c2d4] <--- call _function1 with parameters [b4d333, c3ddd34]; 
   write(c2d3); write(c2d4);
 end
 ```
@@ -218,7 +218,7 @@ c2ddd2 <--- (4 + 3)*(d3bd - 73);
 <ins>**Input output statements**</ins>: These are without any format and can take only one variable at a time to read or write. Examples are:
 ```kotlin
 read(b4d333); read(c3ddd34);
-[c2d3, c2d4]<--- call _function1 with parameters [b4d333, c3ddd34];
+[c2d3, c2d4] <--- call _function1 with parameters [b4d333, c3ddd34];
 write(c2d3); write(c2d4);
 ```
 If the type of the variable is a record then writing is challenging and writes the values of all fields but if the variable is of variant record type then the write statement only prints the relevant field’s value validated by its tag value at run time.
@@ -240,7 +240,7 @@ return [b5d, d3];
 <ins>**Iterative Statement**</ins>: There is a single type of iterative statement. A while loop is designed for performing iterations. The example code is:
 ```pascal
 while(c2d3<=d2c3)
-  c2d3 = c2d3+1;
+  c2d3 = c2d3 + 1;
   write(c2d3);
 endwhile
 ```
@@ -255,7 +255,7 @@ endif
 ```
 <ins>**Function Call Statement**</ins>: Function Call Statements are used to invoke the function with the given actual input parameters. The returned values are copied in a list of variables as given below:
 ```kotlin
-[c2d3, c2d4]<---call _function1 with parameters [b4d333, c3ddd34];
+[c2d3, c2d4] <--- call _function1 with parameters [b4d333, c3ddd34];
 ```
 A function that does not return any value is invoked as below:
 ```kotlin
