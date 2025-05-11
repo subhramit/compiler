@@ -343,4 +343,4 @@ In alphabetical order,
 - [Subhramit Basu](https://github.com/subhramit)
 <a name="license"></a>
 ## 8. License 
-This piece of software is licensed under an [MIT License](https://opensource.org/licenses/MIT).  For more details, refer to the LICENSE file.
+This piece of software is licensed under an [MIT License](https://opensource.org/licenses/MIT).  For more details, refer to the [LICENSE](https://github.com/subhramit/compiler/blob/main/LICENSE) file.
