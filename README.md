@@ -24,7 +24,7 @@ The compiler comprises of a fully functional preprocessor, lexical analyzer and 
 - <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to [`src/parser/grammar.txt`](https://github.com/subhramit/compiler/blob/main/src/parser/grammar.txt) (or the Modified LL(1) Grammar document inside the `docs/` directory) to see the grammar rules.
 <a name="architecture"></a>
 ## 2. Architecture 
-This uses a standard Pipe and Filter architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
+This uses a standard [Pipe and Filter](https://www.geeksforgeeks.org/system-design/pipe-and-filter-architecture-system-design/) architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
 
 ![Screenshot](docs/architecture.png)
 <a name="language"></a>
