@@ -11,12 +11,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <errno.h>
 #include "lexer.h"
 #include "lexerDef.h"
 
 char* tokenToString[TK_NOT_FOUND];
 bool specialThing=false;
 bool tkSInit=false;
+
+/* Token entries outlive individual token lists and parse trees. */
+static SymbolTable* lexerSymbols;
+static Trie* lexerKeywords;
 
 
 TrieNode* createTrieNode() {
@@ -127,7 +132,14 @@ SymbolTableEntry* createToken(char* lxm, Token tkType, double valNum){
         printf("Could not allocate memory for creating a new token\n");
         return NULL;
     }
-    strcpy(newTok->lexeme, lxm); 
+    snprintf(newTok->lexeme, sizeof(newTok->lexeme), "%s", lxm);
+    if(tkType == ID && strlen(lxm) > 20) tkType = ID_LENGTH_EXC;
+    if(tkType == FUNID && strlen(lxm) > 30) tkType = FUN_LENGTH_EXC;
+    if(tkType == NUM || tkType == RNUM){
+        errno = 0;
+        valNum = strtod(lxm, NULL);
+        if(errno == ERANGE || !isfinite(valNum)) tkType = LEXICAL_ERROR;
+    }
     newTok->tokenType = tkType;
     newTok->valueIfNumber = valNum;
     return newTok;
@@ -184,7 +196,15 @@ void insertLLNode(linkedList* myList, tokenInfo* myNode){
     ++(myList->count);
 }
 
-char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
+static void fillBuffer(FILE* fp, char* buffer){
+    size_t bytesRead = fread(buffer, 1, BUFFER_SIZE, fp);
+    /* NUL is reserved for physical EOF, never a source-language character. */
+    for(size_t i=0; i<bytesRead; ++i)
+        if(buffer[i] == '\0') buffer[i] = '\1';
+    if(bytesRead < BUFFER_SIZE) buffer[bytesRead] = '\0';
+}
+
+int nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
     /*
         NOTE: We are NOT fetching character by character from the file.
         This function simply advances the forward pointer within the twin buffer and returns the character at the 
@@ -196,8 +216,7 @@ char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
         if(feof(fp))
             twinBuff[BUFFER_SIZE] = '\0';
         else {
-            int bytesRead = fread(twinBuff+BUFFER_SIZE, sizeof(char), BUFFER_SIZE, fp);
-            if(bytesRead<BUFFER_SIZE*sizeof(char)) twinBuff[BUFFER_SIZE+bytesRead]='\0';
+            fillBuffer(fp, twinBuff+BUFFER_SIZE);
         }
     }
     
@@ -206,30 +225,25 @@ char nextChar(FILE* fp, char *twinBuff, int *fwdPtr){
         if(feof(fp))
             twinBuff[0] = '\0';
         else{
-            int bytesRead = fread(twinBuff, sizeof(char), BUFFER_SIZE, fp);
-            if(bytesRead<BUFFER_SIZE*sizeof(char)) twinBuff[bytesRead]='\0';  
+            fillBuffer(fp, twinBuff);
         }
     }
-    if(specialThing) specialThing=false;
+    /* A double retract can replay one character before crossing the already
+     * loaded half-buffer boundary. Clear the flag only at that boundary. */
+    if(specialThing && (*fwdPtr==BUFFER_SIZE-1 || *fwdPtr==2*BUFFER_SIZE-1))
+        specialThing=false;
     
     *fwdPtr = (*fwdPtr + 1) % (2*BUFFER_SIZE);
-    return twinBuff[*fwdPtr];
+    return (unsigned char)twinBuff[*fwdPtr];
 }
 
 void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff){
     // Copies the string corresponding to the characters between begin and forward pointer into the variable lexeme
-    if(*fwdPtr >= beginPtr){
-        int i;
-        for(i=0; i<=(*fwdPtr-beginPtr); i++) 
-            lexeme[i] = twinBuff[beginPtr+i];
-        lexeme[i] = '\0';
-    }
-    else{
-        int i;
-        for(i=0; i<=(*fwdPtr+2*BUFFER_SIZE-beginPtr); i++) 
-            lexeme[i] = twinBuff[(beginPtr+i)%(2*BUFFER_SIZE)];
-        lexeme[i] = '\0';
-    }
+    int length = (*fwdPtr - beginPtr + 2*BUFFER_SIZE) % (2*BUFFER_SIZE) + 1;
+    if(length >= BUFFER_SIZE) length = BUFFER_SIZE-1;
+    for(int i=0; i<length; ++i)
+        lexeme[i] = twinBuff[(beginPtr+i)%(2*BUFFER_SIZE)];
+    lexeme[length] = '\0';
 }
 
 int getLength(int begPtr, int fwdPtr){
@@ -243,13 +257,24 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
         This function is the DFA for pattern matching of the lexer. The cases in the switch correspond to states. 
         Based on characters read, takes appropriate actions and changes states following the transition rules of the DFA
     */
-    tokenInfo* tokenNode;
     int beginPtr = (*fwdPtr + 1) % (2*BUFFER_SIZE);
     int state=0;
-    char ch;
+    int ch;
     char lexeme[BUFFER_SIZE];
 
     for(; true; ){
+        /* Reject unbounded field/record names and numbers before a lexeme can
+         * overrun its storage or wrap around and overwrite its beginning. */
+        if(state != 0 && state != 65 && getLength(beginPtr, *fwdPtr) >= BUFFER_SIZE){
+            tokenizeLexeme(beginPtr, fwdPtr, lexeme, twinBuff);
+            do { ch = nextChar(fp, twinBuff, fwdPtr); }
+            while(isalnum((unsigned char)ch) || ch == '.');
+            --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
+            if(*fwdPtr==BUFFER_SIZE-1 || *fwdPtr==2*BUFFER_SIZE-1) specialThing=true;
+            SymbolTableEntry* error = createToken(lexeme, LEXICAL_ERROR, 0);
+            insertToken(symbolTable, error);
+            return createNewNode(error, *lineNumber);
+        }
         switch(state){
             case 0: 
                 ch = nextChar(fp, twinBuff, fwdPtr);
@@ -283,7 +308,11 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 else if(ch=='.') state=59;
                 else if(ch=='\0'){
                     lexeme[0] = ch;
-                    SymbolTableEntry* endSte = createToken(lexeme, DOLLAR, 0);
+                    SymbolTableEntry* endSte = searchToken(symbolTable, lexeme);
+                    if(!endSte){
+                        endSte = createToken(lexeme, DOLLAR, 0);
+                        insertToken(symbolTable, endSte);
+                    }
                     tokenInfo* endTok = createNewNode(endSte, *lineNumber);
                     return endTok;
                 }
@@ -467,21 +496,7 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     tokenInfo* rnumTok = createNewNode(rnumSte, *lineNumber);
                     return rnumTok;
                 }
-                double val=0; int i;
-                for(i=0; lexeme[i]!='.'; i++){
-                    val *= 10;
-                    val += lexeme[i] - '0';
-                }
-                val += (lexeme[i+1]-'0')/10.0 + (lexeme[i+2]-'0')/100.0;
-                int exp=0;
-                i+=4;
-                if(isdigit(lexeme[i]))
-                    exp = lexeme[i]*10 + lexeme[i+1];
-                else 
-                    exp = lexeme[i+1]*10 + lexeme[i+2];
-                
-                if(lexeme[i]=='-') exp = -exp;
-                val *= pow(10, exp);
+                double val = strtod(lexeme, NULL);
 
                 rnumSte = createToken(lexeme, RNUM, val);
                 insertToken(symbolTable, rnumSte);
@@ -526,12 +541,9 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     }
                     tokenInfo* fnExTok = createNewNode(fnLSte, *lineNumber);
                     ch = nextChar(fp, twinBuff, fwdPtr);
-                    for(; isalpha(ch); ch=nextChar(fp, twinBuff, fwdPtr));
+                    for(; isalnum(ch); ch=nextChar(fp, twinBuff, fwdPtr));
                     --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
                     if(*fwdPtr==BUFFER_SIZE-1 || *fwdPtr==2*BUFFER_SIZE-1) specialThing=true;
-                    if(isdigit(ch)){
-                        state=81; break;
-                    }
                     return fnExTok;
                 }
 
@@ -984,9 +996,13 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                 tokenInfo* cmntTok = createNewNode(cmntSte, *lineNumber);
 
 
-                for(; (ch = nextChar(fp, twinBuff, fwdPtr))!='\n';);
-
-                ++(*lineNumber);
+                do { ch = nextChar(fp, twinBuff, fwdPtr); }
+                while(ch != '\n' && ch != '\0');
+                if(ch == '\n') ++(*lineNumber);
+                else{
+                    --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
+                    if(*fwdPtr==BUFFER_SIZE-1 || *fwdPtr==2*BUFFER_SIZE-1) specialThing=true;
+                }
                 return cmntTok;
                 break;
 
@@ -1326,12 +1342,9 @@ tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, 
                     }
                     tokenInfo* idExTok = createNewNode(idLSte, *lineNumber);
                     ch = nextChar(fp, twinBuff, fwdPtr);
-                    for(; ch>='b' && ch<='d'; ch=nextChar(fp, twinBuff, fwdPtr));
+                    for(; (ch>='b' && ch<='d') || (ch>='2' && ch<='7'); ch=nextChar(fp, twinBuff, fwdPtr));
                     --(*fwdPtr); if(*fwdPtr<0) *fwdPtr += 2*BUFFER_SIZE;
                     if(*fwdPtr==BUFFER_SIZE-1 || *fwdPtr==2*BUFFER_SIZE-1) specialThing=true;
-                    if(ch>='2' && ch<='7'){
-                        state=4; break;
-                    }
                     return idExTok;
                 }
 
@@ -1423,9 +1436,7 @@ void initializeTokenToString(){
     // Initializes the array tokenToString that'll be used to retrieve the corresponding string for a given token's enum.
     if(tkSInit) return;
     tkSInit=true;
-    for(int i=0; i<TK_NOT_FOUND; i++){
-        tokenToString[i] = malloc(TOKEN_NAME_LENGTH);
-    }
+
     tokenToString[ASSIGNOP] = "TK_ASSIGNOP";
     tokenToString[COMMENT] = "TK_COMMENT"; 
     tokenToString[FIELDID] = "TK_FIELDID"; 
@@ -1493,15 +1504,23 @@ void initializeTokenToString(){
 linkedList* getAllTokens(FILE* fp){
     // This function calls the necessary initialization functions and retrieves and returns a list of tokens 
     // tokenized by the lexer with each call to getNextToken()
-    char twinBuffer[BUFFER_SIZE*2];
+    if(!fp){
+        fprintf(stderr, "Error: null input file for lexer\n");
+        return NULL;
+    }
+    char twinBuffer[BUFFER_SIZE*2] = {0};
+    specialThing = false;
     int fwdPtr = 2*BUFFER_SIZE-1;
     int lineNumber=1;
 
-    Trie* keywordsLookup=createTrie();
-    initializeKeywordsLookup(keywordsLookup);
+    if(!lexerKeywords){
+        lexerKeywords = createTrie();
+        initializeKeywordsLookup(lexerKeywords);
+    }
+    Trie* keywordsLookup = lexerKeywords;
     initializeTokenToString();
-    
-    SymbolTable* symbolTable = createSymbolTable();
+    if(!lexerSymbols) lexerSymbols = createSymbolTable();
+    SymbolTable* symbolTable = lexerSymbols;
 
     linkedList* tokensList = createNewList();
 
@@ -1554,14 +1573,15 @@ void removeComments(char* testcaseFile, char* cleanFile) {
 
 void printTokensOnConsole(linkedList* theListOfTokens){
     // Prints the list on tokens retrieved from lexer on the console
+    if(!theListOfTokens) return;
     tokenInfo* tmp = theListOfTokens->head;
     for(int i=0; i<theListOfTokens->count && tmp; i++){
-        char* tms;
-        if(tmp->STE->tokenType < LEXICAL_ERROR) tms = strdup(tokenToString[tmp->STE->tokenType]);
-        else if(tmp->STE->tokenType == LEXICAL_ERROR) tms = strdup("Unrecognized pattern");
-        else if(tmp->STE->tokenType == ID_LENGTH_EXC) tms = strdup("Identifier length exceeded 20");
-        else if(tmp->STE->tokenType == FUN_LENGTH_EXC) tms = strdup("Function name length exceeded 30");
-        else tms = strdup("");
+        const char* tms;
+        if(tmp->STE->tokenType < LEXICAL_ERROR) tms = tokenToString[tmp->STE->tokenType];
+        else if(tmp->STE->tokenType == LEXICAL_ERROR) tms = "Unrecognized pattern";
+        else if(tmp->STE->tokenType == ID_LENGTH_EXC) tms = "Identifier length exceeded 20";
+        else if(tmp->STE->tokenType == FUN_LENGTH_EXC) tms = "Function name length exceeded 30";
+        else tms = "";
         printf("Line No: %*d \t Lexeme: %*s \t Token: %*s \n", 5, tmp->lineNumber, 35, tmp->STE->lexeme, 35, tms);
         tmp = tmp->next;
     }
@@ -1572,19 +1592,16 @@ linkedList* LexInput(FILE* fp, char* outp){
     // This function will be called by the driver
 
     if(!fp){
-        printf("Error opening input file for lexer\n");
-        exit(-1);
+        fprintf(stderr, "Error opening input file for lexer\n");
+        return NULL;
     }
     
 
     linkedList* theList = getAllTokens(fp);
     if(!theList){
-        printf("Could not retrieve list of tokens\n");
-        exit(-1);
+        fprintf(stderr, "Could not retrieve list of tokens\n");
+        return NULL;
     }
 
-    tokenInfo* tmp = theList->head;
-    
-    
     return theList;
 }

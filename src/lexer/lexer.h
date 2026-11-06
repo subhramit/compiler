@@ -41,7 +41,7 @@ linkedList* getAllTokens(FILE* fp);
 void initializeKeywordsLookup(Trie* keywordsLookup);
 tokenInfo* getNextToken(FILE* fp, char *twinBuff, int *fwdPtr, int *lineNumber, Trie* keywordsLookup, SymbolTable* symbolTable);
 void tokenizeLexeme(int beginPtr, int* fwdPtr, char* lexeme, char* twinBuff);
-char nextChar(FILE* fp, char *twinBuff, int *fwdPtr);
+int nextChar(FILE* fp, char *twinBuff, int *fwdPtr);
 void initializeTokenToString();
 void printTokensOnConsole(linkedList* theListOfTokens);
 

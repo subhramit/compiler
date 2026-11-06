@@ -11,6 +11,8 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include "parserDef.h"
+
 typedef struct stackNode {
     pTreeNode* data;
     struct stackNode* next;
