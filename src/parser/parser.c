@@ -10,7 +10,7 @@
 
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
+
 #include <stdlib.h>
 #include "../lexer/lexer.h"
 #include "../lexer/lexerDef.h"
@@ -129,7 +129,9 @@ pTreeNode* createPTreeNode(){
     }
     newTreeNode->children = (pTreeNode**) malloc(INITIAL_CHILDREN_CAPACITY*sizeof(pTreeNode*));
     if(!(newTreeNode->children)){
-        printf("Couldnt allocate memory for parse tree node's children\n"); return newTreeNode;
+        printf("Couldnt allocate memory for parse tree node's children\n");
+        free(newTreeNode);
+        return NULL;
     }
     newTreeNode->capacity = INITIAL_CHILDREN_CAPACITY;
     newTreeNode->size = 0;
@@ -149,6 +151,7 @@ pTree* createPTree(){
         printf("Could not allocate memory for creating parse tree\n"); return NULL;
     }
     newTree->root = createPTreeNode();
+    if(!newTree->root){ free(newTree); return NULL; }
     return newTree;
 }
 
@@ -178,9 +181,7 @@ void initializeNonTerminalToString(){
         given non terminal's enum
     */
     if(ntInit) return; ntInit=true;
-    for(int i=0; i<NT_NOT_FOUND; i++){
-        nonTerminalToString[i]=malloc(NON_TERM_LENGTH);
-    }
+
     nonTerminalToString[program] = "<program>";
     nonTerminalToString[otherFunctions] = "<otherFunctions>";
     nonTerminalToString[mainFunction] = "<mainFunction>";
@@ -257,16 +258,41 @@ void readGrammar(){
     // Reads the grammar from the input file grammar.txt and stores in an array of structs
 
     if(grmRead) return;
-    grmRead = true;
+    /* A failed grammar read must not leave rules to append on a retry. */
+    for(int i=0; i<numOfRules; ++i){
+        symbolListNode* node = Grammar[i]->rhs->head;
+        while(node){
+            symbolListNode* next = node->next;
+            free(node->symb);
+            free(node);
+            node = next;
+        }
+        free(Grammar[i]->rhs);
+        free(Grammar[i]->lhs);
+        free(Grammar[i]);
+        Grammar[i] = NULL;
+    }
+    numOfRules = 0;
     char buff[MAX_RULE_LENGTH];
     FILE* fp = fopen("src/parser/grammar.txt", "r");
+#ifdef COMPILER_ROOT
+    if(!fp) fp = fopen(COMPILER_ROOT "/src/parser/grammar.txt", "r");
+#endif
     if(!fp){
-        printf("Could not open grammar file\n"); return;
+        fprintf(stderr, "Could not open src/parser/grammar.txt (cwd or COMPILER_ROOT)\n");
+        return;
     }
     char* oneTok;
     for(; fgets(buff, MAX_RULE_LENGTH, fp); ){
         // printf("io\n"); fflush(stdout);
         oneTok = strtok(buff, " \t\n\r");
+        if(!oneTok) continue;
+        if(numOfRules >= MAX_GRAMMAR_RULES ||
+           getNonTerminalFromString(oneTok) == NT_NOT_FOUND){
+            fprintf(stderr, "Invalid grammar rule or too many grammar rules\n");
+            fclose(fp);
+            return;
+        }
 
         grammarRule* gRule = (grammarRule*) malloc(sizeof(grammarRule));
         if(!gRule){
@@ -294,17 +320,35 @@ void readGrammar(){
             }
             else{
                 char tmp[TOKEN_NAME_LENGTH] = "TK_";
+                if(strlen(oneTok) + 4 > sizeof(tmp)){
+                    fprintf(stderr, "Grammar token name is too long\n");
+                    fclose(fp);
+                    return;
+                }
                 strcat(tmp, oneTok);
                 gsym->isNonTerminal = false;
                 gsym->tOrNt.t = getTokenFromString(tmp);
+            }
+            if((gsym->isNonTerminal && gsym->tOrNt.nt == NT_NOT_FOUND) ||
+               (!gsym->isNonTerminal && gsym->tOrNt.t == TK_NOT_FOUND)){
+                fprintf(stderr, "Unknown grammar symbol: %s\n", oneTok);
+                free(gsym);
+                fclose(fp);
+                return;
             }
             symbolListNode* rhsNode = createSymbolListNode(gsym);
             insertSymbolListNode(gRule->rhs, rhsNode);
 
             oneTok = strtok(NULL, " \t\n\r");
         }
+        if(!gRule->rhs->head){
+            fprintf(stderr, "Grammar rule has an empty RHS\n");
+            fclose(fp);
+            return;
+        }
         Grammar[numOfRules++] = gRule;
     }
+    grmRead = !ferror(fp) && numOfRules > 0;
     fclose(fp);
 }
 
@@ -427,6 +471,7 @@ void freeUpFfRhs(ffRhs* rl){
         tmp=tmp->next;
         free(tn);
     }
+    free(rl);
 }
 
 void addRulesToParseTable(){
@@ -507,158 +552,124 @@ void printParseTable(){
     fclose(fParseOut);
 }
 
-pTree* parseTokens(linkedList* tokensFromLexer, bool* hasSyntaxError){
-    /*
-        This function uses the list of tokens from lexer, the parse table, and starting from the start symbol of the
-        grammar <program> at the parse tree root, parses the input and builds the corresponding parse tree.
-        Any violation of the grammar syntax is detected and reported. Returns the parse tree built during parsing.
-    */
-    if(!tokensFromLexer){
-        printf("Tokens list from lexer is null. Parsing failed\n"); return NULL;
-    }
-    // printf("Parsing...\n"); fflush(stdout);
-    tokenInfo* inputPtr = tokensFromLexer->head;
-    pTree* theParseTree = createPTree();
-    pTreeNode* currentNode = theParseTree->root;
-    grammarSymbol* gs = (grammarSymbol*) malloc(sizeof(grammarSymbol));
-    gs->isNonTerminal = true; gs->tOrNt.nt = program;
-    currentNode->symbol = gs;
-    Stack* theStack = createNewStack();
-    push(theStack, currentNode);
-    int cln=1;
+static void freeTreeNode(pTreeNode* node){
+    if(!node) return;
+    for(int i=0; i<node->size; ++i) freeTreeNode(node->children[i]);
+    free(node->children);
+    free(node->symbol);
+    free(node);
+}
 
-    if(shouldPrint)
-        printf("Parsing starting...\n"); fflush(stdout);
-    for(int pritr=0 ;!isEmpty(theStack) && inputPtr; currentNode=top(theStack), pritr++){
-        // printf("Parse iter %d...\n", pritr); fflush(stdout);
-        cln = inputPtr->lineNumber;
-        if(inputPtr->STE->tokenType==COMMENT || inputPtr->STE->tokenType>=LEXICAL_ERROR){
-            if(inputPtr->STE->tokenType==LEXICAL_ERROR){
-                if(shouldPrint)
-                    printf("Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-                // fprintf(foutP, "Line %*d \tError: Unrecognized pattern: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-            }
-            else if(inputPtr->STE->tokenType==ID_LENGTH_EXC){
-                if(shouldPrint)
-                    printf("Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-                // fprintf(foutP, "Line %*d \tError: Too long identifier: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-            }
-            else if(inputPtr->STE->tokenType==FUN_LENGTH_EXC){
-                if(shouldPrint)
-                    printf("Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-                // fprintf(foutP, "Line %*d \tError: Too long function name: \"%s\"\n", 5, inputPtr->lineNumber, inputPtr->STE->lexeme);
-            }
-            if(inputPtr->STE->tokenType!=COMMENT) *hasSyntaxError = true;
+void freeParseTree(pTree* tree){
+    if(!tree) return;
+    freeTreeNode(tree->root);
+    free(tree);
+}
+
+static void parseError(int* errors, bool report, int line, const char* message,
+                       const char* lexeme, const char* expected){
+    ++(*errors);
+    if(report) fprintf(stderr, "Line %d: %s \"%s\" (expected %s)\n",
+                       line, message, lexeme, expected);
+}
+
+static pTree* parseTokens(linkedList* tokensFromLexer, int* errors, bool report){
+    tokenInfo* inputPtr = tokensFromLexer ? tokensFromLexer->head : NULL;
+    pTree* tree = createPTree();
+    if(!tree){
+        parseError(errors, report, 0, "Cannot allocate parse tree", "", "memory");
+        return NULL;
+    }
+    tree->root->symbol = malloc(sizeof(grammarSymbol));
+    if(!tree->root->symbol){
+        freeParseTree(tree);
+        parseError(errors, report, 0, "Cannot allocate root symbol", "", "memory");
+        return NULL;
+    }
+    tree->root->symbol->isNonTerminal = true;
+    tree->root->symbol->tOrNt.nt = program;
+    Stack* stack = createNewStack();
+    push(stack, tree->root);
+    int line = 1;
+    bool sawEOF = false;
+    static SymbolTableEntry epsilon = {"EPSILON", EPS, 0};
+
+    while(inputPtr){
+        Token token = inputPtr->STE->tokenType;
+        line = inputPtr->lineNumber;
+        if(token == COMMENT){ inputPtr = inputPtr->next; continue; }
+        if(token >= LEXICAL_ERROR){
+            parseError(errors, report, line, "Lexical error", inputPtr->STE->lexeme,
+                       token == ID_LENGTH_EXC ? "identifier length <= 20" :
+                       token == FUN_LENGTH_EXC ? "function name length <= 30" : "valid token");
             inputPtr = inputPtr->next;
             continue;
         }
-        if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==EPS){
-            currentNode->lineNumber = inputPtr->lineNumber;
-            SymbolTableEntry* tste = (SymbolTableEntry*) malloc(sizeof(SymbolTableEntry));
-            strcpy(tste->lexeme, "EPSILON");
-            tste->valueIfNumber = 0;
-            currentNode->ste = tste; tste->tokenType = EPS;
-            pop(theStack);
+        if(sawEOF){
+            parseError(errors, report, line, "Token after EOF", inputPtr->STE->lexeme, "end of input");
+            inputPtr = inputPtr->next;
             continue;
         }
-        if(!(currentNode->symbol->isNonTerminal) && currentNode->symbol->tOrNt.t==inputPtr->STE->tokenType){
-            // printf("cs 1...\n"); fflush(stdout);
-            currentNode->lineNumber = inputPtr->lineNumber;
-            currentNode->ste = inputPtr->STE;
-            pop(theStack); inputPtr = inputPtr->next;
+        if(isEmpty(stack)){
+            if(token == DOLLAR) sawEOF = true;
+            else parseError(errors, report, line, "Trailing token", inputPtr->STE->lexeme, "EOF");
+            inputPtr = inputPtr->next;
+            continue;
         }
-        else if(!(currentNode->symbol->isNonTerminal)){
-            // printf("cs 2...\n"); fflush(stdout);
-            // Error; handle mismatch
-            *hasSyntaxError = true;
-            if(shouldPrint)
-                printf("Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
-                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
-            // fprintf(foutP, "Line %*d \tError: The token %s for lexeme \"%s\" does not match the expected token %s\n", 
-                // 5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, tokenToString[currentNode->symbol->tOrNt.t]);
-            
-            currentNode->lineNumber = inputPtr->lineNumber;
-            pop(theStack);
+        pTreeNode* current = top(stack);
+        grammarSymbol* symbol = current->symbol;
+        current->lineNumber = line;
+        if(!symbol->isNonTerminal && symbol->tOrNt.t == EPS){
+            current->ste = &epsilon;
+            pop(stack);
         }
-        else if(parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType]==NULL){
-            // printf("cs 3...\n"); fflush(stdout);
-            // Error; handle blank/error entry of parse table
-            *hasSyntaxError = true;
-            if(shouldPrint)
-                printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
-                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
-            // fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: %s\n", 
-            //     5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
-
-            if(existsInRhs(AutoFollow[currentNode->symbol->tOrNt.nt],  inputPtr->STE->tokenType)){
-                currentNode->lineNumber = inputPtr->lineNumber;
-                pop(theStack);
+        else if(!symbol->isNonTerminal){
+            if(symbol->tOrNt.t == token){
+                current->ste = inputPtr->STE;
+                inputPtr = inputPtr->next;
             }
-            else {
-                inputPtr=inputPtr->next;
-                if(!inputPtr) {pop(theStack); currentNode=top(theStack);}
-            }
+            else parseError(errors, report, line, "Unexpected token", inputPtr->STE->lexeme,
+                            tokenToString[symbol->tOrNt.t]);
+            pop(stack);
         }
         else{
-            // printf("cs 4...\n"); fflush(stdout);
-            grammarRule* tmpRule = parseTable[currentNode->symbol->tOrNt.nt][inputPtr->STE->tokenType];
-            // fprintf(foutP, "\nReducing using the rule: \n"); 
-            // printRule(tmpRule, foutP);
-            pop(theStack);
-            currentNode->lineNumber = inputPtr->lineNumber;
-            symbolListNode* trhItr = tmpRule->rhs->head;
-            pTreeNode* pn;
-            for(; trhItr; trhItr=trhItr->next){
-                pn = createPTreeNode();
-                pn->symbol = (grammarSymbol*) malloc(sizeof(grammarSymbol));
-                pn->symbol->isNonTerminal = trhItr->symb->isNonTerminal;
-                if(pn->symbol->isNonTerminal) pn->symbol->tOrNt.nt = trhItr->symb->tOrNt.nt;
-                else pn->symbol->tOrNt.t = trhItr->symb->tOrNt.t;
-                insertNodeAsChild(currentNode, pn);
+            grammarRule* rule = parseTable[symbol->tOrNt.nt][token];
+            if(!rule){
+                parseError(errors, report, line, "Invalid token", inputPtr->STE->lexeme,
+                           nonTerminalToString[symbol->tOrNt.nt]);
+                if(token == DOLLAR || existsInRhs(AutoFollow[symbol->tOrNt.nt], token)) pop(stack);
+                else inputPtr = inputPtr->next;
+                continue;
             }
-            for(int chi=currentNode->size-1; chi>=0; chi--){
-                push(theStack, currentNode->children[chi]);
+            pop(stack);
+            for(symbolListNode* rhs = rule->rhs->head; rhs; rhs = rhs->next){
+                pTreeNode* child = createPTreeNode();
+                if(!child) goto allocationFailure;
+                child->symbol = malloc(sizeof(grammarSymbol));
+                if(!child->symbol){ freeTreeNode(child); goto allocationFailure; }
+                *child->symbol = *rhs->symb;
+                insertNodeAsChild(current, child);
             }
+            for(int i=current->size-1; i>=0; --i) push(stack, current->children[i]);
         }
     }
-    if(!(*hasSyntaxError) && isEmpty(theStack) && (!inputPtr || inputPtr->STE->tokenType==DOLLAR)){
-        if(shouldPrint)
-            printf("\nParsing successful! No syntax errors! The input is syntactically correct!\n");
+    if(!sawEOF) parseError(errors, report, line, "Missing EOF marker", "", "EOF");
+    while(!isEmpty(stack)){
+        pTreeNode* current = top(stack);
+        parseError(errors, report, line, "Unexpected end of input", "",
+                   current->symbol->isNonTerminal ? nonTerminalToString[current->symbol->tOrNt.nt] :
+                   tokenToString[current->symbol->tOrNt.t]);
+        pop(stack);
     }
-    else{
-        *hasSyntaxError = true;
-        for(; !isEmpty(theStack); currentNode=top(theStack)) {
-            if(currentNode->symbol->isNonTerminal){
-                // printf("\nF\n"); fflush(stdout);
-                if(shouldPrint)
-                    printf("Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
-                    5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]); 
-                // fprintf(foutP, "Line %*d \tError: Invalid token TK_DOLLAR encountered with value \"\" Stack top is: %s\n", 
-                //     5, cln, nonTerminalToString[currentNode->symbol->tOrNt.nt]);
-            }
-            else{
-                // printf("\nG\n"); fflush(stdout);
-                if(shouldPrint)
-                    printf("Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
-                    5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
-                // fprintf(foutP, "Line %*d \tError: The token TK_DOLLAR for lexeme \"\" does not match the expected token %s\n", 
-                //     5, cln, tokenToString[currentNode->symbol->tOrNt.t]);
-            }
+    free(stack);
+    return tree;
 
-            pop(theStack);
-        }
-        for(; inputPtr && inputPtr->STE->tokenType!=DOLLAR; inputPtr=inputPtr->next){
-            // printf("\nwwgg\n"); fflush(stdout);
-            if(shouldPrint)
-                printf("Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
-                5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
-            // fprintf(foutP, "Line %*d \tError: Invalid token %s encountered with value \"%s\" Stack top is: TK_DOLLAR\n", 
-            //     5, inputPtr->lineNumber, tokenToString[inputPtr->STE->tokenType], inputPtr->STE->lexeme);
-        }
-        if(shouldPrint)
-            printf("\nThe input file has got syntactic errors!\n");
-    }
-    return theParseTree;
+allocationFailure:
+    parseError(errors, report, line, "Cannot allocate parse tree node", "", "memory");
+    while(!isEmpty(stack)) pop(stack);
+    free(stack);
+    freeParseTree(tree);
+    return NULL;
 }
 
 void computeFirstSets(){
@@ -757,6 +768,7 @@ void computeFollowSets(){
                     }
                 }
                 freeUpFfRhs(fOfNxtT);
+                free(tgl);
             }
         }
     }
@@ -800,7 +812,7 @@ void printTreeNode(pTreeNode* curr, pTreeNode* par, FILE* fp){
     fprintf(fp, "%*s ", 16, curr->symbol->isNonTerminal ? "-----" : tokenToString[curr->ste->tokenType]);
     if(!(curr->symbol->isNonTerminal) && (curr->ste->tokenType==NUM || curr->ste->tokenType==RNUM)){
         if(curr->ste->tokenType==NUM)
-            fprintf(fp, "%*d ", 20, (int)(curr->ste->valueIfNumber));
+            fprintf(fp, "%20.0f ", curr->ste->valueIfNumber);
         else    
             fprintf(fp, "%20.2lf ", curr->ste->valueIfNumber);
     }
@@ -823,13 +835,14 @@ void inorderTraverse(pTreeNode* curr, pTreeNode* par, FILE* fp){
 }
 
 void printParseTree(pTree* PT, char* outFile){
-    FILE* fp = fopen(outFile, "w");
+    FILE* fp = outFile ? fopen(outFile, "w") : NULL;
     if(!fp){
         printf("Could not open file for printing parse tree\n");
         return;
     }
     if(!PT){
         printf("Given parse tree is null. Could not print\n");
+        fclose(fp);
         return;
     }
     if(shouldPrint)
@@ -841,49 +854,62 @@ void printParseTree(pTree* PT, char* outFile){
         printf("Printing parse tree completed...\n");
 }
 
-void parseInputSourceCode(char* inpFile, char* opFile){
-
-    /*
-        Wrapper function for the parser that'll call all initialization functions and the parseTokens() function.
-        This function will be called by the driver.
-    */
-    
-    FILE* ifp = fopen(inpFile, "r");
-    if(!ifp){
-        printf("Could not open file input file for parsing\n");
-        return;
+static pTree* parseSourceFileImpl(const char* input, int* errors, bool report){
+    int count = 0;
+    FILE* fp = input ? fopen(input, "rb") : NULL;
+    if(!fp){
+        parseError(&count, report, 0, "Cannot open input file", input ? input : "(null)", "readable file");
+        if(errors) *errors += count;
+        return NULL;
     }
-    linkedList* tokensFromLexer = LexInput(ifp, opFile);
-    fclose(ifp);
-    
+    linkedList* tokens = getAllTokens(fp);
+    if(ferror(fp)) parseError(&count, report, 0, "Cannot read input file", input, "readable file");
+    fclose(fp);
+
+    initializeTokenToString();
     initializeNonTerminalToString();
     readGrammar();
-    
-    initializeAndComputeFirstAndFollow();
-    // printComputedFirstAndFollow();
-
-    initializeParseTable();
-    // printParseTable();
-
-    // FILE* fpout = fopen("ParserErrors.txt", "w");
-    // if(!fpout){
-    //     printf("Could not open file for parser output\n");
-    //     return;
-    // }
-
-    bool hasSyntaxError = false;
-    pTree* parseTree = parseTokens(tokensFromLexer, &hasSyntaxError);
-    // fclose(fpout);
-
-    if(!hasSyntaxError)
-        printParseTree(parseTree, opFile);
+    pTree* tree = NULL;
+    if(!grmRead) parseError(&count, report, 0, "Cannot load grammar", "", "grammar file");
+    else if(!tokens) parseError(&count, report, 0, "Lexer failed", "", "token list");
     else{
-        FILE* foptp = fopen(opFile, "w");
-        if(!foptp){
-            printf("Could not open file for printing parse tree\n");
+        initializeAndComputeFirstAndFollow();
+        initializeParseTable();
+        tree = parseTokens(tokens, &count, report);
+    }
+    if(tokens){
+        tokenInfo* node = tokens->head;
+        while(node){
+            tokenInfo* next = node->next;
+            free(node);
+            node = next;
+        }
+        free(tokens);
+    }
+    if(count){ freeParseTree(tree); tree = NULL; }
+    if(errors) *errors += count;
+    return tree;
+}
+
+pTree* parseSourceFile(const char* input, int* errors){
+    return parseSourceFileImpl(input, errors, true);
+}
+
+void parseInputSourceCode(char* inpFile, char* opFile){
+    int errors = 0;
+    pTree* tree = parseSourceFileImpl(inpFile, &errors, shouldPrint);
+    if(tree){
+        if(shouldPrint) printf("\nParsing successful! No syntax errors! The input is syntactically correct!\n");
+        printParseTree(tree, opFile);
+        freeParseTree(tree);
+    }
+    else{
+        FILE* fp = opFile ? fopen(opFile, "w") : NULL;
+        if(!fp){
+            fprintf(stderr, "Could not open file for printing parse tree\n");
             return;
         }
-        fprintf(foptp, "There were syntax errors in the input file. Not printing the parse tree!\nCheck the console for error details.");
-        fclose(foptp);
+        fprintf(fp, "There were syntax errors in the input file. Not printing the parse tree!\nCheck the console for error details.");
+        fclose(fp);
     }
 }
