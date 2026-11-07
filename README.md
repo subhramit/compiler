@@ -17,12 +17,12 @@ Compiler design and implementation project in C for a custom high-level language
 8. [License](#license)
 <a name="modules"></a>
 ## 1. Modules 
-The compiler comprises a preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery, plus semantic analysis and a direct x86-64 assembly backend. <br>
+The compiler comprises a preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery, plus semantic analysis and an x86-64 assembly backend. <br>
 
 - <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean source file. <br>
 - <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to `tokens.txt` inside the `src/lexer/` directory (or the Language specifications document inside the `docs/` directory) to see the list of valid tokens. <br>
 - <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to [`src/parser/grammar.txt`](https://github.com/subhramit/compiler/blob/main/src/parser/grammar.txt) (or the Modified LL(1) Grammar document inside the `docs/` directory) to see the grammar rules.
-- **Backend** - `src/compiler/compiler.c` performs semantic checks and includes the private `src/compiler/assembly.inc` implementation for direct instruction emission. `src/compiler/compiler.h` exposes `emitAssemblyProgram` (GAS Intel-syntax assembly output) and `checkProgram` (semantic checks without code generation). Diagnostics go to stderr; no assembly is written before semantic validation succeeds.
+- **Backend** - `src/compiler/compiler.c` performs semantic checks and includes the private `src/compiler/assembly.inc` implementation for instruction emission. `src/compiler/compiler.h` exposes `emitAssemblyProgram` (GAS Intel-syntax assembly output) and `checkProgram` (semantic checks without code generation). Diagnostics go to stderr; no assembly is written before semantic validation succeeds.
 - **Runtime** - `src/runtime/runtime.S` is handwritten x86-64 assembly, assembled ahead of time into `build/runtime.o`. Its wrappers use the normal CRT/libc for `printf`, `strtod`, `strtoll`, error reporting and stdio; generated programs link against this object and the CRT/libc.
 
 <a name="architecture"></a>
@@ -31,7 +31,7 @@ This uses a standard [Pipe and Filter](https://www.geeksforgeeks.org/system-desi
 
 ![Screenshot](docs/architecture.png)
 
-The native compilation path is source → lexer/parser → semantic analysis → directly emitted x86-64 GAS Intel-syntax assembly → assembler + prebuilt runtime object + CRT/libc linker → executable. GCC, Clang or Zig assembles the generated instructions and links the executable.
+The native compilation path is source → lexer/parser → semantic analysis → x86-64 GAS Intel-syntax assembly → assembler + prebuilt runtime object + CRT/libc linker → executable. GCC, Clang or Zig assembles the generated instructions and links the executable.
 
 Supported native targets are **x86-64 Windows (Win64 ABI, COFF)** and **x86-64 Linux (SysV ABI, ELF)**. This is a native-host backend, not an arbitrary POSIX or cross-compilation backend: macOS/Mach-O and other architectures are unsupported.
 <a name="language"></a>
@@ -307,7 +307,7 @@ Key source files and build outputs (generated files appear after building):
 │   ├── compiler/
 │   │   ├── compiler.c         # Semantic analysis; includes assembly.inc
 │   │   ├── compiler.h         # emitAssemblyProgram and checkProgram APIs
-│   │   └── assembly.inc       # Private direct x86-64 instruction emitter
+│   │   └── assembly.inc       # Private x86-64 instruction emitter
 │   ├── runtime/
 │   │   └── runtime.S          # Handwritten GAS Intel-syntax runtime
 │   ├── platform/              # Safe process execution and file publication
