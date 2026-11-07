@@ -17,18 +17,37 @@ Compiler design and implementation project in C for a custom high-level language
 8. [License](#license)
 <a name="modules"></a>
 ## 1. Modules 
-The compiler comprises of a fully functional preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery mechanism. <br>
+The compiler comprises a preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery, plus semantic analysis and a direct x86-64 assembly backend. The compiler itself is implemented in C; language programs are not translated to C or LLVM. <br>
 
 - <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean source file. <br>
 - <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to `tokens.txt` inside the `src/lexer/` directory (or the Language specifications document inside the `docs/` directory) to see the list of valid tokens. <br>
 - <ins>**Parser**</ins> - Parses the stream of tokens as per the grammar rules of the language using table-driven top-down predictive parsing and generates a parse tree, and identifies syntax errors wherever applicable. Refer to [`src/parser/grammar.txt`](https://github.com/subhramit/compiler/blob/main/src/parser/grammar.txt) (or the Modified LL(1) Grammar document inside the `docs/` directory) to see the grammar rules.
+- **Backend** - `src/compiler/compiler.c` performs semantic checks and includes the private `src/compiler/assembly.inc` implementation for direct instruction emission. `src/compiler/compiler.h` exposes `emitAssemblyProgram` (GAS Intel-syntax assembly output) and `checkProgram` (semantic checks without code generation). Diagnostics go to stderr; no assembly is written before semantic validation succeeds.
+- **Runtime** - `src/runtime/runtime.S` is handwritten x86-64 assembly, assembled ahead of time into `build/runtime.o`. Its wrappers use the normal CRT/libc for `printf`, `strtod`, `strtoll`, error reporting and stdio; generated programs link against this object and the CRT/libc.
+
 <a name="architecture"></a>
 ## 2. Architecture 
 This uses a standard [Pipe and Filter](https://www.geeksforgeeks.org/system-design/pipe-and-filter-architecture-system-design/) architecture as usually used for compilers. The input is a stream of data which flows from one component to another directly via a "pipe" (which has a single source of input and output), and is processed at different stages by various "filters" (independent components). Each component performs only one function, which establishes a loosely coupled system.
 
 ![Screenshot](docs/architecture.png)
+
+The native compilation path is source → lexer/parser → semantic analysis → directly emitted x86-64 GAS Intel-syntax assembly → assembler + prebuilt runtime object + CRT/libc linker → executable. There is no generated C, LLVM IR or C-source compilation step in language code generation. GCC, Clang or Zig is used as an assembler/linker driver only in this pipeline; compiling the compiler's own C implementation is a separate build step.
+
+Supported native targets are **x86-64 Windows (Win64 ABI, COFF)** and **x86-64 Linux (SysV ABI, ELF)**. This is a native-host backend, not an arbitrary POSIX or cross-compilation backend: macOS/Mach-O and other architectures are unsupported.
 <a name="language"></a>
 ## 3. Language specifications
+
+**Current implementation notes:** [`src/parser/grammar.txt`](src/parser/grammar.txt) is authoritative; the historical language descriptions and examples below are retained for reference. Every function, including `_main`, requires a final `return` statement (`return;` for no values), which some older main examples omit. Type definitions (`endrecord` / `endunion`) and `definetype` declarations have no trailing semicolon. Call arguments and return lists accept variable identifiers only, not constants or expressions (unlike the historical call example below).
+
+The backend implements these rules:
+
+- Integers are signed 64-bit values and reals are IEEE-754 binary64 values (the `int64_t` / `double` representations). Primitive operands must have exactly matching types; there are no implicit primitive casts. Constructed types use nominal identity; `definetype` aliases retain the original type's identity.
+- Recursion and forward function calls are rejected. Locals and function outputs must be definitely initialized before use; globals start at zero. Branch/loop initialization analysis is conservative.
+- Arithmetic overflow, invalid division, invalid input and invalid union-tag accesses are checked at runtime. Record arithmetic is recursive; scalar operations producing real results for integer record fields truncate toward zero with range checks.
+- Each union must be a direct record field with its own primitive sibling named `tagvalue`; multiple union fields cannot share one tag. Nested records are allowed, but standalone unions, unions containing unions (even through records), and variant arithmetic are rejected. Tags are 1-based integral values stored as `int` or `real`; union-field copies check both source and destination tags.
+- Record `read` / `write` traverses primitive leaves (one output value per line). Whole-variant I/O processes `tagvalue` first, then remaining fields in declaration order, visiting only the active union member's primitive leaves.
+- Semantic/type nesting is limited to 256 and initialization slots to 1,048,576 per type/function; oversized inputs receive diagnostics rather than partial code.
+
 The language supports primitive data types that are used as integers and real numbers. The language also supports record type and union type. The operations on variables of record type are addition and subtraction. These operations can be applied for two operands of record type. The scalar multiplication and division of record variables are also supported. Record type definitions are defined in any function but are available for any other function as well. The language supports modular code in terms of function, which uses call by value mechanism of parameter passing. The function may return many values of different types or may not return any value. The scope ofthe variables is local i.e. the variables are not visible outside the function where they are declared. The variables with prefix 'global' are visible outside the function and can be used within any function. <br> <br>
 Sample code:
 ```kotlin
@@ -270,67 +289,129 @@ The language supports two kinds of expressions: <br>
 <ins>**Boolean**</ins>: Conditional expressions control the flow of execution through the while loop. The logical AND and OR operators are `&&&` and `@@@` respectively. An example conditional expression is `(d3<=c5cd) &&& (b4>d2cd234)`. We do not use arithmetic expressions as arguments of boolean expressions, nor do we have record variables used in the boolean expressions.
 <a name="structure"></a>
 ## 4. File organization
-The structure of the project as visualized by ```tree``` is given below:
-```
-.
-├── LICENSE
-├── README.md
-├── build
-│   ├── driver.o
-│   ├── lexer.o
-│   └── parser.o
-├── docs
-│   ├── DFA.jpg
-│   ├── FnF_submission.pdf
-│   ├── Language specifications.pdf
-│   ├── Modified LL(1) Grammar.pdf
-│   ├── architecture.png
-│   └── coding_details.pdf
-├── driver.c
-├── makefile
-├── output.txt
-├── src
-│   ├── lexer
-│   │   ├── lexer.c
-│   │   ├── lexer.h
-│   │   ├── lexerDef.h
-│   │   └── tokens.txt
-│   └── parser
-│       ├── FIRST.txt
-│       ├── FOLLOW.txt
-│       ├── grammar.txt
-│       ├── parser.c
-│       ├── parser.h
-│       ├── parserDef.h
-│       └── stack.h
-├── stage1exe
-└── tests
-    ├── commentremoval_t2.txt
-    ├── lexemesandtokens_t1.txt
-    ├── lexemesandtokens_t2.txt
-    ├── listoferrors_t6.txt
-    ├── output.txt
-    ├── t1.txt
-    ├── t2.txt
-    ├── t3.txt
-    ├── t4.txt
-    ├── t5.txt
-    ├── t6.txt
-    └── test.txt
+Key source files and build outputs (generated files appear after building):
 
-6 directories, 38 files
+```text
+.
+├── README.md
+├── build.cmd                  # Optional Windows build without Python
+├── build.py                   # Optional Python build helper
+├── makefile                   # Compiler, runtime and legacy stage1exe build
+├── driver.c                   # Native CLI and legacy frontend menu
+├── build/
+│   ├── compiler[.exe]          # Compiler executable
+│   ├── runtime.o              # Prebuilt handwritten runtime object
+│   └── toolchain/             # Optional project-local toolchain
+├── docs/                      # Historical language/architecture documents
+├── src/
+│   ├── compiler/
+│   │   ├── compiler.c         # Semantic analysis; includes assembly.inc
+│   │   ├── compiler.h         # emitAssemblyProgram and checkProgram APIs
+│   │   └── assembly.inc       # Private direct x86-64 instruction emitter
+│   ├── runtime/
+│   │   └── runtime.S          # Handwritten GAS Intel-syntax runtime
+│   ├── platform/              # Safe process execution and file publication
+│   ├── lexer/                 # Lexer implementation and token definitions
+│   └── parser/                # Predictive parser, grammar and frontend tests
+├── stage1exe[.exe]             # Legacy executable produced by make
+└── tests/
+    ├── programs/              # Example language programs
+    ├── test_compiler.py       # Compiler integration tests
+    └── ...                    # Historical frontend fixtures
 ```
 ## 5. Dependencies <a name="dependencies"></a>
-The compiler has been developed and tested using **GCC 11.4.0** on **Ubuntu 22.04.3**. The project uses **GNU make** to build on **Linux**.
+The original frontend was developed using **GCC 11.4.0** on **Ubuntu 22.04.3**. Building the compiler requires a C11 compiler; assembling the handwritten runtime and linking native programs requires an x86-64 GCC/Clang-compatible toolchain, including Zig's `cc` driver, with the normal target CRT/libc. Native output is supported only on x86-64 Windows and Linux, not macOS or arbitrary POSIX systems.
+
+**Python 3** is optional for building (`build.py`) and is required for the test scripts. Windows can use `build.cmd` without Python; **GNU make** is another optional build route.
+
 ## 6. To run the compiler <a name="running"></a>
-1. Run `make` to build the executable
-2. Run `./stage1exe <Input File> <Output File>`
-3. Select your required option among the following: <br>
+
+### Build
+
+All build routes compile the compiler's C implementation and separately assemble `src/runtime/runtime.S` into `build/runtime.o`. This does not introduce C into the language's native-output pipeline.
+
+On Windows, build without Python using a local Zig installation or an explicit toolchain executable:
+
+```bat
+build.cmd
+build.cmd path\to\gcc.exe
+```
+
+The first form uses local Zig under `build/toolchain/ziglang/`. A Zig executable can also be supplied explicitly; its `cc` subcommand is inserted automatically. Pass one executable path, not a shell command such as `zig cc`.
+
+Alternatively, use the optional Python helper on Windows or Linux:
+
+```sh
+python build.py
+python build.py --cc path/to/compiler
+```
+
+This produces `build/compiler.exe` on Windows or `build/compiler` on Linux, plus `build/runtime.o`. Tool selection supports an explicit `--cc` executable path, the `CC` environment variable (one executable, not a command with flags), a local Zig installation under `build/toolchain/ziglang/`, and autodetection of `cc`, `gcc`, `clang` or `zig`.
+
+If needed, Python can install an optional project-local Zig toolchain:
+
+```sh
+python -m pip install --target build/toolchain ziglang
+python build.py --cc build/toolchain/ziglang/zig.exe
+```
+
+On Linux, use `build/toolchain/ziglang/zig` instead of `zig.exe`. The pip command downloads Zig into the project without requiring a system-wide installation; this installation method is optional, not a requirement for `build.cmd`.
+
+Alternatively, `make` builds the compiler, `build/runtime.o` and the legacy `stage1exe` (`.exe` on Windows). `make CC='zig cc'` is supported; unlike the CLI's `--cc`, make's `CC` is a build command.
+
+### Native compilation and checks
+
+```sh
+build/compiler source.txt -o output [--cc path/to/toolchain] [--runtime path/to/runtime.o]
+build/compiler --check source.txt
+build/compiler --emit-asm source.txt -o generated.s
+build/compiler --help
+
+# Runnable Linux example: supply an integer and a real on standard input
+build/compiler tests/programs/demo.txt -o build/demo
+./build/demo
+```
+
+The bracketed options in the first line are optional. On Windows use `build/compiler.exe`, choose an output such as `build/demo.exe`, and run `build\demo.exe`.
+
+- `--check` validates syntax and semantics only, via `checkProgram`. It generates no code and requires neither a runtime object nor an external toolchain.
+- `--emit-asm` writes direct x86-64 GAS Intel-syntax assembly to a `.s` file without invoking the assembler/linker or requiring the runtime object. It replaces the former C-output mode.
+- Native compilation emits assembly, then invokes the selected driver **only to assemble and link**, combining that assembly with the prebuilt runtime object and the normal CRT/libc. No language source is compiled via C.
+
+Native toolchain selection, in descending precedence, is **`--cc` → `CC` environment variable → build-time default**. Each value is one Zig/GCC/Clang-compatible executable path, not a shell command or flags. Zig's `cc` subcommand is added automatically; no shell is used.
+
+Runtime object selection is **`--runtime` → `RUNTIME` environment variable → build-time absolute `DEFAULT_RUNTIME` path**. The default points to the runtime object built with the compiler. When moving the compiler or using a different runtime location, supply `--runtime` or `RUNTIME`; the object must match the target ABI and object format.
+
+### Tests
+
+With the local Windows Zig toolchain:
+
+```sh
+python src/parser/test_frontend.py build/toolchain/ziglang/zig.exe
+python tests/test_compiler.py --cc build/toolchain/ziglang/zig.exe
+```
+
+On Linux, omit `.exe`; another compatible toolchain executable path may also be supplied. To test an already-built compiler, use:
+
+```sh
+python tests/test_compiler.py --compiler build/compiler --cc path/to/toolchain
+```
+
+Use `build/compiler.exe` on Windows. The integration suite contains 111 cases; the POSIX-only executable toolchain shim test is skipped on Windows. The separate frontend suite contains 54 cases. The assembly-backend suite has been verified with Zig on Windows and GCC on Linux/WSL; Linux runs also verify that native compilation accepts assembly inputs only.
+
+### Legacy frontend menu
+
+```sh
+build/compiler --legacy input.txt treeoutput.txt
+build/compiler input.txt treeoutput.txt
+```
+
+The old two-positional-argument invocation is preserved. The original `./stage1exe <Input File> <Output File>` remains available after `make`. Select your required option among the following: <br>
  **0:** To exit <br>
  **1:** To remove comments from the source file and print on the console <br>
  **2:** To perform lexical analysis and print token list on console <br>
  **3:** To perform syntax analysis and print the parse tree into the specified output file <br>
- **4:** To print total time taken (in CPU clock cycles and ms) for lexical and syntax analysis on console
+ **4:** To print total CPU time in seconds for lexical and syntax analysis on console
 
 <a name="credits"></a>
 ## 7. Credits

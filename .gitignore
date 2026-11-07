@@ -1,0 +1,9 @@
+# Generated build products and the optional project-local toolchain.
+build/
+__pycache__/
+*.pyc
+.zig-cache/
+zig-out/
+a.out
+a.exe
+stage1exe.exe

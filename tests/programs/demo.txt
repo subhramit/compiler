@@ -1,0 +1,30 @@
+% Input: 3 1.50
+% Output (one value per line): 3, 3, 3
+_double input parameter list [real b2] output parameter list [real c2];
+    c2 <--- b2 * 2.00;
+    return [c2];
+end
+
+_main
+    record #result
+        type int : count;
+        type real : value;
+    endrecord
+    type int : b2;
+    type int : c2;
+    type real : d2;
+    type real : d3;
+    type record #result : b3;
+    read(b2);
+    read(d2);
+    [d3] <--- call _double with parameters [d2];
+    c2 <--- 0;
+    while (c2 < b2)
+        c2 <--- c2 + 1;
+    endwhile
+    b3.count <--- c2;
+    b3.value <--- d3;
+    write(c2);
+    write(b3);
+    return;
+end
