@@ -17,7 +17,7 @@ Compiler design and implementation project in C for a custom high-level language
 8. [License](#license)
 <a name="modules"></a>
 ## 1. Modules 
-The compiler comprises a preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery, plus semantic analysis and a direct x86-64 assembly backend. The compiler itself is implemented in C; language programs are not translated to C or LLVM. <br>
+The compiler comprises a preprocessor, lexical analyzer and predictive parser (syntax checker) with error recovery, plus semantic analysis and a direct x86-64 assembly backend. <br>
 
 - <ins>**Preprocessor**</ins> - Removes comments from the source file (lines beginning with ```%```) and produces a clean source file. <br>
 - <ins>**Lexer**</ins> - Converts the input source code into a stream of valid tokens (lexemes) acceptable as per the language specifications, and identifies lexical errors wherever applicable. Refer to the DFA to see how the tokens are accepted. Also refer to `tokens.txt` inside the `src/lexer/` directory (or the Language specifications document inside the `docs/` directory) to see the list of valid tokens. <br>
@@ -31,7 +31,7 @@ This uses a standard [Pipe and Filter](https://www.geeksforgeeks.org/system-desi
 
 ![Screenshot](docs/architecture.png)
 
-The native compilation path is source → lexer/parser → semantic analysis → directly emitted x86-64 GAS Intel-syntax assembly → assembler + prebuilt runtime object + CRT/libc linker → executable. There is no generated C, LLVM IR or C-source compilation step in language code generation. GCC, Clang or Zig is used as an assembler/linker driver only in this pipeline; compiling the compiler's own C implementation is a separate build step.
+The native compilation path is source → lexer/parser → semantic analysis → directly emitted x86-64 GAS Intel-syntax assembly → assembler + prebuilt runtime object + CRT/libc linker → executable. GCC, Clang or Zig assembles the generated instructions and links the executable.
 
 Supported native targets are **x86-64 Windows (Win64 ABI, COFF)** and **x86-64 Linux (SysV ABI, ELF)**. This is a native-host backend, not an arbitrary POSIX or cross-compilation backend: macOS/Mach-O and other architectures are unsupported.
 <a name="language"></a>
@@ -328,7 +328,7 @@ The original frontend was developed using **GCC 11.4.0** on **Ubuntu 22.04.3**. 
 
 ### Build
 
-All build routes compile the compiler's C implementation and separately assemble `src/runtime/runtime.S` into `build/runtime.o`. This does not introduce C into the language's native-output pipeline.
+All build routes compile the compiler's C implementation and assemble `src/runtime/runtime.S` into `build/runtime.o`.
 
 On Windows, build without Python using a local Zig installation or an explicit toolchain executable:
 
@@ -375,8 +375,8 @@ build/compiler tests/programs/demo.txt -o build/demo
 The bracketed options in the first line are optional. On Windows use `build/compiler.exe`, choose an output such as `build/demo.exe`, and run `build\demo.exe`.
 
 - `--check` validates syntax and semantics only, via `checkProgram`. It generates no code and requires neither a runtime object nor an external toolchain.
-- `--emit-asm` writes direct x86-64 GAS Intel-syntax assembly to a `.s` file without invoking the assembler/linker or requiring the runtime object. It replaces the former C-output mode.
-- Native compilation emits assembly, then invokes the selected driver **only to assemble and link**, combining that assembly with the prebuilt runtime object and the normal CRT/libc. No language source is compiled via C.
+- `--emit-asm` writes x86-64 GAS Intel-syntax assembly to a `.s` file for inspection or manual assembly.
+- Native compilation emits assembly, then invokes the selected driver to assemble and link it with the prebuilt runtime object and the normal CRT/libc.
 
 Native toolchain selection, in descending precedence, is **`--cc` → `CC` environment variable → build-time default**. Each value is one Zig/GCC/Clang-compatible executable path, not a shell command or flags. Zig's `cc` subcommand is added automatically; no shell is used.
 
